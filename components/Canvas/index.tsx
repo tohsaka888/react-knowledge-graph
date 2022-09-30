@@ -2,15 +2,19 @@
  * @Author: tohsaka888
  * @Date: 2022-09-30 09:04:35
  * @LastEditors: tohsaka888
- * @LastEditTime: 2022-09-30 10:31:11
+ * @LastEditTime: 2022-09-30 16:57:13
  * @Description: 请填写简介
  */
 
-import React from "react";
+import React, { useContext } from "react";
 import { motion } from "framer-motion";
 import Node from "components/Node";
+import { ConfigContext, EdgesContext, NodesContext } from "components/context";
+import Edge from "components/Edge";
 
 function Canvas() {
+  const { nodes } = useContext(NodesContext)!;
+  const { edges } = useContext(EdgesContext)!;
   return (
     <motion.svg
       width={"100%"}
@@ -20,7 +24,12 @@ function Canvas() {
     >
       <motion.g id={"graph-drag"}>
         <motion.g id={"graph-scale"}>
-          <Node />
+          {edges.map((edge) => {
+            return <Edge {...edge} key={edge.id} />;
+          })}
+          {nodes.map((node) => {
+            return <Node node={node} key={node.id} />;
+          })}
         </motion.g>
       </motion.g>
     </motion.svg>
