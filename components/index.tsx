@@ -8,12 +8,20 @@
 
 import React, { useEffect, useState } from "react";
 import Canvas from "./Canvas";
-import { ConfigContext, EdgesContext, NodesContext } from "./context";
+import {
+  ConfigContext,
+  EdgesContext,
+  HoveredNodeContext,
+  NodesContext,
+} from "./context";
 import useCanvasDragOrScale from "./hooks/Canvas/useCanvasDragOrScale";
 
 function KnowledgeGraph(graphConfig: Config.ConfigProps) {
   const { canvasDragEvent } = useCanvasDragOrScale();
   const [config, setConfig] = useState<Config.ConfigProps>(graphConfig);
+  const [hoveredNode, setHoveredNode] = useState<Node.NodeFrontProps | null>(
+    null
+  );
   const [edges, setEdges] = useState<Edge.EdgeFrontProps[]>([]);
   const [nodes, setNodes] = useState<Node.NodeFrontProps[]>([
     {
@@ -33,7 +41,9 @@ function KnowledgeGraph(graphConfig: Config.ConfigProps) {
     <ConfigContext.Provider value={{ config, setConfig }}>
       <NodesContext.Provider value={{ nodes, setNodes }}>
         <EdgesContext.Provider value={{ edges, setEdges }}>
-          <Canvas />
+          <HoveredNodeContext.Provider value={{ hoveredNode, setHoveredNode }}>
+            <Canvas />
+          </HoveredNodeContext.Provider>
         </EdgesContext.Provider>
       </NodesContext.Provider>
     </ConfigContext.Provider>
