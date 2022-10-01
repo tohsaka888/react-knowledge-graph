@@ -6,10 +6,16 @@
  * @Description: 边
  */
 
-import React, { useContext, useMemo } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 
-function Edge({ id, fromNode, toNode, type }: Edge.EdgeFrontProps) {
+function Edge({
+  id,
+  fromNode,
+  toNode,
+  type,
+  description,
+}: Edge.EdgeFrontProps) {
   return (
     <>
       {fromNode && toNode && (
@@ -31,13 +37,37 @@ function Edge({ id, fromNode, toNode, type }: Edge.EdgeFrontProps) {
               d: `M ${fromNode.position.x} ${fromNode.position.y}, L ${toNode.position.x} ${toNode.position.y}`,
             }}
             transition={{
-              duration: 0.8,
+              duration: 0.5,
             }}
           />
 
-          <motion.text textAnchor={"middle"} dominantBaseline={"central"}>
-            <motion.textPath href={`#${id}`} fontSize={18} fill={"#999999"}>
+          <motion.text
+            textAnchor={"middle"}
+            dominantBaseline={"central"}
+            dy={-2}
+          >
+            <motion.textPath
+              href={`#${id}`}
+              fontSize={24}
+              fill={"#cecece"}
+              startOffset={"50%"}
+            >
               ▸
+            </motion.textPath>
+          </motion.text>
+
+          <motion.text
+            textAnchor={"middle"}
+            dominantBaseline={"central"}
+            dy={-10}
+          >
+            <motion.textPath
+              href={`#${id}`}
+              fontSize={8}
+              fill={"#999999"}
+              startOffset={"50%"}
+            >
+              {description}
             </motion.textPath>
           </motion.text>
         </motion.g>
