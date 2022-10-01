@@ -28,3 +28,14 @@ type EdgesContextProps = {
 };
 
 export const EdgesContext = createContext<EdgesContextProps | null>(null);
+
+type HoveredNodeContextProps = {
+  hoveredNode: Node.NodeFrontProps | null;
+  setHoveredNode: React.Dispatch<
+    React.SetStateAction<Node.NodeFrontProps | null>
+  >;
+};
+
+export const HoveredNodeContext = createContext<HoveredNodeContextProps | null>(
+  null
+);
