@@ -6,8 +6,9 @@
  * @Description: 边
  */
 
-import React from "react";
+import React, { useContext, useMemo } from "react";
 import { motion } from "framer-motion";
+import { HoveredNodeContext } from "components/context";
 
 function Edge({
   id,
@@ -15,7 +16,17 @@ function Edge({
   toNode,
   type,
   description,
+  fromId,
+  toId,
 }: Edge.EdgeFrontProps) {
+  const { hoveredNode } = useContext(HoveredNodeContext)!;
+
+  const needHighlight = useMemo(() => {
+    return hoveredNode
+      ? hoveredNode.id === fromId || hoveredNode.id === toId
+      : false;
+  }, [fromId, hoveredNode, toId]);
+
   return (
     <>
       {fromNode && toNode && (
@@ -28,13 +39,15 @@ function Edge({
         >
           <motion.path
             id={id as string}
-            stroke={"#cecece"}
+            stroke={needHighlight ? "#CCCCFF" : "#cecece"}
             strokeWidth={1}
             initial={{
               d: `M ${fromNode.position.x} ${fromNode.position.y}, L ${fromNode.position.x} ${fromNode.position.y}`,
             }}
             animate={{
               d: `M ${fromNode.position.x} ${fromNode.position.y}, L ${toNode.position.x} ${toNode.position.y}`,
+              fill: needHighlight ? "#CCCCFF" : "#cecece",
+              opacity: needHighlight ? [0.5, 1] : 1,
             }}
             transition={{
               duration: 0.5,
@@ -49,7 +62,13 @@ function Edge({
             <motion.textPath
               href={`#${id}`}
               fontSize={24}
-              fill={"#cecece"}
+              initial={{
+                opacity: 0,
+              }}
+              animate={{
+                fill: needHighlight ? "#CCCCFF" : "#cecece",
+                opacity: needHighlight ? [0.5, 1] : 1,
+              }}
               startOffset={"50%"}
             >
               ▸
@@ -64,7 +83,10 @@ function Edge({
             <motion.textPath
               href={`#${id}`}
               fontSize={8}
-              fill={"#999999"}
+              animate={{
+                fill: needHighlight ? "#CCCCFF" : "#cecece",
+                opacity: needHighlight ? [0.5, 1] : 1,
+              }}
               startOffset={"50%"}
             >
               {description}
