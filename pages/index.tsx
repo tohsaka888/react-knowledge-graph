@@ -1,11 +1,7 @@
 import KnowledgeGraph from "components";
-import Canvas from "components/Canvas";
 import { baseUrl } from "config/baseUrl";
 import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
 import { Key } from "react";
-import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
   const getNode = async (id: Key, direction: "inside" | "outside") => {
@@ -22,12 +18,12 @@ const Home: NextPage = () => {
 
   return (
     <div
-      style={{ width: "1000px", height: "500px", border: "1px solid #cecece" }}
+      style={{ width: "100vw", height: "100vh", border: "1px solid #cecece" }}
     >
       <KnowledgeGraph
         explore={getNode}
         radius={20}
-        basicDistence={50}
+        basicDistence={38}
         position={{ x: 100, y: 100 }}
         exploreEdge={getEdge}
         node={{
