@@ -6,10 +6,11 @@
  * @Description: 请填写简介
  */
 
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ConfigContext, EdgesContext, NodesContext } from "components/context";
 import useNodePosition from "components/hooks/Node/useNodePosition";
+import useExtendRadius from "components/hooks/Node/useExtendRadius";
 
 function Node({
   fill = "#1890ff",
@@ -25,17 +26,17 @@ function Node({
   const { calcNodePosition } = useNodePosition();
   const { nodes, setNodes } = useContext(NodesContext)!;
   const { setEdges } = useContext(EdgesContext)!;
+  const { calcNewPosition } = useExtendRadius();
 
   const exploreFunc = async () => {
     const inside = await explore(node.id, "inside");
     const outside = await explore(node.id, "outside");
     const edges = await exploreEdge(node.id);
-
-    // 延长半径
-    if (inside.length && outside.length) {
-    } else if (!inside.length && !outside.length) {
-    }
-
+    calcNewPosition({
+      node,
+      insideLength: inside.length,
+      outsideLength: outside.length,
+    });
     if (!node.isExplore) {
       if (node.hasMore) {
         const frontInside = calcNodePosition({
@@ -99,7 +100,11 @@ function Node({
       );
       setEdges((edges) => {
         return edges.filter(
-          (edge) => edge.fromId !== node.id && edge.toId !== node.id
+          (edge) =>
+            ((edge.fromId !== node.id && edge.toId !== node.id) ||
+              edge.fromId === parentNode?.id ||
+              edge.toId === parentNode?.id) &&
+            edge.pId.findIndex((id) => id === node.id) === -1
         );
       });
     }
