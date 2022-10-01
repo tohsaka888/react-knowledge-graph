@@ -37,7 +37,13 @@ function useNodePosition() {
             length: nodes.length,
           });
           const angle =
-            (index + 1) * (typeAngle / (nodes.length + 1)) + i * typeAngle;
+            (index + 1) * (typeAngle / (nodes.length + 1)) +
+            i * typeAngle +
+            (parentNode.direction !== "root"
+              ? direction === "inside"
+                ? parentNode.angle + Math.PI * 1.5
+                : parentNode.angle + Math.PI * 0.5
+              : 0);
           const x =
             parentNode.position.x +
             (direction === "inside" ? 1 : -1) * distence * Math.sin(angle);
