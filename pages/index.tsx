@@ -18,7 +18,12 @@ const Home: NextPage = () => {
 
   return (
     <div
-      style={{ width: "100vw", height: "100vh", border: "1px solid #cecece" }}
+      style={{
+        width: "100vw",
+        height: "100vh",
+        border: "1px solid #cecece",
+        overflow: "hidden",
+      }}
     >
       <KnowledgeGraph
         explore={getNode}
