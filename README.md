@@ -1,34 +1,66 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## 简介
 
-First, run the development server:
+基于 `Next.js`实现通用知识图谱组件。
 
-```bash
-npm run dev
-# or
-yarn dev
+## 功能
+
+- 定义节点大小/颜色/文字颜色/文字大小
+- 支持画布拖拽/缩放
+- 支持异步获取数据/动态探索生成图
+- 支持Hover节点时高亮节点及与其有关联的边
+- 高度可定制属性
+- 支持Hover边时可选择隐藏边
+- 已探索节点点击后隐藏已经探索的节点和边
+- 复位画布
+- 全屏
+- 右键当前实体居中
+
+## 待定实现的功能
+
+- 拖拽节点
+- 下载图
+- `Shift + 左键`多选节点拖拽
+- 重绘图
+
+## 接受的数据结构
+
+### 点
+
+```typescript
+  type NodeProps = {
+    id: React.Key;
+    name: string; // 节点名称
+    type: string; // 节点类型
+    hasMore: boolean; // 是否有子节点
+    direction: "root" | "inside" | "outside";
+  };
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 边
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+```typescript
+type EdgeProps = {
+    id: React.Key; // 边id
+    fromId: React.Key;
+    toId: React.Key;
+    description: string;
+  };
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### 探索函数
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+>  需要接受一个异步函数,本库会参数 `id - 节点Id`
+>
+> 需要返回 `inside`入边节点,`outside`出边节点,`edge`边集合
 
-## Learn More
+```typescript
+type explore = (
+      id: React.Key,
+    ) => Promise<{inside: Node.NodeProps[];outside: Node.NodeProps[];edge: Edge.EdgeProps[]}>;
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 使用
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+待补充
