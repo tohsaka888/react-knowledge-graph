@@ -45,7 +45,7 @@ function useNodePosition() {
                 : parentNode.angle + Math.PI * 0.5
               : 0);
           const x =
-            parentNode.position.x +
+            parentNode.position.x -
             (direction === "inside" ? 1 : -1) * distence * Math.sin(angle);
           const y = parentNode.position.y + distence * Math.cos(angle);
 
