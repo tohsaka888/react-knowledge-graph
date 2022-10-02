@@ -10,13 +10,11 @@ declare namespace Config {
   type ConfigProps = {
     radius: number;
     basicDistence: number; // 基础半径
-    explore: (
-      id: React.Key,
-      direction: "inside" | "outside"
-    ) => Promise<Node.NodeProps[]>;
-    exploreEdge: (
-      id: React.Key,
-    ) => Promise<Edge.EdgeProps[]>;
+    explore: (id: React.Key) => Promise<{
+      inside: Node.NodeProps[];
+      outside: Node.NodeProps[];
+      edges: Edge.EdgeProps[];
+    }>;
     node: Node.NodeProps;
     position: { x: number; y: number };
   };
