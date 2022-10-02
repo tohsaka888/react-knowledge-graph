@@ -49,6 +49,17 @@ const Home: NextPage = () => {
           direction: "root",
           name: "根节点",
         }}
+        // nodeConfig={{
+        //   fill: "#559922",
+        //   hoveredColor: "#33ff45",
+        // }}
+        edgeConfig={{
+          // descriptionColor: "#000",
+          // stroke: "#999999",
+          // descriptionSize: 10,
+          hoveredColor: "#ff0000",
+          // strokeWidth: 2,
+        }}
       />
     </div>
   );
