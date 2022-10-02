@@ -3,7 +3,7 @@
  * @Date: 2022-09-30 09:02:25
  * @LastEditors: tohsaka888
  * @LastEditTime: 2022-09-30 17:03:47
- * @Description: 请填写简介
+ * @Description: 节点
  */
 
 import React, { useContext, useState } from "react";
@@ -17,17 +17,11 @@ import {
 import useNodePosition from "components/hooks/Node/useNodePosition";
 import useExtendRadius from "components/hooks/Node/useExtendRadius";
 import Loading from "./Loading";
+import { defaultNodeConfig } from "components/config/nodeConfig";
 
-function Node({
-  fill = "#1890ff",
-  nameColor = "#666666",
-  typeColor = "#ffffff",
-  nameSize = 10,
-  typeSize = 11,
-  node,
-}: Node.NodeConfig) {
+function Node({ node }: Node.NodeConfig) {
   const { config } = useContext(ConfigContext)!;
-  const { radius, explore } = config;
+  const { radius, explore, nodeConfig } = config;
   const { name, type, position, parentNode } = node;
   const { calcNodePosition } = useNodePosition();
   const { nodes, setNodes } = useContext(NodesContext)!;
@@ -36,6 +30,8 @@ function Node({
   const [loading, setLoading] = useState<boolean>(false);
   const [isHover, setIsHover] = useState<boolean>(false);
   const { setHoveredNode } = useContext(HoveredNodeContext)!;
+  const { nameColor, nameSize, typeColor, typeSize, fill, hoveredColor } =
+    defaultNodeConfig;
 
   const exploreFunc = async () => {
     setLoading(true);
@@ -178,7 +174,9 @@ function Node({
           animate={{
             r: radius,
             opacity: loading ? 0.3 : 1,
-            fill: isHover ? "tomato" : fill,
+            fill: isHover
+              ? nodeConfig?.hoveredColor || hoveredColor
+              : nodeConfig?.fill || fill,
           }}
           transition={{
             duration: 0.5,
@@ -186,16 +184,16 @@ function Node({
         />
         {loading && <Loading x={-radius - 5} y={-radius - 5} />}
         <motion.text
-          fill={nameColor}
-          fontSize={nameSize}
+          fill={nodeConfig?.nameColor || nameColor}
+          fontSize={nodeConfig?.nameSize || nameSize}
           textAnchor={"middle"}
-          y={radius + nameSize}
+          y={radius + (nodeConfig?.nameSize || nameSize)}
         >
           {name}
         </motion.text>
         <motion.text
-          fill={typeColor}
-          fontSize={typeSize}
+          fill={nodeConfig?.typeColor || typeColor}
+          fontSize={nodeConfig?.typeSize || typeSize}
           textAnchor={"middle"}
           dominantBaseline={"central"}
         >
