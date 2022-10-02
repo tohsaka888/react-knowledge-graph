@@ -18,6 +18,7 @@ import useNodePosition from "components/hooks/Node/useNodePosition";
 import useExtendRadius from "components/hooks/Node/useExtendRadius";
 import Loading from "./Loading";
 import { defaultNodeConfig } from "components/config/nodeConfig";
+import useFormatEdges from "components/hooks/Edge/useFormatEdges";
 
 function Node({ node }: Node.NodeConfig) {
   const { config } = useContext(ConfigContext)!;
@@ -30,6 +31,7 @@ function Node({ node }: Node.NodeConfig) {
   const [loading, setLoading] = useState<boolean>(false);
   const [isHover, setIsHover] = useState<boolean>(false);
   const { setHoveredNode } = useContext(HoveredNodeContext)!;
+  const { formatEdges } = useFormatEdges();
   const { nameColor, nameSize, typeColor, typeSize, fill, hoveredColor } =
     defaultNodeConfig;
 
@@ -38,7 +40,6 @@ function Node({ node }: Node.NodeConfig) {
     // 判断当前节点是否已探索
     if (!node.isExplore) {
       const { inside, outside, edges } = await explore(node.id);
-      console.log(inside, outside, edges);
 
       // 探索-延长半径 取消探索-缩短半径
       calcNewPosition({
@@ -74,28 +75,7 @@ function Node({ node }: Node.NodeConfig) {
         ];
         setNodes(curNodes);
         // 设置边
-        setEdges((preEdges) => [
-          ...preEdges,
-          ...edges
-            .map((edge) => {
-              const fromNode = curNodes.find((node) => node.id === edge.fromId);
-              const toNode = curNodes.find((node) => node.id === edge.toId);
-              return {
-                ...edge,
-                type: "straight" as "straight",
-                pId: [...(fromNode?.pId || []), ...(toNode?.pId || [])],
-                fromNode,
-                toNode,
-              };
-            })
-            .filter(
-              (edge) =>
-                !(
-                  edge.fromId === node.id && edge.toId === node.parentNode?.id
-                ) &&
-                !(edge.toId === node.id && edge.fromId === node.parentNode?.id)
-            ),
-        ]);
+        formatEdges({ node, curNodes, edges });
       } else {
         alert("已经到尾节点了");
       }
