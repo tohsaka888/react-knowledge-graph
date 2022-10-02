@@ -16,6 +16,18 @@ const Home: NextPage = () => {
     return data;
   };
 
+  const explore = async (id: Key) => {
+    const inside = await getNode(id, "inside");
+    const outside = await getNode(id, "outside");
+    const edges = await getEdge(id);
+
+    return {
+      edges,
+      inside,
+      outside,
+    };
+  };
+
   return (
     <div
       style={{
@@ -26,11 +38,10 @@ const Home: NextPage = () => {
       }}
     >
       <KnowledgeGraph
-        explore={getNode}
+        explore={explore}
         radius={20}
         basicDistence={38}
         position={{ x: 100, y: 100 }}
-        exploreEdge={getEdge}
         node={{
           id: "node-0",
           type: "根节点",
