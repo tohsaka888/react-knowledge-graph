@@ -27,7 +27,7 @@ function Node({
   node,
 }: Node.NodeConfig) {
   const { config } = useContext(ConfigContext)!;
-  const { radius, explore, exploreEdge } = config;
+  const { radius, explore } = config;
   const { name, type, position, parentNode } = node;
   const { calcNodePosition } = useNodePosition();
   const { nodes, setNodes } = useContext(NodesContext)!;
@@ -41,9 +41,7 @@ function Node({
     setLoading(true);
     // 判断当前节点是否已探索
     if (!node.isExplore) {
-      const inside = await explore(node.id, "inside");
-      const outside = await explore(node.id, "outside");
-      const edges = await exploreEdge(node.id);
+      const { inside, outside, edges } = await explore(node.id);
 
       // 探索-延长半径 取消探索-缩短半径
       calcNewPosition({
