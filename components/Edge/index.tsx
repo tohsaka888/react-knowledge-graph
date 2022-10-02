@@ -7,7 +7,7 @@
  */
 
 import React, { useContext, useMemo } from "react";
-import { motion } from "framer-motion";
+import { motion, MotionConfig } from "framer-motion";
 import { ConfigContext, HoveredNodeContext } from "components/context";
 import { defaultEdgeConfig } from "components/config/edgeConfig";
 
@@ -62,7 +62,7 @@ function Edge({
   } = defaultEdgeConfig;
 
   return (
-    <>
+    <MotionConfig reducedMotion="never">
       {fromNode && toNode && (
         <motion.g
           initial={{ opacity: 0 }}
@@ -73,22 +73,39 @@ function Edge({
         >
           <motion.path
             id={id as string}
-            initial={{
-              d: `M ${fromNode.position.x} ${fromNode.position.y}, L ${fromNode.position.x} ${fromNode.position.y}`,
-            }}
             fill={"transparent"}
             animate={{
               d,
-              stroke: needHighlight
-                ? edgeConfig?.hoveredColor || hoveredColor
-                : edgeConfig?.stroke || stroke,
-              opacity: needHighlight ? [0.5, 1] : 1,
+              stroke: edgeConfig?.stroke || stroke,
               strokeWidth: edgeConfig?.strokeWidth || strokeWidth,
             }}
             transition={{
               duration: 0.5,
             }}
           />
+
+          {needHighlight && (
+            <motion.path
+              id={(id + "active") as string}
+              fill={"transparent"}
+              animate={{
+                d,
+                stroke: "#2890ff",
+                // opacity: needHighlight ? [0.5, 1] : 1,
+                strokeWidth: 2,
+                pathSpacing: 1,
+                pathLength: [0, 0.5],
+                pathOffset: [0, 1],
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                repeatType: "loop",
+                repeatDelay: 0,
+                delay: 0,
+              }}
+            />
+          )}
 
           <motion.text
             textAnchor={"middle"}
@@ -134,7 +151,7 @@ function Edge({
           </motion.text>
         </motion.g>
       )}
-    </>
+    </MotionConfig>
   );
 }
 
