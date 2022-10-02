@@ -29,6 +29,30 @@ function Edge({
       : false;
   }, [fromId, hoveredNode, toId]);
 
+  const d = useMemo(() => {
+    const fromX = fromNode?.position.x as number;
+    const fromY = fromNode?.position.y as number;
+    const toX = toNode?.position.x as number;
+    const toY = toNode?.position.y as number;
+    // 中间点
+    const angle = Math.PI / 2 - Math.atan2(fromY - toY, toX - fromX);
+    const dx = Math.cos(angle) * ((toX - fromX) / 2);
+    const dy = Math.sin(angle) * ((toX - fromX) / 2) - 10;
+    const middlePoint = {
+      x: (fromX + toX + dx) / 2 + dx,
+      y: (fromY + toY) / 2 + dy,
+    };
+    return type === "straight"
+      ? `M ${fromX} ${fromY}, L ${toX} ${toY}`
+      : `M ${fromX} ${fromY}, Q ${middlePoint.x} ${middlePoint.y}, ${toX} ${toY}`;
+  }, [
+    fromNode?.position.x,
+    fromNode?.position.y,
+    toNode?.position.x,
+    toNode?.position.y,
+    type,
+  ]);
+
   const {
     descriptionColor,
     descriptionSize,
@@ -52,8 +76,9 @@ function Edge({
             initial={{
               d: `M ${fromNode.position.x} ${fromNode.position.y}, L ${fromNode.position.x} ${fromNode.position.y}`,
             }}
+            fill={"transparent"}
             animate={{
-              d: `M ${fromNode.position.x} ${fromNode.position.y}, L ${toNode.position.x} ${toNode.position.y}`,
+              d,
               stroke: needHighlight
                 ? edgeConfig?.hoveredColor || hoveredColor
                 : edgeConfig?.stroke || stroke,
