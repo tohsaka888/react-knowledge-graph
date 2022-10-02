@@ -8,7 +8,8 @@
 
 import React, { useContext, useMemo } from "react";
 import { motion } from "framer-motion";
-import { HoveredNodeContext } from "components/context";
+import { ConfigContext, HoveredNodeContext } from "components/context";
+import { defaultEdgeConfig } from "components/config/edgeConfig";
 
 function Edge({
   id,
@@ -20,12 +21,21 @@ function Edge({
   toId,
 }: Edge.EdgeFrontProps) {
   const { hoveredNode } = useContext(HoveredNodeContext)!;
-
+  const { config } = useContext(ConfigContext)!;
+  const { edgeConfig } = config;
   const needHighlight = useMemo(() => {
     return hoveredNode
       ? hoveredNode.id === fromId || hoveredNode.id === toId
       : false;
   }, [fromId, hoveredNode, toId]);
+
+  const {
+    descriptionColor,
+    descriptionSize,
+    hoveredColor,
+    stroke,
+    strokeWidth,
+  } = defaultEdgeConfig;
 
   return (
     <>
@@ -39,15 +49,16 @@ function Edge({
         >
           <motion.path
             id={id as string}
-            stroke={needHighlight ? "#CCCCFF" : "#cecece"}
-            strokeWidth={1}
             initial={{
               d: `M ${fromNode.position.x} ${fromNode.position.y}, L ${fromNode.position.x} ${fromNode.position.y}`,
             }}
             animate={{
               d: `M ${fromNode.position.x} ${fromNode.position.y}, L ${toNode.position.x} ${toNode.position.y}`,
-              fill: needHighlight ? "#CCCCFF" : "#cecece",
+              stroke: needHighlight
+                ? edgeConfig?.hoveredColor || hoveredColor
+                : edgeConfig?.stroke || stroke,
               opacity: needHighlight ? [0.5, 1] : 1,
+              strokeWidth: edgeConfig?.strokeWidth || strokeWidth,
             }}
             transition={{
               duration: 0.5,
@@ -66,7 +77,9 @@ function Edge({
                 opacity: 0,
               }}
               animate={{
-                fill: needHighlight ? "#CCCCFF" : "#cecece",
+                fill: needHighlight
+                  ? edgeConfig?.hoveredColor || hoveredColor
+                  : edgeConfig?.stroke || stroke,
                 opacity: needHighlight ? [0.5, 1] : 1,
               }}
               startOffset={"50%"}
@@ -82,9 +95,11 @@ function Edge({
           >
             <motion.textPath
               href={`#${id}`}
-              fontSize={8}
               animate={{
-                fill: needHighlight ? "#CCCCFF" : "#cecece",
+                fill: needHighlight
+                  ? edgeConfig?.descriptionColor || hoveredColor
+                  : edgeConfig?.descriptionColor || descriptionColor,
+                fontSize: edgeConfig?.descriptionSize || descriptionSize,
                 opacity: needHighlight ? [0.5, 1] : 1,
               }}
               startOffset={"50%"}
