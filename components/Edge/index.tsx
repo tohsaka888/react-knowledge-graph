@@ -34,10 +34,20 @@ function Edge({
     const fromY = fromNode?.position.y as number;
     const toX = toNode?.position.x as number;
     const toY = toNode?.position.y as number;
+    const fromParentY = fromNode?.parentNode?.position.y!;
+    const toParentY = toNode?.parentNode?.position.y!;
+    const flag =
+      (fromNode?.direction === "inside" && fromY - fromParentY > 0) ||
+      (toNode?.direction === "inside" &&
+        toY - toParentY > 0 &&
+        toY - fromY < 0) ||
+      toNode?.direction !== fromNode?.direction && (fromNode?.direction === 'outside')
+        ? 1
+        : -1;
     // 中间点
     const angle = Math.PI / 2 - Math.atan2(fromY - toY, toX - fromX);
-    const dx = Math.cos(angle) * ((toX - fromX) / 2);
-    const dy = Math.sin(angle) * ((toX - fromX) / 2) - 10;
+    const dx = flag * Math.cos(angle) * ((toX - fromX) / 2);
+    const dy = flag * Math.sin(angle) * ((toX - fromX) / 2 + 10);
     const middlePoint = {
       x: (fromX + toX + dx) / 2 + dx,
       y: (fromY + toY) / 2 + dy,
@@ -46,8 +56,10 @@ function Edge({
       ? `M ${fromX} ${fromY}, L ${toX} ${toY}`
       : `M ${fromX} ${fromY}, Q ${middlePoint.x} ${middlePoint.y}, ${toX} ${toY}`;
   }, [
+    fromNode?.direction,
     fromNode?.position.x,
     fromNode?.position.y,
+    toNode?.direction,
     toNode?.position.x,
     toNode?.position.y,
     type,
