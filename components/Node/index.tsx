@@ -32,6 +32,10 @@ function Node({ node }: Node.NodeConfig) {
   const [isHover, setIsHover] = useState<boolean>(false);
   const { setHoveredNode } = useContext(HoveredNodeContext)!;
   const { formatEdges } = useFormatEdges();
+  const [childNodeLength, setChildNodeLength] = useState<{
+    insideLength: number;
+    outsideLength: number;
+  }>({ insideLength: 0, outsideLength: 0 });
   const { nameColor, nameSize, typeColor, typeSize, fill, hoveredColor } =
     defaultNodeConfig;
 
@@ -40,7 +44,10 @@ function Node({ node }: Node.NodeConfig) {
     // 判断当前节点是否已探索
     if (!node.isExplore) {
       const { inside, outside, edges } = await explore(node.id);
-
+      setChildNodeLength({
+        insideLength: inside.length,
+        outsideLength: outside.length,
+      });
       // 探索-延长半径 取消探索-缩短半径
       calcNewPosition({
         node,
@@ -53,11 +60,15 @@ function Node({ node }: Node.NodeConfig) {
           direction: "inside",
           nodes: inside,
           parentNode: node,
+          insideLength: inside.length,
+          outsideLength: outside.length,
         });
         const frontOutside = calcNodePosition({
           direction: "outside",
           nodes: outside,
           parentNode: node,
+          insideLength: inside.length,
+          outsideLength: outside.length,
         });
         const curNodes = [
           ...nodes.map((current) => {
@@ -83,8 +94,7 @@ function Node({ node }: Node.NodeConfig) {
       // 探索-延长半径 取消探索-缩短半径
       calcNewPosition({
         node,
-        insideLength: 0,
-        outsideLength: 0,
+        ...childNodeLength,
       });
       // 过滤掉子节点
       const filteredNodes = nodes.filter(
@@ -113,6 +123,7 @@ function Node({ node }: Node.NodeConfig) {
         );
       });
     }
+    node.isExplore = !node.isExplore;
     setLoading(false);
   };
 
