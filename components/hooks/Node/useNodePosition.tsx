@@ -13,6 +13,8 @@ type Props = {
   direction: "inside" | "outside";
   parentNode: Node.NodeFrontProps;
   nodes: Node.NodeProps[];
+  insideLength: number;
+  outsideLength: number;
 };
 
 function useNodePosition() {
@@ -21,7 +23,8 @@ function useNodePosition() {
   const calcNodePosition = useCallback(
     (props: Props): Node.NodeFrontProps[] => {
       let frontNodes: Node.NodeFrontProps[] = [];
-      const { nodes, parentNode, direction } = props;
+      const { nodes, parentNode, direction, insideLength, outsideLength } =
+        props;
       // 过滤
       const unFilteredtypies = nodes.map((node) => node.type);
       const types = Array.from(new Set(unFilteredtypies));
@@ -29,6 +32,16 @@ function useNodePosition() {
         return nodes.filter((node) => node.type === type);
       });
       const typeAngle = Math.PI / types.length;
+
+      let rotation: number = 0;
+
+      if (insideLength && outsideLength) {
+        rotation = parentNode.angle;
+      } else if (insideLength && !outsideLength) {
+        rotation = parentNode.angle - Math.PI / 2;
+      } else if (!insideLength && outsideLength) {
+        rotation = parentNode.angle;
+      }
 
       typeNodes.forEach((nodes, i) => {
         return nodes.forEach((node, index) => {
@@ -39,14 +52,9 @@ function useNodePosition() {
           const angle =
             (index + 1) * (typeAngle / (nodes.length + 1)) +
             i * typeAngle +
-            (parentNode.direction !== "root"
-              ? direction === "inside"
-                ? parentNode.angle + Math.PI * 1.5
-                : parentNode.angle + Math.PI * 0.5
-              : 0);
-          const x =
-            parentNode.position.x -
-            (direction === "inside" ? 1 : -1) * distence * Math.sin(angle);
+            (direction === "inside" ? 0 : Math.PI) +
+            rotation;
+          const x = parentNode.position.x - distence * Math.sin(angle);
           const y = parentNode.position.y + distence * Math.cos(angle);
 
           const frontNode: Node.NodeFrontProps = {
