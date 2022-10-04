@@ -40,7 +40,7 @@ function useNodePosition() {
       } else if (insideLength && !outsideLength) {
         rotation = parentNode.angle - Math.PI / 2;
       } else if (!insideLength && outsideLength) {
-        rotation = parentNode.angle;
+        rotation = parentNode.angle + Math.PI / 2;
       }
 
       typeNodes.forEach((nodes, i) => {
