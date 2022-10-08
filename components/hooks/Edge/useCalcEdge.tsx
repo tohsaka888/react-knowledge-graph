@@ -2,13 +2,24 @@
  * @Author: tohsaka888
  * @Date: 2022-10-08 11:25:58
  * @LastEditors: tohsaka888
- * @LastEditTime: 2022-10-08 16:53:11
+ * @LastEditTime: 2022-10-08 17:24:10
  * @Description: 计算Basel弯曲方向
  */
 
 import React, { useCallback, useMemo } from "react";
 
 function useCalcEdge() {
+  function twoPointDistance(
+    fromNode: Node.NodeFrontProps,
+    toNode: Node.NodeFrontProps
+  ) {
+    let dep = Math.sqrt(
+      Math.pow(fromNode.position.x - toNode.position.x, 2) +
+        Math.pow(fromNode.position.y - toNode.position.y, 2)
+    );
+    return dep;
+  }
+
   const calcQuadrant: Utils.CalcQuadrantFunc = ({ node, parentNode }) => {
     // 为入边-二三象限
     if (node.position.x - parentNode.position.x < 0) {
@@ -80,16 +91,17 @@ function useCalcEdge() {
               })
             : 1;
         // 中间点
-        const angle = Math.PI / 2 - Math.atan2(fromY - toY, toX - fromX);
-        const dx = flag * Math.cos(angle) * ((toX - fromX) / 2);
-        const dy = flag * Math.sin(angle) * ((toX - fromX) / 2 + 10);
+        const angle = Math.atan2(toY - fromY, toX - fromX);
+        const dx =
+          flag * Math.sin(angle) * twoPointDistance(fromNode!, toNode!) * 0.6;
+        const dy =
+          flag * Math.cos(angle) * twoPointDistance(fromNode!, toNode!) * 0.6;
         const middlePoint = {
-          x: (fromX + toX + dx) / 2 + dx,
+          x: (fromX + toX) / 2 - dx,
           y: (fromY + toY) / 2 + dy,
         };
         return `M ${fromX} ${fromY}, Q ${middlePoint.x} ${middlePoint.y}, ${toX} ${toY}`;
       }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     },
     [calcFlag]
   );
