@@ -2,7 +2,7 @@
  * @Author: tohsaka888
  * @Date: 2022-10-08 11:15:11
  * @LastEditors: tohsaka888
- * @LastEditTime: 2022-10-08 11:53:59
+ * @LastEditTime: 2022-10-08 16:55:55
  * @Description: EdgeMenu
  */
 
@@ -20,8 +20,9 @@ type Props = {
 function EdgeMenu({ edge }: Props) {
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const [isShow, setIsShow] = useState<boolean>(true);
-  const { fromNode, toNode, type, id } = edge;
-  const { calcFlag } = useCalcEdge();
+  const { id } = edge;
+  const { calcD } = useCalcEdge();
+  const d = calcD(edge);
 
   useEffect(() => {
     if (isHovered) {
@@ -40,44 +41,6 @@ function EdgeMenu({ edge }: Props) {
       d3.select(`#${id}description`).style("opacity", 0.2);
     }
   }, [id, isShow]);
-
-  const d = useMemo(() => {
-    const fromX = fromNode?.position.x as number;
-    const fromY = fromNode?.position.y as number;
-    const toX = toNode?.position.x as number;
-    const toY = toNode?.position.y as number;
-
-    if (type === "straight") {
-      return `M ${fromX} ${fromY}, L ${toX} ${toY}`;
-    } else {
-      const flag =
-        fromNode && toNode && fromNode.parentNode
-          ? calcFlag({
-              fromNode: fromNode!,
-              toNode: toNode!,
-              parentNode: fromNode?.parentNode!,
-            })
-          : 1;
-      // 中间点
-      const angle = Math.PI / 2 - Math.atan2(fromY - toY, toX - fromX);
-      const dx = flag * Math.cos(angle) * ((toX - fromX) / 2);
-      const dy = flag * Math.sin(angle) * ((toX - fromX) / 2 + 10);
-      const middlePoint = {
-        x: (fromX + toX + dx) / 2 + dx,
-        y: (fromY + toY) / 2 + dy,
-      };
-      return `M ${fromX} ${fromY}, Q ${middlePoint.x} ${middlePoint.y}, ${toX} ${toY}`;
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    fromNode,
-    toNode,
-    type,
-    fromNode?.position.x,
-    toNode?.position.x,
-    fromNode?.position.y,
-    toNode?.position.y,
-  ]);
   return (
     <g>
       {isHovered && (

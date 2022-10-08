@@ -2,7 +2,7 @@
  * @Author: tohsaka888
  * @Date: 2022-09-30 16:14:10
  * @LastEditors: tohsaka888
- * @LastEditTime: 2022-10-08 15:09:46
+ * @LastEditTime: 2022-10-08 16:54:57
  * @Description: 边
  */
 
@@ -17,15 +17,8 @@ import { defaultEdgeConfig } from "components/config/edgeConfig";
 // import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 import useCalcEdge from "components/hooks/Edge/useCalcEdge";
 
-function Edge({
-  id,
-  fromNode,
-  toNode,
-  type,
-  description,
-  fromId,
-  toId,
-}: Edge.EdgeFrontProps) {
+function Edge(props: Edge.EdgeFrontProps) {
+  const { id, fromNode, toNode, type, description, fromId, toId } = props;
   const { hoveredNode } = useContext(HoveredNodeContext)!;
   const { config } = useContext(ConfigContext)!;
   const { edgeConfig } = config;
@@ -36,45 +29,8 @@ function Edge({
       ? hoveredNode.id === fromId || hoveredNode.id === toId
       : false;
   }, [fromId, hoveredNode, toId]);
-  const { calcFlag } = useCalcEdge();
-
-  const d = useMemo(() => {
-    const fromX = fromNode?.position.x as number;
-    const fromY = fromNode?.position.y as number;
-    const toX = toNode?.position.x as number;
-    const toY = toNode?.position.y as number;
-
-    if (type === "straight") {
-      return `M ${fromX} ${fromY}, L ${toX} ${toY}`;
-    } else {
-      const flag =
-        fromNode && toNode && fromNode.parentNode
-          ? calcFlag({
-              fromNode: fromNode!,
-              toNode: toNode!,
-              parentNode: fromNode?.parentNode!,
-            })
-          : 1;
-      // 中间点
-      const angle = Math.PI / 2 - Math.atan2(fromY - toY, toX - fromX);
-      const dx = flag * Math.cos(angle) * ((toX - fromX) / 2);
-      const dy = flag * Math.sin(angle) * ((toX - fromX) / 2 + 10);
-      const middlePoint = {
-        x: (fromX + toX + dx) / 2 + dx,
-        y: (fromY + toY) / 2 + dy,
-      };
-      return `M ${fromX} ${fromY}, Q ${middlePoint.x} ${middlePoint.y}, ${toX} ${toY}`;
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    fromNode,
-    toNode,
-    type,
-    fromNode?.position.x,
-    toNode?.position.x,
-    fromNode?.position.y,
-    toNode?.position.y,
-  ]);
+  const { calcD } = useCalcEdge();
+  const d = calcD(props);
 
   const {
     descriptionColor,
