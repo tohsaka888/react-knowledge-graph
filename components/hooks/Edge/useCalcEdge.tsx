@@ -2,7 +2,7 @@
  * @Author: tohsaka888
  * @Date: 2022-10-08 11:25:58
  * @LastEditors: tohsaka888
- * @LastEditTime: 2022-10-08 11:25:58
+ * @LastEditTime: 2022-10-08 12:30:01
  * @Description: 请填写简介
  */
 
@@ -52,7 +52,7 @@ function useCalcEdge() {
         else if (toNodePosition === "第三象限") return 1;
         else return 1;
       } else {
-        if (toNodePosition === "第一象限") return 1;
+        if (toNodePosition === "第一象限") return -1;
         else if (toNodePosition === "第二象限") return -1;
         else if (toNodePosition === "第三象限") return 1;
         else return 1;
