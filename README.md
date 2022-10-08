@@ -2,7 +2,7 @@
  * @Author: tohsaka888
  * @Date: 2022-10-08 08:25:48
  * @LastEditors: tohsaka888
- * @LastEditTime: 2022-10-08 11:10:02
+ * @LastEditTime: 2022-10-08 11:51:52
  * @Description: 请填写简介
 -->
  devThis is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
@@ -18,7 +18,7 @@
 - 支持异步获取数据/动态探索生成图 - 实现
 - 支持Hover节点时高亮节点及与其有关联的边 - 实现
 - 高度可定制属性 - 实现
-- 支持Hover边时可选择隐藏边 - 实现(待优化)
+- 支持Hover边时可选择隐藏边 - 实现
 - 已探索节点点击后隐藏已经探索的节点和边 - 实现
 - 复位画布
 - 全屏
