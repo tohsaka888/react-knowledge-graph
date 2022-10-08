@@ -2,11 +2,11 @@
  * @Author: tohsaka888
  * @Date: 2022-10-08 13:20:39
  * @LastEditors: tohsaka888
- * @LastEditTime: 2022-10-08 15:06:23
+ * @LastEditTime: 2022-10-08 15:25:46
  * @Description: 右键菜单
  */
 
-import React, { useContext, useEffect, useMemo, useRef } from "react";
+import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 import { motion } from "framer-motion";
 import { RightMenuPropsContext } from "components/context";
@@ -19,6 +19,7 @@ function RightClickMenu() {
   const bodyRef = useRef<HTMLElement>(null!);
   const { event, setEvent } = useContext(RightMenuPropsContext)!;
   const { resetCanvas } = useCanvasDragOrScale();
+  const [fullscreen, setFullscreen] = useState<boolean>(false);
 
   useEffect(() => {
     bodyRef.current = document.body;
@@ -68,10 +69,21 @@ function RightClickMenu() {
                         if (value === "复位画布") {
                           resetCanvas();
                         }
+                        if (value === "全屏" || value === "退出全屏") {
+                          if (document.fullscreenElement) {
+                            document.exitFullscreen();
+                          } else {
+                            document.documentElement.requestFullscreen();
+                          }
+                        }
                         setEvent(null);
                       }}
                     >
-                      {item}
+                      {item === "全屏"
+                        ? !document.fullscreenElement
+                          ? "全屏"
+                          : "退出全屏"
+                        : item}
                     </MenuItem>
                   );
                 })}
