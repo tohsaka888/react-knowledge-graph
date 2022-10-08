@@ -2,7 +2,7 @@
  * @Author: tohsaka888
  * @Date: 2022-10-08 13:20:39
  * @LastEditors: tohsaka888
- * @LastEditTime: 2022-10-08 15:25:46
+ * @LastEditTime: 2022-10-08 15:33:29
  * @Description: 右键菜单
  */
 
@@ -19,11 +19,16 @@ function RightClickMenu() {
   const bodyRef = useRef<HTMLElement>(null!);
   const { event, setEvent } = useContext(RightMenuPropsContext)!;
   const { resetCanvas } = useCanvasDragOrScale();
-  const [fullscreen, setFullscreen] = useState<boolean>(false);
 
   useEffect(() => {
     bodyRef.current = document.body;
+
+    return () => {
+      setEvent(null);
+    };
   }, [setEvent]);
+
+  console.log(event?.clientX, event?.clientY);
 
   const type = useMemo(() => {
     if (event?.target) {
@@ -55,6 +60,7 @@ function RightClickMenu() {
             }}
             animate={{
               opacity: 1,
+              transform: `translate3d(${event.clientX}px, ${event.clientY}px, 0)`,
             }}
           >
             {type === "canvas" ? (
