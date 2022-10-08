@@ -2,7 +2,7 @@
  * @Author: tohsaka888
  * @Date: 2022-10-08 13:20:39
  * @LastEditors: tohsaka888
- * @LastEditTime: 2022-10-08 15:36:55
+ * @LastEditTime: 2022-10-08 15:43:17
  * @Description: 右键菜单
  */
 
@@ -14,6 +14,7 @@ import MenuItem from "./MenuItem";
 import useCanvasDragOrScale from "components/hooks/Canvas/useCanvasDragOrScale";
 
 const canvasItems = ["复位画布", "下载当前图谱", "全屏"];
+const nodeItems = ["当前实体居中"];
 
 function RightClickMenu() {
   const bodyRef = useRef<HTMLElement>(null!);
@@ -93,7 +94,19 @@ function RightClickMenu() {
                 })}
               </motion.div>
             ) : (
-              <motion.div>node</motion.div>
+              <motion.div initial={{ border: "1px solid #dfdfdf" }}>
+                {nodeItems.map((item, index) => {
+                  return (
+                    <MenuItem
+                      key={item}
+                      index={index}
+                      length={nodeItems.length}
+                    >
+                      {item}
+                    </MenuItem>
+                  );
+                })}
+              </motion.div>
             )}
           </motion.div>
         )}
