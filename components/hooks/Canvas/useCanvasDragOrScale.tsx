@@ -2,7 +2,7 @@
  * @Author: tohsaka888
  * @Date: 2022-09-30 09:13:29
  * @LastEditors: tohsaka888
- * @LastEditTime: 2022-10-08 16:06:28
+ * @LastEditTime: 2022-10-08 16:10:57
  * @Description: 拖动画布
  */
 
@@ -71,27 +71,33 @@ export const useCanvasDragOrScale = () => {
     canvasConfig.dx = 0;
     canvasConfig.dy = 0;
     canvasConfig.scale = 1;
-    d3.select("#graph-drag").attr(
-      "transform",
-      `translate(${canvasConfig.dx}, ${canvasConfig.dy})`
-    );
-    d3.select("#graph-scale").attr("transform", `scale(${canvasConfig.scale})`);
+    d3.select("#graph-drag")
+      .transition()
+      .duration(500)
+      .attr("transform", `translate(${canvasConfig.dx}, ${canvasConfig.dy})`);
+    d3.select("#graph-scale")
+      .transition()
+      .duration(500)
+      .attr("transform", `scale(${canvasConfig.scale})`);
   }, []);
 
   const moveNodeToCenter = useCallback((node: Node.NodeFrontProps) => {
     // 恢复缩放
     canvasConfig.scale = 1;
-    d3.select("#graph-scale").attr("transform", `scale(${canvasConfig.scale})`);
+    d3.select("#graph-scale")
+      .transition()
+      .duration(500)
+      .attr("transform", `scale(${canvasConfig.scale})`);
 
     // 移动
     const canvas = d3.select("#knowledge-graph-canvas").node() as SVGSVGElement;
     canvasConfig.dx = canvas.clientWidth / 2 - node.position.x;
     canvasConfig.dy = canvas.clientHeight / 2 - node.position.y;
     canvasConfig.scale = 1;
-    d3.select("#graph-drag").attr(
-      "transform",
-      `translate(${canvasConfig.dx}, ${canvasConfig.dy})`
-    );
+    d3.select("#graph-drag")
+      .transition()
+      .duration(500)
+      .attr("transform", `translate(${canvasConfig.dx}, ${canvasConfig.dy})`);
   }, []);
 
   return { canvasDragEvent, resetCanvas, moveNodeToCenter };
