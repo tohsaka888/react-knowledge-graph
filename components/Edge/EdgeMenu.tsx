@@ -2,14 +2,14 @@
  * @Author: tohsaka888
  * @Date: 2022-10-08 11:15:11
  * @LastEditors: tohsaka888
- * @LastEditTime: 2022-10-08 11:46:06
+ * @LastEditTime: 2022-10-08 11:53:59
  * @Description: EdgeMenu
  */
 
 // import { EdgeMenuContext } from "components/context";
 import useCalcEdge from "components/hooks/Edge/useCalcEdge";
 import { motion } from "framer-motion";
-import React, { useContext, useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 import * as d3 from "d3";
 
@@ -90,13 +90,14 @@ function EdgeMenu({ edge }: Props) {
           {isShow ? (
             <BsFillEyeFill color="#cecece" />
           ) : (
-            <BsFillEyeSlashFill
-              color="#cecece"
-              style={{ opacity: 0.5 }}
+            <g
               onClick={() => {
                 setIsShow(true);
               }}
-            />
+            >
+              <circle r={10} fill={"transparent"} cx={8} cy={8} />
+              <BsFillEyeSlashFill color="#cecece" style={{ opacity: 0.5 }} />
+            </g>
           )}
         </motion.g>
       )}
