@@ -2,7 +2,7 @@
  * @Author: tohsaka888
  * @Date: 2022-09-30 16:14:10
  * @LastEditors: tohsaka888
- * @LastEditTime: 2022-10-08 11:45:47
+ * @LastEditTime: 2022-10-08 15:09:46
  * @Description: 边
  */
 
@@ -110,7 +110,7 @@ function Edge({
             }}
           />
 
-          {/* {needHighlight && (
+          {needHighlight && (
             <motion.path
               id={(id + "active") as string}
               fill={"transparent"}
@@ -131,7 +131,7 @@ function Edge({
                 delay: 0,
               }}
             />
-          )} */}
+          )}
 
           <motion.text
             textAnchor={"middle"}
