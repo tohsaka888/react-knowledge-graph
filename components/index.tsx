@@ -2,7 +2,7 @@
  * @Author: tohsaka888
  * @Date: 2022-09-30 09:28:11
  * @LastEditors: tohsaka888
- * @LastEditTime: 2022-09-30 16:42:08
+ * @LastEditTime: 2022-10-08 14:28:24
  * @Description: 全局配置
  */
 
@@ -13,6 +13,7 @@ import {
   EdgesContext,
   HoveredNodeContext,
   NodesContext,
+  RightMenuPropsContext,
 } from "./context";
 import useCanvasDragOrScale from "./hooks/Canvas/useCanvasDragOrScale";
 
@@ -23,6 +24,10 @@ function KnowledgeGraph(graphConfig: Config.ConfigProps) {
     null
   );
   const [edges, setEdges] = useState<Edge.EdgeFrontProps[]>([]);
+  const [event, setEvent] = useState<React.MouseEvent<
+    SVGSVGElement,
+    MouseEvent
+  > | null>(null);
   const [nodes, setNodes] = useState<Node.NodeFrontProps[]>([
     {
       ...config.node,
@@ -34,7 +39,9 @@ function KnowledgeGraph(graphConfig: Config.ConfigProps) {
     },
   ]);
   useEffect(() => {
-    canvasDragEvent();
+    canvasDragEvent(() => {
+      setEvent(null);
+    });
   }, [canvasDragEvent]);
 
   return (
@@ -42,7 +49,9 @@ function KnowledgeGraph(graphConfig: Config.ConfigProps) {
       <NodesContext.Provider value={{ nodes, setNodes }}>
         <EdgesContext.Provider value={{ edges, setEdges }}>
           <HoveredNodeContext.Provider value={{ hoveredNode, setHoveredNode }}>
-            <Canvas />
+            <RightMenuPropsContext.Provider value={{ event, setEvent }}>
+              <Canvas />
+            </RightMenuPropsContext.Provider>
           </HoveredNodeContext.Provider>
         </EdgesContext.Provider>
       </NodesContext.Provider>
