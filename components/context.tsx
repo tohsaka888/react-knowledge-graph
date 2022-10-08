@@ -2,7 +2,7 @@
  * @Author: tohsaka888
  * @Date: 2022-09-30 11:56:15
  * @LastEditors: tohsaka888
- * @LastEditTime: 2022-09-30 16:41:33
+ * @LastEditTime: 2022-10-08 11:45:36
  * @Description: 请填写简介
  */
 
@@ -39,3 +39,12 @@ type HoveredNodeContextProps = {
 export const HoveredNodeContext = createContext<HoveredNodeContextProps | null>(
   null
 );
+
+// type EdgeMenuContextProps = {
+//   isShow: boolean;
+//   setIsShow: React.Dispatch<React.SetStateAction<boolean>>;
+//   isHovered: boolean;
+//   setIsHovered: React.Dispatch<React.SetStateAction<boolean>>;
+// };
+
+// export const EdgeMenuContext = createContext<EdgeMenuContextProps | null>(null);
