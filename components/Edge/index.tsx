@@ -52,7 +52,7 @@ function Edge(props: Edge.EdgeFrontProps) {
         >
           <motion.path
             id={id as string}
-            fill={"transparent"}
+            fill={"none"}
             width={20}
             initial={{ opacity: 0 }}
             animate={{
@@ -69,7 +69,7 @@ function Edge(props: Edge.EdgeFrontProps) {
           {needHighlight && (
             <motion.path
               id={(id + "active") as string}
-              fill={"transparent"}
+              fill={"none"}
               animate={{
                 d,
                 stroke: "#2890ff",

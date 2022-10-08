@@ -58,7 +58,7 @@ function EdgeMenu({ edge }: Props) {
                 setIsShow(true);
               }}
             >
-              <circle r={10} fill={"transparent"} cx={8} cy={8} />
+              <circle r={10} fill={"none"} cx={8} cy={8} />
               <BsFillEyeSlashFill color="#cecece" style={{ opacity: 0.5 }} />
             </g>
           )}
@@ -68,7 +68,7 @@ function EdgeMenu({ edge }: Props) {
         <motion.path
           d={d}
           stroke={"transparent"}
-          fill={"transparent"}
+          fill={"none"}
           strokeWidth={20}
           onHoverStart={() => setIsHovered(true)}
           onHoverEnd={() => setIsHovered(false)}
