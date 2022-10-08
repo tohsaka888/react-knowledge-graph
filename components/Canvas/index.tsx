@@ -2,15 +2,32 @@
  * @Author: tohsaka888
  * @Date: 2022-09-30 09:04:35
  * @LastEditors: tohsaka888
- * @LastEditTime: 2022-09-30 16:57:13
+ * @LastEditTime: 2022-10-08 11:46:10
  * @Description: 请填写简介
  */
 
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { motion } from "framer-motion";
 import Node from "components/Node";
-import { ConfigContext, EdgesContext, NodesContext } from "components/context";
+import {
+  // EdgeMenuContext,
+  EdgesContext,
+  NodesContext,
+} from "components/context";
 import Edge from "components/Edge";
+import EdgeMenu from "components/Edge/EdgeMenu";
+
+// function EdgeController({ children }: { children: React.ReactNode }) {
+//   const [isHovered, setIsHovered] = useState<boolean>(false);
+//   const [isShow, setIsShow] = useState<boolean>(true);
+//   return (
+//     <EdgeMenuContext.Provider
+//       value={{ isHovered, isShow, setIsHovered, setIsShow }}
+//     >
+//       {children}
+//     </EdgeMenuContext.Provider>
+//   );
+// }
 
 function Canvas() {
   const { nodes } = useContext(NodesContext)!;
@@ -24,12 +41,17 @@ function Canvas() {
     >
       <motion.g id={"graph-drag"}>
         <motion.g id={"graph-scale"}>
-          {edges.map((edge) => {
-            return <Edge {...edge} key={edge.id} />;
-          })}
-          {nodes.map((node) => {
-            return <Node node={node} key={node.id} />;
-          })}
+          {/* <EdgeController> */}
+            {edges.map((edge) => {
+              return <Edge {...edge} key={edge.id} />;
+            })}
+            {nodes.map((node) => {
+              return <Node node={node} key={node.id} />;
+            })}
+            {edges.map((edge) => {
+              return <EdgeMenu edge={edge} key={edge.id} />;
+            })}
+          {/* </EdgeController> */}
         </motion.g>
       </motion.g>
     </motion.svg>
