@@ -2,7 +2,7 @@
  * @Author: tohsaka888
  * @Date: 2022-09-30 09:13:29
  * @LastEditors: tohsaka888
- * @LastEditTime: 2022-09-30 10:06:18
+ * @LastEditTime: 2022-10-08 15:01:13
  * @Description: 拖动画布
  */
 
@@ -10,10 +10,14 @@ import useCanvasConfig from "components/hooks/useCanvasConfig";
 import * as d3 from "d3";
 import { useCallback } from "react";
 
-export const useCanvasDragOrScale = () => {
-  const { canvasConfig } = useCanvasConfig();
+const canvasConfig = {
+  scale: 1,
+  dx: 0,
+  dy: 0,
+};
 
-  const canvasDragEvent = useCallback(() => {
+export const useCanvasDragOrScale = () => {
+  const canvasDragEvent = useCallback((onDragStart?: Function) => {
     const container = d3.select<SVGSVGElement, unknown>(
       "#knowledge-graph-canvas"
     );
@@ -22,6 +26,9 @@ export const useCanvasDragOrScale = () => {
     container.call(
       d3
         .drag<SVGSVGElement, unknown>()
+        .on("start", () => {
+          onDragStart && onDragStart();
+        })
         .on(
           "drag",
           function (event: d3.D3DragEvent<SVGSVGElement, unknown, unknown>) {
@@ -58,9 +65,20 @@ export const useCanvasDragOrScale = () => {
         );
       }
     });
-  }, [canvasConfig]);
+  }, []);
 
-  return { canvasDragEvent };
+  const resetCanvas = useCallback(() => {
+    canvasConfig.dx = 0;
+    canvasConfig.dy = 0;
+    canvasConfig.scale = 1;
+    d3.select("#graph-drag").attr(
+      "transform",
+      `translate(${canvasConfig.dx}, ${canvasConfig.dy})`
+    );
+    d3.select("#graph-scale").attr("transform", `scale(${canvasConfig.scale})`);
+  }, []);
+
+  return { canvasDragEvent, resetCanvas };
 };
 
 export default useCanvasDragOrScale;
