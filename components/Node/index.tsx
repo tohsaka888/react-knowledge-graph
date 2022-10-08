@@ -2,7 +2,7 @@
  * @Author: tohsaka888
  * @Date: 2022-09-30 09:02:25
  * @LastEditors: tohsaka888
- * @LastEditTime: 2022-09-30 17:03:47
+ * @LastEditTime: 2022-10-08 08:52:54
  * @Description: 节点
  */
 
@@ -155,7 +155,6 @@ function Node({ node }: Node.NodeConfig) {
           x: position.x,
           y: position.y,
           opacity: 1,
-          scale: isHover ? 1.1 : 1,
         }}
         transition={{
           duration: 0.5,
