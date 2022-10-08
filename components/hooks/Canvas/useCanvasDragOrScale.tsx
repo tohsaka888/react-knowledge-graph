@@ -2,7 +2,7 @@
  * @Author: tohsaka888
  * @Date: 2022-09-30 09:13:29
  * @LastEditors: tohsaka888
- * @LastEditTime: 2022-10-08 15:01:13
+ * @LastEditTime: 2022-10-08 16:06:28
  * @Description: 拖动画布
  */
 
@@ -78,7 +78,23 @@ export const useCanvasDragOrScale = () => {
     d3.select("#graph-scale").attr("transform", `scale(${canvasConfig.scale})`);
   }, []);
 
-  return { canvasDragEvent, resetCanvas };
+  const moveNodeToCenter = useCallback((node: Node.NodeFrontProps) => {
+    // 恢复缩放
+    canvasConfig.scale = 1;
+    d3.select("#graph-scale").attr("transform", `scale(${canvasConfig.scale})`);
+
+    // 移动
+    const canvas = d3.select("#knowledge-graph-canvas").node() as SVGSVGElement;
+    canvasConfig.dx = canvas.clientWidth / 2 - node.position.x;
+    canvasConfig.dy = canvas.clientHeight / 2 - node.position.y;
+    canvasConfig.scale = 1;
+    d3.select("#graph-drag").attr(
+      "transform",
+      `translate(${canvasConfig.dx}, ${canvasConfig.dy})`
+    );
+  }, []);
+
+  return { canvasDragEvent, resetCanvas, moveNodeToCenter };
 };
 
 export default useCanvasDragOrScale;
