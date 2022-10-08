@@ -2,14 +2,15 @@
  * @Author: tohsaka888
  * @Date: 2022-09-30 16:14:10
  * @LastEditors: tohsaka888
- * @LastEditTime: 2022-09-30 17:20:55
+ * @LastEditTime: 2022-10-08 10:59:52
  * @Description: 边
  */
 
-import React, { useCallback, useContext, useMemo } from "react";
+import React, { useCallback, useContext, useMemo, useState } from "react";
 import { motion, MotionConfig } from "framer-motion";
 import { ConfigContext, HoveredNodeContext } from "components/context";
 import { defaultEdgeConfig } from "components/config/edgeConfig";
+import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 
 function Edge({
   id,
@@ -28,6 +29,8 @@ function Edge({
       ? hoveredNode.id === fromId || hoveredNode.id === toId
       : false;
   }, [fromId, hoveredNode, toId]);
+  const [isHovered, setIsHovered] = useState<boolean>(false);
+  const [isShow, setIsShow] = useState<boolean>(true);
 
   const calcQuadrant: Utils.CalcQuadrantFunc = ({ node, parentNode }) => {
     // 为入边-二三象限
@@ -68,9 +71,9 @@ function Edge({
         else return -1;
       } else if (fromNodePosition === "第三象限") {
         if (toNodePosition === "第一象限") return 1;
-        else if (toNodePosition === "第二象限") return 1;
+        else if (toNodePosition === "第二象限") return -1;
         else if (toNodePosition === "第三象限") return 1;
-        else return -1;
+        else return 1;
       } else {
         if (toNodePosition === "第一象限") return 1;
         else if (toNodePosition === "第二象限") return -1;
@@ -137,20 +140,25 @@ function Edge({
             duration: 1,
           }}
         >
-          <motion.path
-            id={id as string}
-            fill={"transparent"}
-            animate={{
-              d,
-              stroke: edgeConfig?.stroke || stroke,
-              strokeWidth: edgeConfig?.strokeWidth || strokeWidth,
-            }}
-            transition={{
-              duration: 0.5,
-            }}
-          />
+          {isShow && (
+            <motion.path
+              id={id as string}
+              fill={"transparent"}
+              width={20}
+              initial={{ opacity: 0 }}
+              animate={{
+                d,
+                stroke: edgeConfig?.stroke || stroke,
+                strokeWidth: edgeConfig?.strokeWidth || strokeWidth,
+                opacity: 1,
+              }}
+              transition={{
+                duration: 0.5,
+              }}
+            />
+          )}
 
-          {needHighlight && (
+          {/* {needHighlight && (
             <motion.path
               id={(id + "active") as string}
               fill={"transparent"}
@@ -171,50 +179,90 @@ function Edge({
                 delay: 0,
               }}
             />
+          )} */}
+
+          {isHovered && (
+            <motion.g
+              style={{ offsetPath: `path("${d}")`, offsetDistance: "50%" }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transform={`translate(-10, -8)`}
+            >
+              {isShow ? (
+                <BsFillEyeFill color="#cecece" />
+              ) : (
+                <g
+                  onClick={() => {
+                    setIsShow(true);
+                  }}
+                >
+                  <circle r={10} fill={"transparent"} cx={8} cy={8} />
+                  <BsFillEyeSlashFill color="#cecece" />
+                </g>
+              )}
+            </motion.g>
           )}
 
-          <motion.text
-            textAnchor={"middle"}
-            dominantBaseline={"central"}
-            dy={-2}
-          >
-            <motion.textPath
-              href={`#${id}`}
-              fontSize={24}
-              initial={{
-                opacity: 0,
-              }}
-              animate={{
-                fill: needHighlight
-                  ? edgeConfig?.hoveredColor || hoveredColor
-                  : edgeConfig?.stroke || stroke,
-                opacity: needHighlight ? [0.5, 1] : 1,
-              }}
-              startOffset={"50%"}
+          {!isHovered && isShow && (
+            <motion.text
+              textAnchor={"middle"}
+              dominantBaseline={"central"}
+              dy={-2}
             >
-              ▸
-            </motion.textPath>
-          </motion.text>
+              <motion.textPath
+                href={`#${id}`}
+                fontSize={24}
+                initial={{
+                  opacity: 0,
+                }}
+                animate={{
+                  fill: needHighlight
+                    ? edgeConfig?.hoveredColor || hoveredColor
+                    : edgeConfig?.stroke || stroke,
+                  opacity: needHighlight ? [0.5, 1] : 1,
+                }}
+                startOffset={"50%"}
+              >
+                ▸
+              </motion.textPath>
+            </motion.text>
+          )}
 
-          <motion.text
-            textAnchor={"middle"}
-            dominantBaseline={"central"}
-            dy={-10}
-          >
-            <motion.textPath
-              href={`#${id}`}
-              animate={{
-                fill: needHighlight
-                  ? edgeConfig?.descriptionColor || hoveredColor
-                  : edgeConfig?.descriptionColor || descriptionColor,
-                fontSize: edgeConfig?.descriptionSize || descriptionSize,
-                opacity: needHighlight ? [0.5, 1] : 1,
-              }}
-              startOffset={"50%"}
+          {isShow && (
+            <motion.text
+              textAnchor={"middle"}
+              dominantBaseline={"central"}
+              dy={-10}
             >
-              {description}
-            </motion.textPath>
-          </motion.text>
+              <motion.textPath
+                href={`#${id}`}
+                animate={{
+                  fill: needHighlight
+                    ? edgeConfig?.descriptionColor || hoveredColor
+                    : edgeConfig?.descriptionColor || descriptionColor,
+                  fontSize: edgeConfig?.descriptionSize || descriptionSize,
+                  opacity: needHighlight ? [0.5, 1] : 1,
+                }}
+                startOffset={"50%"}
+              >
+                {description}
+              </motion.textPath>
+            </motion.text>
+          )}
+
+          {isShow && (
+            <motion.path
+              d={d}
+              stroke={"transparent"}
+              fill={"transparent"}
+              strokeWidth={20}
+              onHoverStart={() => setIsHovered(true)}
+              onHoverEnd={() => setIsHovered(false)}
+              onClick={() => {
+                setIsShow(false);
+              }}
+            />
+          )}
         </motion.g>
       )}
     </MotionConfig>
