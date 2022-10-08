@@ -2,7 +2,7 @@
  * @Author: tohsaka888
  * @Date: 2022-09-30 09:02:25
  * @LastEditors: tohsaka888
- * @LastEditTime: 2022-10-08 14:05:58
+ * @LastEditTime: 2022-10-08 15:57:45
  * @Description: 节点
  */
 
@@ -168,6 +168,7 @@ function Node({ node }: Node.NodeConfig) {
       >
         <motion.circle
           id={node.id + "circle"}
+          node-id={node.id}
           className={"node"}
           initial={{
             r: 0,
@@ -186,6 +187,7 @@ function Node({ node }: Node.NodeConfig) {
         {loading && <Loading x={-radius - 5} y={-radius - 5} />}
         <motion.text
           className={"node"}
+          node-id={node.id}
           fill={nodeConfig?.nameColor || nameColor}
           fontSize={nodeConfig?.nameSize || nameSize}
           textAnchor={"middle"}
@@ -195,6 +197,7 @@ function Node({ node }: Node.NodeConfig) {
         </motion.text>
         <motion.text
           className={"node"}
+          node-id={node.id}
           fill={nodeConfig?.typeColor || typeColor}
           fontSize={nodeConfig?.typeSize || typeSize}
           textAnchor={"middle"}
