@@ -2,11 +2,11 @@
  * @Author: tohsaka888
  * @Date: 2022-10-08 13:20:39
  * @LastEditors: tohsaka888
- * @LastEditTime: 2022-10-08 15:33:29
+ * @LastEditTime: 2022-10-08 15:36:55
  * @Description: 右键菜单
  */
 
-import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
+import React, { useContext, useEffect, useMemo, useRef } from "react";
 import ReactDOM from "react-dom";
 import { motion } from "framer-motion";
 import { RightMenuPropsContext } from "components/context";
@@ -27,8 +27,6 @@ function RightClickMenu() {
       setEvent(null);
     };
   }, [setEvent]);
-
-  console.log(event?.clientX, event?.clientY);
 
   const type = useMemo(() => {
     if (event?.target) {
