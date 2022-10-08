@@ -2,7 +2,7 @@
  * @Author: tohsaka888
  * @Date: 2022-09-30 11:56:15
  * @LastEditors: tohsaka888
- * @LastEditTime: 2022-10-08 11:45:36
+ * @LastEditTime: 2022-10-08 13:43:56
  * @Description: 请填写简介
  */
 
@@ -48,3 +48,6 @@ export const HoveredNodeContext = createContext<HoveredNodeContextProps | null>(
 // };
 
 // export const EdgeMenuContext = createContext<EdgeMenuContextProps | null>(null);
+
+export const RightMenuPropsContext =
+  createContext<Canvas.RightMenuProps | null>(null);
