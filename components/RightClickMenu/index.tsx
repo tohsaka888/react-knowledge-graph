@@ -2,14 +2,14 @@
  * @Author: tohsaka888
  * @Date: 2022-10-08 13:20:39
  * @LastEditors: tohsaka888
- * @LastEditTime: 2022-10-08 15:43:17
+ * @LastEditTime: 2022-10-08 16:06:03
  * @Description: 右键菜单
  */
 
 import React, { useContext, useEffect, useMemo, useRef } from "react";
 import ReactDOM from "react-dom";
 import { motion } from "framer-motion";
-import { RightMenuPropsContext } from "components/context";
+import { NodesContext, RightMenuPropsContext } from "components/context";
 import MenuItem from "./MenuItem";
 import useCanvasDragOrScale from "components/hooks/Canvas/useCanvasDragOrScale";
 
@@ -19,7 +19,8 @@ const nodeItems = ["当前实体居中"];
 function RightClickMenu() {
   const bodyRef = useRef<HTMLElement>(null!);
   const { event, setEvent } = useContext(RightMenuPropsContext)!;
-  const { resetCanvas } = useCanvasDragOrScale();
+  const { resetCanvas, moveNodeToCenter } = useCanvasDragOrScale();
+  const { nodes } = useContext(NodesContext)!;
 
   useEffect(() => {
     bodyRef.current = document.body;
@@ -101,6 +102,16 @@ function RightClickMenu() {
                       key={item}
                       index={index}
                       length={nodeItems.length}
+                      onClick={() => {
+                        if (item === "当前实体居中") {
+                          const nodeId = (
+                            event.target as HTMLElement
+                          ).getAttribute("node-id");
+                          const node = nodes.find((n) => n.id === nodeId)!;
+                          moveNodeToCenter(node);
+                        }
+                        setEvent(null);
+                      }}
                     >
                       {item}
                     </MenuItem>
