@@ -2,21 +2,11 @@
  * @Author: tohsaka888
  * @Date: 2022-09-30 10:14:25
  * @LastEditors: tohsaka888
- * @LastEditTime: 2022-10-09 14:01:38
+ * @LastEditTime: 2022-10-09 16:14:41
  * @Description: Node Type
  */
 
 import { Key } from "react";
-
-type NodeConfig = {
-  fill?: string;
-  type?: string;
-  nameSize?: number;
-  typeSize?: number;
-  nameColor?: string;
-  typeColor?: string;
-  node: NodeFrontProps;
-};
 
 type NodeProps = {
   id: React.Key;
@@ -35,4 +25,4 @@ type NodeFrontProps = NodeProps & {
   parentNode?: NodeFrontProps;
 };
 
-export type { NodeConfig, NodeFrontProps, NodeProps };
+export type { NodeFrontProps, NodeProps };
