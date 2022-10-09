@@ -9,6 +9,7 @@ import KnowledgeGraph from "KnowledgeGraph";
 import { baseUrl } from "../config/baseUrl";
 import type { NextPage } from "next";
 import { Key } from "react";
+import { message } from "antd";
 
 const Home: NextPage = () => {
   const getNode = async (id: Key, direction: "inside" | "outside") => {
@@ -55,6 +56,9 @@ const Home: NextPage = () => {
           direction: "root",
           name: "根节点",
         }}
+        onExploreEnd={() => {
+          message.info("已经到尾节点了!");
+        }}
         edgeConfig={{
           // descriptionColor: "#000",
           // stroke: "#999999",
@@ -82,7 +86,7 @@ const Home: NextPage = () => {
             fill: "#89c4fb",
             hoverStyle: {
               fill: "#2f8fe8",
-            }
+            },
           },
         }}
       />
