@@ -8,8 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "build:commonjs": "swc components --out-dir lib/commonjs --extensions '.ts,.tsx' --source-maps",
-    "build:module": "tsc components/*.tsx --module es2022 --target es5 --jsx react --sourceMap --skipLibCheck --allowSyntheticDefaultImports --outDir lib/module --moduleResolution node",
-    "build:typescript": "tsc components/*.tsx --declaration --emitDeclarationOnly --jsx react --skipLibCheck --allowSyntheticDefaultImports  --outDir lib/typescript"
+    "build:module": "tsc --project ./tsconfig.module.json",
+    "build:typescript": "tsc --project ./tsconfig.typescript.json"
   },
   "main": "lib/commonjs/index.js",
   "types": "lib/typescript/index.d.ts",
