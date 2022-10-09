@@ -2,7 +2,7 @@
  * @Author: tohsaka888
  * @Date: 2022-10-08 11:25:58
  * @LastEditors: tohsaka888
- * @LastEditTime: 2022-10-08 17:24:10
+ * @LastEditTime: 2022-10-09 08:24:57
  * @Description: 计算Basel弯曲方向
  */
 
@@ -63,9 +63,9 @@ function useCalcEdge() {
         else if (toNodePosition === "第三象限") return 1;
         else return 1;
       } else {
-        if (toNodePosition === "第一象限") return -1;
+        if (toNodePosition === "第一象限") return 1;
         else if (toNodePosition === "第二象限") return -1;
-        else if (toNodePosition === "第三象限") return 1;
+        else if (toNodePosition === "第三象限") return -1;
         else return 1;
       }
     },
