@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "allowJs": true,
+    "skipLibCheck": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "jsx": "react",
+    "baseUrl": ".",
+    "outDir": "lib/module",
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true
+  },
+  "include": ["components/**/*.tsx", "components/**/*.ts"],
+  "exclude": ["node_modules"]
+}
