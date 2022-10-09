@@ -46,7 +46,6 @@ const Home: NextPage = () => {
     >
       <KnowledgeGraph
         explore={explore}
-        radius={20}
         basicDistence={38}
         position={{ x: 100, y: 100 }}
         node={{
@@ -56,16 +55,35 @@ const Home: NextPage = () => {
           direction: "root",
           name: "根节点",
         }}
-        // nodeConfig={{
-        //   fill: "#559922",
-        //   hoveredColor: "#33ff45",
-        // }}
         edgeConfig={{
           // descriptionColor: "#000",
           // stroke: "#999999",
           // descriptionSize: 10,
           hoveredColor: "#ff0000",
           // strokeWidth: 2,
+        }}
+        typeConfig={{
+          根节点: {
+            radius: 23,
+            fill: "#404d95",
+            hoverStyle: {
+              fill: "#1429a0",
+            },
+          },
+          model: {
+            radius: 20,
+            fill: "#b4e5a2",
+            hoverStyle: {
+              fill: "#6be73e",
+            },
+          },
+          test: {
+            radius: 18,
+            fill: "#89c4fb",
+            hoverStyle: {
+              fill: "#2f8fe8",
+            }
+          },
         }}
       />
     </div>
