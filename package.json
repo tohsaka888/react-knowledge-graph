@@ -1,30 +1,42 @@
 {
   "name": "react-knowledge-graph",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "build:commonjs": "swc components --out-dir lib/commonjs --extensions '.ts,.tsx' --source-maps",
+    "build:module": "tsc components/*.tsx --module es2022 --target es5 --jsx react --sourceMap --skipLibCheck --allowSyntheticDefaultImports --outDir lib/module --moduleResolution node",
+    "build:typescript": "tsc components/*.tsx --declaration --emitDeclarationOnly --jsx react --skipLibCheck --allowSyntheticDefaultImports  --outDir lib/typescript"
   },
+  "main": "lib/commonjs/index.js",
+  "types": "lib/typescript/index.d.ts",
+  "module": "lib/module/index.js",
+  "source": "components/index.tsx",
+  "files": [
+    "components",
+    "lib"
+  ],
   "dependencies": {
     "d3": "7.6.1",
     "framer-motion": "7.5.3",
-    "mongodb": "4.10.0",
-    "next": "12.3.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-icons": "4.4.0",
-    "swr": "1.3.0"
+    "react-icons": "4.4.0"
   },
   "devDependencies": {
+    "@swc/cli": "^0.1.57",
+    "@swc/core": "^1.3.6",
     "@types/d3": "7.4.0",
     "@types/node": "18.7.23",
     "@types/react": "18.0.21",
     "@types/react-dom": "18.0.6",
     "eslint": "8.25.0",
     "eslint-config-next": "12.3.1",
+    "mongodb": "4.10.0",
+    "next": "12.3.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
     "typescript": "4.8.4"
   }
 }
