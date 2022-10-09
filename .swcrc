@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json.schemastore.org/swcrc",
+  "jsc": {
+    "parser": {
+      "syntax": "typescript",
+      "tsx": true,
+      "decorators": false,
+      "dynamicImport": true
+    },
+    "transform": {
+      "react": {
+        "pragma": "React.createElement",
+        "pragmaFrag": "React.Fragment",
+        "throwIfNamespace": true,
+        "development": false,
+        "useBuiltins": true,
+        "runtime": "classic",
+        "refresh": true
+      },
+      "optimizer": {
+        "globals": {
+          "vars": {
+            "__DEBUG__": "true"
+          }
+        },
+        "jsonify": {
+          "minCost": 1024
+        }
+      }
+    },
+    "target": "es2020",
+    "loose": false,
+    "externalHelpers": true
+  },
+  "minify": true,
+  "sourceMaps": true
+}
