@@ -2,7 +2,7 @@
  * @Author: tohsaka888
  * @Date: 2022-10-08 11:15:11
  * @LastEditors: tohsaka888
- * @LastEditTime: 2022-10-08 16:55:55
+ * @LastEditTime: 2022-10-09 08:31:13
  * @Description: EdgeMenu
  */
 
@@ -53,30 +53,23 @@ function EdgeMenu({ edge }: Props) {
           {isShow ? (
             <BsFillEyeFill color="#cecece" />
           ) : (
-            <g
-              onClick={() => {
-                setIsShow(true);
-              }}
-            >
-              <circle r={10} fill={"none"} cx={8} cy={8} />
-              <BsFillEyeSlashFill color="#cecece" style={{ opacity: 0.5 }} />
-            </g>
+            <BsFillEyeSlashFill color="#cecece" style={{ opacity: 0.5 }} />
           )}
         </motion.g>
       )}
-      {isShow && (
-        <motion.path
-          d={d}
-          stroke={"transparent"}
-          fill={"none"}
-          strokeWidth={20}
-          onHoverStart={() => setIsHovered(true)}
-          onHoverEnd={() => setIsHovered(false)}
-          onClick={() => {
-            setIsShow(false);
-          }}
-        />
-      )}
+
+      <motion.path
+        d={d}
+        stroke={"transparent"}
+        fill={"none"}
+        strokeWidth={20}
+        onHoverStart={() => setIsHovered(true)}
+        onHoverEnd={() => setIsHovered(false)}
+        style={{ cursor: "pointer" }}
+        onClick={() => {
+          setIsShow(!isShow);
+        }}
+      />
     </g>
   );
 }
