@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "jsx": "react",
+    "baseUrl": ".",
+    "outDir": "lib/typescript",
+    "allowSyntheticDefaultImports": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "skipLibCheck": true
+  },
+  "include": ["components/**/*"],
+  "exclude": ["node_modules"]
+}
