@@ -23,7 +23,7 @@ import { NodeConfig, NodeFrontProps } from "KnowledgeGraph";
 
 function Node({ node }: NodeConfig & { node: NodeFrontProps }) {
   const { config } = useContext(ConfigContext)!;
-  const { explore, typeConfig } = config;
+  const { explore, typeConfig, onExploreEnd } = config;
   const { name, type, position, parentNode } = node;
   const nodeConfig = typeConfig && typeConfig[type];
   const { calcNodePosition } = useNodePosition();
@@ -95,7 +95,7 @@ function Node({ node }: NodeConfig & { node: NodeFrontProps }) {
         // 设置边
         formatEdges({ node, curNodes, edges });
       } else {
-        alert("已经到尾节点了");
+        onExploreEnd && onExploreEnd();
       }
     } else {
       // 探索-延长半径 取消探索-缩短半径

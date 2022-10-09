@@ -39,6 +39,7 @@ type ConfigProps = {
     outside: NodeProps[];
     edges: EdgeProps[];
   }>;
+  onExploreEnd?: () => void;
   node: NodeProps;
   position: { x: number; y: number };
   typeConfig?: TypeConfig;
