@@ -2,7 +2,7 @@
  * @Author: tohsaka888
  * @Date: 2022-09-30 09:02:25
  * @LastEditors: tohsaka888
- * @LastEditTime: 2022-10-09 14:36:39
+ * @LastEditTime: 2022-10-09 16:16:37
  * @Description: 节点
  */
 
@@ -19,12 +19,13 @@ import useExtendRadius from "../hooks/Node/useExtendRadius";
 import Loading from "./Loading";
 import { defaultNodeConfig } from "../config/nodeConfig";
 import useFormatEdges from "../hooks/Edge/useFormatEdges";
-import { NodeConfig } from "../typings/Node";
+import { NodeConfig, NodeFrontProps } from "KnowledgeGraph";
 
-function Node({ node }: NodeConfig) {
+function Node({ node }: NodeConfig & { node: NodeFrontProps }) {
   const { config } = useContext(ConfigContext)!;
-  const { radius, explore, nodeConfig } = config;
+  const { explore, typeConfig } = config;
   const { name, type, position, parentNode } = node;
+  const nodeConfig = typeConfig && typeConfig[type];
   const { calcNodePosition } = useNodePosition();
   const { nodes, setNodes } = useContext(NodesContext)!;
   const { setEdges } = useContext(EdgesContext)!;
@@ -37,8 +38,13 @@ function Node({ node }: NodeConfig) {
     insideLength: number;
     outsideLength: number;
   }>({ insideLength: 0, outsideLength: 0 });
-  const { nameColor, nameSize, typeColor, typeSize, fill, hoveredColor } =
-    defaultNodeConfig;
+  const fill = nodeConfig?.fill || defaultNodeConfig.fill;
+  const hoverStyle = nodeConfig?.hoverStyle || defaultNodeConfig.hoverStyle;
+  const nameColor = nodeConfig?.nameColor || defaultNodeConfig.nameColor;
+  const nameSize = nodeConfig?.nameSize || defaultNodeConfig.nameSize;
+  const typeColor = nodeConfig?.typeColor || defaultNodeConfig.typeColor;
+  const typeSize = nodeConfig?.typeSize || defaultNodeConfig.typeSize;
+  const radius = nodeConfig?.radius || defaultNodeConfig.radius;
 
   const exploreFunc = async () => {
     setLoading(true);
@@ -174,33 +180,42 @@ function Node({ node }: NodeConfig) {
           initial={{
             r: 0,
           }}
-          animate={{
-            r: radius,
-            opacity: loading ? 0.3 : 1,
-            fill: isHover
-              ? hoveredColor
-              : nodeConfig?.fill || fill,
-          }}
+          animate={
+            !isHover
+              ? {
+                  r: radius,
+                  opacity: loading ? 0.3 : 1,
+                  fill: fill,
+                }
+              : {
+                  r: radius,
+                  opacity: loading ? 0.3 : 1,
+                  fill: fill,
+                  ...(hoverStyle as any),
+                }
+          }
           transition={{
             duration: 0.5,
           }}
         />
-        {loading && <Loading x={-radius - 5} y={-radius - 5} />}
+        {loading && (
+          <Loading x={-1.25 * radius} y={-1.25 * radius} size={radius / 40} />
+        )}
         <motion.text
           className={"node"}
           node-id={node.id}
-          fill={nodeConfig?.nameColor || nameColor}
-          fontSize={nodeConfig?.nameSize || nameSize}
+          fill={nameColor}
+          fontSize={nameSize}
           textAnchor={"middle"}
-          y={radius + (nodeConfig?.nameSize || nameSize)}
+          y={radius + nameSize}
         >
           {name}
         </motion.text>
         <motion.text
           className={"node"}
           node-id={node.id}
-          fill={nodeConfig?.typeColor || typeColor}
-          fontSize={nodeConfig?.typeSize || typeSize}
+          fill={typeColor}
+          fontSize={typeSize}
           textAnchor={"middle"}
           dominantBaseline={"central"}
         >
