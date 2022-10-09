@@ -3,12 +3,13 @@ import React from "react";
 type Props = {
   x?: number;
   y?: number;
+  size?: number;
 };
 
-function Loading({ x, y }: Props) {
+function Loading({ x, y, size }: Props) {
   return (
     <g transform={`translate(${x}, ${y})`}>
-      <g transform={"scale(0.5)"}>
+      <g transform={`scale(${size})`}>
         <g transform="rotate(0 50 50)">
           <rect
             x="47"
