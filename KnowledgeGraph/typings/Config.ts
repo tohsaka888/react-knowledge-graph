@@ -2,12 +2,13 @@
  * @Author: tohsaka888
  * @Date: 2022-09-30 11:57:19
  * @LastEditors: tohsaka888
- * @LastEditTime: 2022-10-09 14:35:42
+ * @LastEditTime: 2022-10-09 16:23:46
  * @Description: config type
  */
 
+import { CSSProperties } from "react";
 import { EdgeProps } from "./Edge";
-import { NodeConfig, NodeProps } from "./Node";
+import { NodeProps } from "./Node";
 
 type EdgeConfig = {
   stroke?: string;
@@ -17,8 +18,21 @@ type EdgeConfig = {
   hoveredColor?: string;
 };
 
+type NodeConfig = {
+  fill?: string;
+  radius?: number;
+  nameSize?: number;
+  typeSize?: number;
+  nameColor?: string;
+  typeColor?: string;
+  hoverStyle?: CSSProperties;
+};
+
+type TypeConfig = {
+  [type: string]: NodeConfig;
+};
+
 type ConfigProps = {
-  radius: number;
   basicDistence: number; // 基础半径
   explore: (id: React.Key) => Promise<{
     inside: NodeProps[];
@@ -27,8 +41,8 @@ type ConfigProps = {
   }>;
   node: NodeProps;
   position: { x: number; y: number };
-  nodeConfig?: NodeConfig;
+  typeConfig?: TypeConfig;
   edgeConfig?: EdgeConfig;
 };
 
-export type { EdgeConfig, ConfigProps };
+export type { EdgeConfig, ConfigProps, NodeConfig, TypeConfig };
