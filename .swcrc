@@ -33,5 +33,6 @@
     "externalHelpers": true
   },
   "minify": true,
-  "sourceMaps": true
+  "sourceMaps": true,
+  "isModule": true
 }

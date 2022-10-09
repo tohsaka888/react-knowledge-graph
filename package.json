@@ -1,6 +1,6 @@
 {
   "name": "react-knowledge-graph",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "React知识图谱组件",
   "private": false,
   "scripts": {
@@ -8,16 +8,17 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "build:commonjs": "swc KnowledgeGraph -C module.type=commonjs -d lib/commonjs -s",
-    "build:module": "swc KnowledgeGraph -C module.type=es6 -d lib/module -s",
+    "build:commonjs": "swc KnowledgeGraph -C module.type=commonjs -d lib/commonjs -s --config-file .swcrc",
+    "build:module": "swc KnowledgeGraph -C module.type=es6 -d lib/module -s --config-file .swcrc",
     "build:typescript": "tsc --project ./tsconfig.typescript.json"
   },
-  "main": "lib/module/index.js",
+  "main": "lib/commonjs/index.js",
   "types": "lib/typescript/index.d.ts",
   "module": "lib/module/index.js",
   "source": "components/index.tsx",
   "files": [
     "lib",
+    "KnowledgeGraph",
     "README.md"
   ],
   "dependencies": {
