@@ -8,8 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "build:commonjs": "swc components -d lib/commonjs -s",
-    "build:module": "tsc --project ./tsconfig.module.json",
+    "build:commonjs": "swc KnowledgeGraph -C module.type=commonjs -d lib/commonjs -s",
+    "build:module": "swc KnowledgeGraph -C module.type=es6 -d lib/module -s",
     "build:typescript": "tsc --project ./tsconfig.typescript.json"
   },
   "main": "lib/commonjs/index.js",
