@@ -9,6 +9,6 @@
     "emitDeclarationOnly": true,
     "skipLibCheck": true
   },
-  "include": ["components/**/*"],
+  "include": ["KnowledgeGraph/**/*"],
   "exclude": ["node_modules"]
 }

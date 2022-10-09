@@ -11,6 +11,6 @@
     "sourceMap": true,
     "allowSyntheticDefaultImports": true
   },
-  "include": ["components/**/*.tsx", "components/**/*.ts"],
+  "include": ["KnowledgeGraph/**/*"],
   "exclude": ["node_modules"]
 }

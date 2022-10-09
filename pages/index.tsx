@@ -1,5 +1,12 @@
-import KnowledgeGraph from "components";
-import { baseUrl } from "config/baseUrl";
+/*
+ * @Author: tohsaka888
+ * @Date: 2022-10-08 08:25:48
+ * @LastEditors: tohsaka888
+ * @LastEditTime: 2022-10-09 15:05:15
+ * @Description: 请填写简介
+ */
+import KnowledgeGraph from "KnowledgeGraph";
+import { baseUrl } from "../config/baseUrl";
 import type { NextPage } from "next";
 import { Key } from "react";
 
