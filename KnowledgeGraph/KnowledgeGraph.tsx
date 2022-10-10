@@ -23,9 +23,7 @@ import { NodeFrontProps } from "./typings/Node";
 function KnowledgeGraph(graphConfig: ConfigProps) {
   const { canvasDragEvent } = useCanvasDragOrScale();
   const [config, setConfig] = useState<ConfigProps>(graphConfig);
-  const [hoveredNode, setHoveredNode] = useState<NodeFrontProps | null>(
-    null
-  );
+  const [hoveredNode, setHoveredNode] = useState<NodeFrontProps | null>(null);
   const [edges, setEdges] = useState<EdgeFrontProps[]>([]);
   const [event, setEvent] = useState<React.MouseEvent<
     SVGSVGElement,
@@ -62,4 +60,4 @@ function KnowledgeGraph(graphConfig: ConfigProps) {
   );
 }
 
-export default KnowledgeGraph;
+export { KnowledgeGraph };

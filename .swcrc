@@ -14,7 +14,7 @@
         "throwIfNamespace": true,
         "development": false,
         "useBuiltins": true,
-        "runtime": "classic",
+        "runtime": "automatic",
         "refresh": true
       },
       "optimizer": {
@@ -28,8 +28,8 @@
         }
       }
     },
-    "target": "es2020",
-    "loose": false,
+    "target": "es2022",
+    "loose": true,
     "externalHelpers": true
   },
   "minify": true,
