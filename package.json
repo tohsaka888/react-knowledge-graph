@@ -14,8 +14,8 @@
     "build:package": "pnpm build:commonjs && pnpm build:module && pnpm build:typescript"
   },
   "exports": {
-    "import": "./lib/module/index.js",
-    "require": "./lib/commonjs/index.js"
+    ".": "./lib/module/index.js",
+    "./esm": "./lib/commonjs/index.js"
   },
   "types": "lib/typescript/index.d.ts",
   "files": [
