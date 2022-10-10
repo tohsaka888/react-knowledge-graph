@@ -16,7 +16,6 @@
   },
   "main": "lib/module/index.js",
   "types": "lib/typescript/index.d.ts",
-  "source": "KnowledgeGraph/index.tsx",
   "files": [
     "lib",
     "README.md"
