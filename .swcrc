@@ -1,5 +1,8 @@
 {
   "$schema": "https://json.schemastore.org/swcrc",
+  "module": {
+    "lazy": true
+  },
   "jsc": {
     "parser": {
       "syntax": "typescript",
