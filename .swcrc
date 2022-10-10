@@ -1,10 +1,16 @@
 {
   "$schema": "https://json.schemastore.org/swcrc",
+  "module": {
+    "type": "es6",
+    "lazy": true,
+    "noInterop": true,
+    "strict": true
+  },
   "jsc": {
     "parser": {
       "syntax": "typescript",
       "tsx": true,
-      "decorators": false,
+      "decorators": true,
       "dynamicImport": true
     },
     "transform": {
@@ -16,19 +22,9 @@
         "useBuiltins": true,
         "runtime": "automatic",
         "refresh": true
-      },
-      "optimizer": {
-        "globals": {
-          "vars": {
-            "__DEBUG__": "true"
-          }
-        },
-        "jsonify": {
-          "minCost": 1024
-        }
       }
     },
-    "target": "es2022",
+    "target": "es5",
     "loose": true,
     "externalHelpers": true
   },
