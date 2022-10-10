@@ -1,6 +1,6 @@
 {
   "name": "react-knowledge-graph",
-  "version": "0.1.17",
+  "version": "0.1.18",
   "description": "React知识图谱组件",
   "private": false,
   "type": "module",
@@ -15,9 +15,6 @@
     "build:package": "pnpm build:module && pnpm build:typescript"
   },
   "main": "lib/module/index.js",
-  "exports": {
-    "default": "lib/module/index.js"
-  },
   "types": "lib/typescript/index.d.ts",
   "files": [
     "lib",
