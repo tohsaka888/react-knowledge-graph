@@ -19,7 +19,6 @@
   "source": "KnowledgeGraph/index.tsx",
   "files": [
     "lib",
-    "KnowledgeGraph",
     "README.md"
   ],
   "dependencies": {
