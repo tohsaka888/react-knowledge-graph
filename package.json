@@ -1,6 +1,6 @@
 {
   "name": "react-knowledge-graph",
-  "version": "0.1.22",
+  "version": "0.1.23",
   "description": "React知识图谱组件",
   "private": false,
   "scripts": {
@@ -13,10 +13,8 @@
     "build:typescript": "npx tsc --project ./tsconfig.typescript.json",
     "build:package": "pnpm build:commonjs && pnpm build:module && pnpm build:typescript"
   },
-  "exports": {
-    ".": "./lib/commonjs/index.js",
-    "./esm": "./lib/module/index.js"
-  },
+  "main": "lib/commonjs/index.js",
+  "module": "lib/module/index.js",
   "types": "lib/typescript/index.d.ts",
   "files": [
     "lib",
