@@ -11,9 +11,10 @@
     "lint": "next lint",
     "build:commonjs": "swc KnowledgeGraph -C module.type=commonjs -d lib/commonjs -s --config-file .swcrc",
     "build:module": "swc KnowledgeGraph -C module.type=es6 -d lib/module -s --config-file .swcrc",
-    "build:typescript": "tsc --project ./tsconfig.typescript.json"
+    "build:typescript": "tsc --project ./tsconfig.typescript.json",
+    "build:package": "pnpm build:module && pnpm build:typescript"
   },
-  "main": "lib/commonjs/index.js",
+  "main": "lib/module/index.js",
   "types": "lib/typescript/index.d.ts",
   "module": "lib/module/index.js",
   "source": "KnowledgeGraph/index.tsx",
