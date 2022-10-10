@@ -2,33 +2,22 @@
   "$schema": "https://json.schemastore.org/swcrc",
   "module": {
     "type": "es6",
-    "lazy": true,
-    "noInterop": true,
-    "strict": true
+    "lazy": true
   },
   "jsc": {
     "parser": {
       "syntax": "typescript",
-      "tsx": true,
-      "decorators": true,
-      "dynamicImport": true
+      "tsx": true
     },
     "transform": {
       "react": {
-        "pragma": "React.createElement",
-        "pragmaFrag": "React.Fragment",
-        "throwIfNamespace": true,
-        "development": false,
-        "useBuiltins": true,
-        "runtime": "automatic",
-        "refresh": true
+        "runtime": "automatic"
       }
     },
-    "target": "es5",
+    "target": "es2022",
     "loose": true,
     "externalHelpers": true
   },
-  "minify": true,
   "sourceMaps": true,
   "isModule": true
 }
