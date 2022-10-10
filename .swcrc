@@ -18,6 +18,7 @@
     "loose": true,
     "externalHelpers": true
   },
+  "minify": true,
   "sourceMaps": true,
   "isModule": true
 }
