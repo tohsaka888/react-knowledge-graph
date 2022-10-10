@@ -5,7 +5,7 @@
  * @LastEditTime: 2022-10-09 15:05:15
  * @Description: 请填写简介
  */
-import { KnowledgeGraph } from "lib/module/index";
+import { KnowledgeGraph } from "KnowledgeGraph";
 import { baseUrl } from "../config/baseUrl";
 import type { NextPage } from "next";
 import { Key } from "react";

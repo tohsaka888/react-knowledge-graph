@@ -20,7 +20,7 @@ import { ConfigProps } from "./typings/Config";
 import { EdgeFrontProps } from "./typings/Edge";
 import { NodeFrontProps } from "./typings/Node";
 
-function KnowledgeGraph(graphConfig: ConfigProps) {
+function Graph(graphConfig: ConfigProps) {
   const { canvasDragEvent } = useCanvasDragOrScale();
   const [config, setConfig] = useState<ConfigProps>(graphConfig);
   const [hoveredNode, setHoveredNode] = useState<NodeFrontProps | null>(null);
@@ -60,4 +60,4 @@ function KnowledgeGraph(graphConfig: ConfigProps) {
   );
 }
 
-export { KnowledgeGraph };
+export default Graph;

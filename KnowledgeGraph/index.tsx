@@ -1,4 +1,4 @@
-export * from "./KnowledgeGraph";
+export { default as KnowledgeGraph } from "./Graph";
 export * from "./typings/Canvas";
 export * from "./typings/Config";
 export * from "./typings/Edge";
