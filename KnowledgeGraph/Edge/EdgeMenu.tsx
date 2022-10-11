@@ -25,7 +25,7 @@ function EdgeMenu({ edge }: Props) {
   const d = calcD(edge);
 
   useEffect(() => {
-    const edge = document.getElementById(`#${id}direction`);
+    const edge = document.getElementById(`${id}direction`);
     if (edge) {
       if (isHovered) {
         edge.style.display = "none";
