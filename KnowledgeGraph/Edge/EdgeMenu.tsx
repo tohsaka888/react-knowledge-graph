@@ -9,9 +9,8 @@
 // import { EdgeMenuContext } from "components/context";
 import useCalcEdge from "../hooks/Edge/useCalcEdge";
 import { motion } from "framer-motion";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
-import * as d3 from "d3";
 import { EdgeFrontProps } from "KnowledgeGraph";
 
 type Props = {
@@ -26,20 +25,33 @@ function EdgeMenu({ edge }: Props) {
   const d = calcD(edge);
 
   useEffect(() => {
-    if (isHovered) {
-      d3.select(`#${id}direction`).style("display", "none");
-    } else {
-      d3.select(`#${id}direction`).style("display", "block");
+    const edge = document.getElementById(`#${id}direction`);
+    if (edge) {
+      if (isHovered) {
+        edge.style.display = "none";
+      } else {
+        edge.style.display = "block";
+      }
     }
   }, [id, isHovered]);
 
   useEffect(() => {
+    const edge = document.getElementById(id as string);
+    const description = document.getElementById(id + "description");
     if (isShow) {
-      d3.select(`#${id}`).style("opacity", 1);
-      d3.select(`#${id}description`).style("opacity", 1);
+      if (edge) {
+        edge.style.opacity = "1";
+      }
+      if (description) {
+        description.style.opacity = "1";
+      }
     } else {
-      d3.select(`#${id}`).style("opacity", 0.2);
-      d3.select(`#${id}description`).style("opacity", 0.2);
+      if (edge) {
+        edge.style.opacity = "0.2";
+      }
+      if (description) {
+        description.style.opacity = "0.2";
+      }
     }
   }, [id, isShow]);
   return (
