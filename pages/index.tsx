@@ -60,11 +60,7 @@ const Home: NextPage = () => {
           message.info("已经到尾节点了!");
         }}
         edgeConfig={{
-          // descriptionColor: "#000",
-          // stroke: "#999999",
-          // descriptionSize: 10,
           hoveredColor: "#ff0000",
-          // strokeWidth: 2,
         }}
         typeConfig={{
           根节点: {
