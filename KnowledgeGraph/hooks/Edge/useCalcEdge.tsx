@@ -77,10 +77,10 @@ function useCalcEdge() {
 
   const calcD = useCallback(
     ({ fromNode, toNode, type }: EdgeFrontProps) => {
-      const fromX = fromNode?.position.x as number;
-      const fromY = fromNode?.position.y as number;
-      const toX = toNode?.position.x as number;
-      const toY = toNode?.position.y as number;
+      const fromX = fromNode?.position.x || 0;
+      const fromY = fromNode?.position.y || 0;
+      const toX = toNode?.position.x || 0;
+      const toY = toNode?.position.y || 0;
 
       if (type === "straight") {
         return `M ${fromX} ${fromY}, L ${toX} ${toY}`;
