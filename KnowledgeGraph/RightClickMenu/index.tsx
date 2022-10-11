@@ -50,6 +50,18 @@ function RightMenuContent() {
     });
   }, [setCanvasConfig]);
 
+  const moveNodeToCenter = useCallback(() => {
+    const nodeId = (event!.target as HTMLElement).getAttribute("node-id");
+    const node = nodes.find((n) => n.id === nodeId)!;
+    const canvas = document.getElementById("knowledge-graph-canvas")!;
+
+    setCanvasConfig({
+      scale: 1,
+      x: canvas.clientWidth / 2 - node.position.x,
+      y: canvas.clientHeight / 2 - node.position.y,
+    });
+  }, [event, nodes, setCanvasConfig]);
+
   return (
     <>
       <motion.div
@@ -108,11 +120,7 @@ function RightMenuContent() {
                   length={nodeItems.length}
                   onClick={() => {
                     if (item === "当前实体居中") {
-                      const nodeId = (
-                        event!.target as HTMLElement
-                      ).getAttribute("node-id");
-                      const node = nodes.find((n) => n.id === nodeId)!;
-                      // moveNodeToCenter(node);
+                      moveNodeToCenter();
                     }
                     setEvent(null);
                   }}
