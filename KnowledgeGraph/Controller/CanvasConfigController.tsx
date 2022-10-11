@@ -1,5 +1,5 @@
-import { CanvasConfigContext } from "KnowledgeGraph/context";
-import { CanvasConfig } from "KnowledgeGraph/typings/Config";
+import { CanvasConfigContext } from "../context";
+import { CanvasConfig } from "KnowledgeGraph";
 import React, { useState } from "react";
 
 type Props = {

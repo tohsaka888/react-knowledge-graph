@@ -1,5 +1,5 @@
-import { MovedNodeContext } from "KnowledgeGraph/context";
-import { NodeFrontProps } from "KnowledgeGraph/typings/Node";
+import { MovedNodeContext } from "../context";
+import { NodeFrontProps } from "KnowledgeGraph";
 import React, { useState } from "react";
 
 type Props = {

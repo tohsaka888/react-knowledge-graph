@@ -1,4 +1,4 @@
-import { RightMenuPropsContext } from "KnowledgeGraph/context";
+import { RightMenuPropsContext } from "../context";
 import React, { useState } from "react";
 
 type Props = {

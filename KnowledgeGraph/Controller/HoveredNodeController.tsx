@@ -1,4 +1,4 @@
-import { HoveredNodeContext } from "KnowledgeGraph/context";
+import { HoveredNodeContext } from "../context";
 import { NodeFrontProps } from "KnowledgeGraph";
 import React, { useState } from "react";
 

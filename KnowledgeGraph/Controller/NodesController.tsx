@@ -1,4 +1,4 @@
-import { ConfigContext, NodesContext } from "KnowledgeGraph/context";
+import { ConfigContext, NodesContext } from "../context";
 import { NodeFrontProps } from "KnowledgeGraph";
 import React, { useContext, useState } from "react";
 
