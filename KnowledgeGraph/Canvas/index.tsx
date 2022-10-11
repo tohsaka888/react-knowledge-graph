@@ -82,8 +82,17 @@ function CanvasContainer({ children }: { children: React.ReactNode }) {
             x: canvasConfig.x,
             y: canvasConfig.y,
           }}
+          transition={{
+            duration: 0,
+          }}
         >
-          <motion.g id={"graph-scale"} animate={{ scale: canvasConfig.scale }}>
+          <motion.g
+            id={"graph-scale"}
+            animate={{ scale: canvasConfig.scale }}
+            transition={{
+              duration: 0,
+            }}
+          >
             {children}
           </motion.g>
         </motion.g>
