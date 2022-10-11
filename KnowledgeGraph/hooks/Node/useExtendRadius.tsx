@@ -38,12 +38,18 @@ function useExtendRadius() {
           if (edge.fromId === node.id) {
             return {
               ...edge,
-              fromNode: node,
+              fromNode: {
+                ...node,
+                position: { x, y },
+              },
             };
           } else if (edge.toId === node.id) {
             return {
               ...edge,
-              toNode: node,
+              toNode: {
+                ...node,
+                position: { x, y },
+              },
             };
           } else {
             return edge;
