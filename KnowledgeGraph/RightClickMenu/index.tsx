@@ -11,7 +11,6 @@ import ReactDOM from "react-dom";
 import { motion } from "framer-motion";
 import { NodesContext, RightMenuPropsContext } from "../context";
 import MenuItem from "./MenuItem";
-import useCanvasDragOrScale from "../hooks/Canvas/useCanvasDragOrScale";
 
 const canvasItems = ["复位画布", "下载当前图谱", "全屏"];
 const nodeItems = ["当前实体居中"];
@@ -19,7 +18,6 @@ const nodeItems = ["当前实体居中"];
 function RightClickMenu() {
   const bodyRef = useRef<HTMLElement>(null!);
   const { event, setEvent } = useContext(RightMenuPropsContext)!;
-  const { resetCanvas, moveNodeToCenter } = useCanvasDragOrScale();
   const { nodes } = useContext(NodesContext)!;
 
   useEffect(() => {
@@ -73,7 +71,7 @@ function RightClickMenu() {
                       key={item}
                       onClick={(value) => {
                         if (value === "复位画布") {
-                          resetCanvas();
+                          // resetCanvas();
                         }
                         if (value === "全屏" || value === "退出全屏") {
                           if (document.fullscreenElement) {
@@ -108,7 +106,7 @@ function RightClickMenu() {
                             event.target as HTMLElement
                           ).getAttribute("node-id");
                           const node = nodes.find((n) => n.id === nodeId)!;
-                          moveNodeToCenter(node);
+                          // moveNodeToCenter(node);
                         }
                         setEvent(null);
                       }}
