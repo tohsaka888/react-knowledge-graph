@@ -46,4 +46,10 @@ type ConfigProps = {
   edgeConfig?: EdgeConfig;
 };
 
-export type { EdgeConfig, ConfigProps, NodeConfig, TypeConfig };
+type CanvasConfig = {
+  x: number;
+  y: number;
+  scale: number;
+};
+
+export type { EdgeConfig, ConfigProps, NodeConfig, TypeConfig, CanvasConfig };

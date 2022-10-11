@@ -6,12 +6,6 @@
  * @Description: Canvas Type
  */
 
-type CanvasConfigProps = {
-  scale: 1; // 画布缩放倍数 (0, Infinity]
-  dx: number; // 画布移动x偏移
-  dy: number; // 画布移动y偏移
-};
-
 type RightMenuProps = {
   event: React.MouseEvent<SVGSVGElement, MouseEvent> | null;
   setEvent: React.Dispatch<
@@ -19,4 +13,4 @@ type RightMenuProps = {
   >;
 };
 
-export type { CanvasConfigProps, RightMenuProps }
+export type { RightMenuProps }

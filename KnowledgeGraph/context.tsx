@@ -7,7 +7,13 @@
  */
 
 import React, { createContext } from "react";
-import { NodeFrontProps, EdgeFrontProps, RightMenuProps, ConfigProps } from "KnowledgeGraph";
+import {
+  NodeFrontProps,
+  EdgeFrontProps,
+  RightMenuProps,
+  ConfigProps,
+  CanvasConfig,
+} from "KnowledgeGraph";
 
 type ConfigContextProps = {
   config: ConfigProps;
@@ -32,23 +38,28 @@ export const EdgesContext = createContext<EdgesContextProps | null>(null);
 
 type HoveredNodeContextProps = {
   hoveredNode: NodeFrontProps | null;
-  setHoveredNode: React.Dispatch<
-    React.SetStateAction<NodeFrontProps | null>
-  >;
+  setHoveredNode: React.Dispatch<React.SetStateAction<NodeFrontProps | null>>;
 };
 
 export const HoveredNodeContext = createContext<HoveredNodeContextProps | null>(
   null
 );
 
-// type EdgeMenuContextProps = {
-//   isShow: boolean;
-//   setIsShow: React.Dispatch<React.SetStateAction<boolean>>;
-//   isHovered: boolean;
-//   setIsHovered: React.Dispatch<React.SetStateAction<boolean>>;
-// };
+export const RightMenuPropsContext = createContext<RightMenuProps | null>(null);
 
-// export const EdgeMenuContext = createContext<EdgeMenuContextProps | null>(null);
+type MovedNodeContextProps = {
+  movedNode: NodeFrontProps | null;
+  setMovedNode: React.Dispatch<React.SetStateAction<NodeFrontProps | null>>;
+};
 
-export const RightMenuPropsContext =
-  createContext<RightMenuProps | null>(null);
+export const MovedNodeContext = createContext<MovedNodeContextProps | null>(
+  null
+);
+
+type CanvasConfigContextProps = {
+  canvasConfig: CanvasConfig;
+  setCanvasConfig: React.Dispatch<React.SetStateAction<CanvasConfig>>;
+};
+
+export const CanvasConfigContext =
+  createContext<CanvasConfigContextProps | null>(null);

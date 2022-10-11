@@ -19,9 +19,9 @@ import useExtendRadius from "../hooks/Node/useExtendRadius";
 import Loading from "./Loading";
 import { defaultNodeConfig } from "../config/nodeConfig";
 import useFormatEdges from "../hooks/Edge/useFormatEdges";
-import { NodeConfig, NodeFrontProps } from "KnowledgeGraph";
+import { NodeFrontProps } from "KnowledgeGraph";
 
-function Node({ node }: NodeConfig & { node: NodeFrontProps }) {
+function UnmemoNode({ node }: { node: NodeFrontProps }) {
   const { config } = useContext(ConfigContext)!;
   const { explore, typeConfig, onExploreEnd } = config;
   const { name, type, position, parentNode } = node;
@@ -48,6 +48,7 @@ function Node({ node }: NodeConfig & { node: NodeFrontProps }) {
 
   const exploreFunc = async () => {
     setLoading(true);
+
     // 判断当前节点是否已探索
     if (!node.isExplore) {
       const { inside, outside, edges } = await explore(node.id);
@@ -147,6 +148,13 @@ function Node({ node }: NodeConfig & { node: NodeFrontProps }) {
           setIsHover(false);
           setHoveredNode(null);
         }}
+        // drag
+        // dragPropagation={false}
+        // dragSnapToOrigin={false}
+        // dragMomentum={false}
+        // onDragEnd={(e, info) => {
+        //   // setHoveredNode({ ...node, position: { x: e.x, y: e.y } });
+        // }}
         initial={{
           cursor: "pointer",
           x: parentNode ? parentNode.position.x : position.x,
@@ -165,11 +173,8 @@ function Node({ node }: NodeConfig & { node: NodeFrontProps }) {
         }}
         transition={{
           duration: 0.5,
-          scale: {
-            duration: 0.2,
-          },
         }}
-        onClick={(e) => {
+        onDoubleClick={(e) => {
           exploreFunc();
         }}
       >
@@ -226,4 +231,4 @@ function Node({ node }: NodeConfig & { node: NodeFrontProps }) {
   );
 }
 
-export default Node;
+export default React.memo(UnmemoNode);

@@ -6,57 +6,34 @@
  * @Description: 全局配置
  */
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Canvas from "./Canvas";
-import {
-  ConfigContext,
-  EdgesContext,
-  HoveredNodeContext,
-  NodesContext,
-  RightMenuPropsContext,
-} from "./context";
-import useCanvasDragOrScale from "./hooks/Canvas/useCanvasDragOrScale";
+import CanvasConfigController from "./Controller/CanvasConfigController";
+import ConfigController from "./Controller/ConfigController";
+import EdgeController from "./Controller/EdgeController";
+import HoveredNodeController from "./Controller/HoveredNodeController";
+import MovedNodeController from "./Controller/MovedNodeController";
+import NodesController from "./Controller/NodesController";
+import RightMenuController from "./Controller/RightMenuController";
 import { ConfigProps } from "./typings/Config";
-import { EdgeFrontProps } from "./typings/Edge";
-import { NodeFrontProps } from "./typings/Node";
 
 function Graph(graphConfig: ConfigProps) {
-  const { canvasDragEvent } = useCanvasDragOrScale();
-  const [config, setConfig] = useState<ConfigProps>(graphConfig);
-  const [hoveredNode, setHoveredNode] = useState<NodeFrontProps | null>(null);
-  const [edges, setEdges] = useState<EdgeFrontProps[]>([]);
-  const [event, setEvent] = useState<React.MouseEvent<
-    SVGSVGElement,
-    MouseEvent
-  > | null>(null);
-  const [nodes, setNodes] = useState<NodeFrontProps[]>([
-    {
-      ...config.node,
-      pId: [],
-      position: config.position,
-      isExplore: false,
-      angle: 0,
-      distence: 0,
-    },
-  ]);
-  useEffect(() => {
-    canvasDragEvent(() => {
-      setEvent(null);
-    });
-  }, [canvasDragEvent]);
-
   return (
-    <ConfigContext.Provider value={{ config, setConfig }}>
-      <NodesContext.Provider value={{ nodes, setNodes }}>
-        <EdgesContext.Provider value={{ edges, setEdges }}>
-          <HoveredNodeContext.Provider value={{ hoveredNode, setHoveredNode }}>
-            <RightMenuPropsContext.Provider value={{ event, setEvent }}>
-              <Canvas />
-            </RightMenuPropsContext.Provider>
-          </HoveredNodeContext.Provider>
-        </EdgesContext.Provider>
-      </NodesContext.Provider>
-    </ConfigContext.Provider>
+    <CanvasConfigController>
+      <ConfigController graphConfig={graphConfig}>
+        <NodesController>
+          <EdgeController>
+            <HoveredNodeController>
+              <RightMenuController>
+                <MovedNodeController>
+                  <Canvas />
+                </MovedNodeController>
+              </RightMenuController>
+            </HoveredNodeController>
+          </EdgeController>
+        </NodesController>
+      </ConfigController>
+    </CanvasConfigController>
   );
 }
 

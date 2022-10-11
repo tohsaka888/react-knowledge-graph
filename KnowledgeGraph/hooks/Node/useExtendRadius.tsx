@@ -1,5 +1,6 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useContext } from "react";
 import { NodeFrontProps } from "KnowledgeGraph";
+import { EdgesContext } from "KnowledgeGraph/context";
 
 type Props = {
   node: NodeFrontProps;
@@ -8,6 +9,8 @@ type Props = {
 };
 
 function useExtendRadius() {
+  const { setEdges } = useContext(EdgesContext)!;
+
   const calcNewPosition = useCallback(
     ({ node, insideLength, outsideLength }: Props) => {
       const { position, distence, angle } = node;
@@ -29,8 +32,32 @@ function useExtendRadius() {
 
       node.position.x = x;
       node.position.y = y;
+
+      setEdges((edges) =>
+        edges.map((edge) => {
+          if (edge.fromId === node.id) {
+            return {
+              ...edge,
+              fromNode: {
+                ...node,
+                position: { x, y },
+              },
+            };
+          } else if (edge.toId === node.id) {
+            return {
+              ...edge,
+              toNode: {
+                ...node,
+                position: { x, y },
+              },
+            };
+          } else {
+            return edge;
+          }
+        })
+      );
     },
-    []
+    [setEdges]
   );
 
   return { calcNewPosition };

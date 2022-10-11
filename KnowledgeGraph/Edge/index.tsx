@@ -8,23 +8,16 @@
 
 import React, { useContext, useMemo } from "react";
 import { motion, MotionConfig } from "framer-motion";
-import {
-  ConfigContext,
-  // EdgeMenuContext,
-  HoveredNodeContext,
-} from "../context";
+import { ConfigContext, HoveredNodeContext } from "../context";
 import { defaultEdgeConfig } from "../config/edgeConfig";
-// import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 import useCalcEdge from "../hooks/Edge/useCalcEdge";
 import { EdgeFrontProps } from "../typings/Edge";
 
 function Edge(props: EdgeFrontProps) {
-  const { id, fromNode, toNode, type, description, fromId, toId } = props;
+  const { id, fromNode, toNode, description, fromId, toId } = props;
   const { hoveredNode } = useContext(HoveredNodeContext)!;
   const { config } = useContext(ConfigContext)!;
   const { edgeConfig } = config;
-  // const { isHovered, isShow, setIsHovered, setIsShow } =
-  //   useContext(EdgeMenuContext)!;
   const needHighlight = useMemo(() => {
     return hoveredNode
       ? hoveredNode.id === fromId || hoveredNode.id === toId
@@ -86,6 +79,9 @@ function Edge(props: EdgeFrontProps) {
                 repeatType: "loop",
                 repeatDelay: 0,
                 delay: 0,
+                d: {
+                  duration: 0,
+                },
               }}
             />
           )}
@@ -140,4 +136,4 @@ function Edge(props: EdgeFrontProps) {
   );
 }
 
-export default Edge;
+export default React.memo(Edge);
