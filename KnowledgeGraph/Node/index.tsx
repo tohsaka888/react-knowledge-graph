@@ -48,6 +48,7 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
 
   const exploreFunc = async () => {
     setLoading(true);
+
     // 判断当前节点是否已探索
     if (!node.isExplore) {
       const { inside, outside, edges } = await explore(node.id);
@@ -147,13 +148,13 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
           setIsHover(false);
           setHoveredNode(null);
         }}
-        drag
-        dragPropagation={false}
-        dragSnapToOrigin={false}
-        dragMomentum={false}
-        onDragEnd={(e, info) => {
-          // setHoveredNode({ ...node, position: { x: e.x, y: e.y } });
-        }}
+        // drag
+        // dragPropagation={false}
+        // dragSnapToOrigin={false}
+        // dragMomentum={false}
+        // onDragEnd={(e, info) => {
+        //   // setHoveredNode({ ...node, position: { x: e.x, y: e.y } });
+        // }}
         initial={{
           cursor: "pointer",
           x: parentNode ? parentNode.position.x : position.x,
