@@ -9,20 +9,19 @@
 import React, { useContext, useState } from "react";
 import { motion } from "framer-motion";
 import Node from "../Node";
-import { EdgesContext, NodesContext, RightMenuPropsContext } from "../context";
+import {
+  CanvasConfigContext,
+  EdgesContext,
+  NodesContext,
+  RightMenuPropsContext,
+} from "../context";
 import Edge from "../Edge";
 import EdgeMenu from "../Edge/EdgeMenu";
 import RightClickMenu from "../RightClickMenu";
 
-function Canvas() {
-  const { nodes } = useContext(NodesContext)!;
-  const { edges } = useContext(EdgesContext)!;
+function CanvasContainer({ children }: { children: React.ReactNode }) {
   const { setEvent } = useContext(RightMenuPropsContext)!;
-  const [canvasConfig, setCanvasConfig] = useState<{
-    x: number;
-    y: number;
-    scale: number;
-  }>({ x: 0, y: 0, scale: 1 });
+  const { canvasConfig, setCanvasConfig } = useContext(CanvasConfigContext)!;
   return (
     <>
       <motion.svg
@@ -62,17 +61,19 @@ function Canvas() {
           setEvent(null);
         }}
         onWheel={(e) => {
-          if (e.deltaY < 0) {
-            setCanvasConfig((config) => ({
-              ...config,
-              scale: config.scale * 1.1,
-            }));
-          } else {
-            setCanvasConfig((config) => ({
-              ...config,
-              scale: config.scale * 0.9,
-            }));
-          }
+          requestAnimationFrame(() => {
+            if (e.deltaY < 0) {
+              setCanvasConfig((config) => ({
+                ...config,
+                scale: config.scale * 1.1,
+              }));
+            } else {
+              setCanvasConfig((config) => ({
+                ...config,
+                scale: config.scale * 0.9,
+              }));
+            }
+          });
         }}
       >
         <motion.g
@@ -83,20 +84,32 @@ function Canvas() {
           }}
         >
           <motion.g id={"graph-scale"} animate={{ scale: canvasConfig.scale }}>
-            {edges.map((edge) => {
-              return <Edge {...edge} key={edge.id} />;
-            })}
-            {edges.map((edge) => {
-              return <EdgeMenu edge={edge} key={edge.id} />;
-            })}
-            {nodes.map((node) => {
-              return <Node node={node} key={node.id} />;
-            })}
+            {children}
           </motion.g>
         </motion.g>
       </motion.svg>
       <RightClickMenu />
     </>
+  );
+}
+
+function Canvas() {
+  const { nodes } = useContext(NodesContext)!;
+  const { edges } = useContext(EdgesContext)!;
+  return (
+    <CanvasContainer>
+      <>
+        {edges.map((edge) => {
+          return <Edge {...edge} key={edge.id} />;
+        })}
+        {edges.map((edge) => {
+          return <EdgeMenu edge={edge} key={edge.id} />;
+        })}
+        {nodes.map((node) => {
+          return <Node node={node} key={node.id} />;
+        })}
+      </>
+    </CanvasContainer>
   );
 }
 
