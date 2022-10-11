@@ -6,10 +6,20 @@
  * @Description: 右键菜单
  */
 
-import React, { useContext, useEffect, useMemo, useRef } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+} from "react";
 import ReactDOM from "react-dom";
 import { motion } from "framer-motion";
-import { NodesContext, RightMenuPropsContext } from "../context";
+import {
+  CanvasConfigContext,
+  NodesContext,
+  RightMenuPropsContext,
+} from "../context";
 import MenuItem from "./MenuItem";
 
 const canvasItems = ["复位画布", "下载当前图谱", "全屏"];
@@ -19,6 +29,7 @@ function RightClickMenu() {
   const bodyRef = useRef<HTMLElement>(null!);
   const { event, setEvent } = useContext(RightMenuPropsContext)!;
   const { nodes } = useContext(NodesContext)!;
+  const { setCanvasConfig } = useContext(CanvasConfigContext)!;
 
   useEffect(() => {
     bodyRef.current = document.body;
@@ -40,6 +51,14 @@ function RightClickMenu() {
       }
     }
   }, [event]);
+
+  const resetCanvas = useCallback(() => {
+    setCanvasConfig({
+      scale: 1,
+      x: 0,
+      y: 0,
+    });
+  }, [setCanvasConfig]);
 
   return (
     bodyRef.current &&
@@ -71,7 +90,7 @@ function RightClickMenu() {
                       key={item}
                       onClick={(value) => {
                         if (value === "复位画布") {
-                          // resetCanvas();
+                          resetCanvas();
                         }
                         if (value === "全屏" || value === "退出全屏") {
                           if (document.fullscreenElement) {
@@ -125,4 +144,4 @@ function RightClickMenu() {
   );
 }
 
-export default RightClickMenu;
+export default React.memo(RightClickMenu);
