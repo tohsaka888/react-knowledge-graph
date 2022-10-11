@@ -12,6 +12,7 @@ import {
   EdgeFrontProps,
   RightMenuProps,
   ConfigProps,
+  CanvasConfig,
 } from "KnowledgeGraph";
 
 type ConfigContextProps = {
@@ -54,3 +55,11 @@ type MovedNodeContextProps = {
 export const MovedNodeContext = createContext<MovedNodeContextProps | null>(
   null
 );
+
+type CanvasConfigContextProps = {
+  canvasConfig: CanvasConfig;
+  setCanvasConfig: React.Dispatch<React.SetStateAction<CanvasConfig>>;
+};
+
+export const CanvasConfigContext =
+  createContext<CanvasConfigContextProps | null>(null);
