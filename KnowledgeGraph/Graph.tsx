@@ -12,18 +12,18 @@ import {
   ConfigContext,
   EdgesContext,
   HoveredNodeContext,
+  MovedNodeContext,
   NodesContext,
   RightMenuPropsContext,
 } from "./context";
-import useCanvasDragOrScale from "./hooks/Canvas/useCanvasDragOrScale";
 import { ConfigProps } from "./typings/Config";
 import { EdgeFrontProps } from "./typings/Edge";
 import { NodeFrontProps } from "./typings/Node";
 
 function Graph(graphConfig: ConfigProps) {
-  const { canvasDragEvent } = useCanvasDragOrScale();
   const [config, setConfig] = useState<ConfigProps>(graphConfig);
   const [hoveredNode, setHoveredNode] = useState<NodeFrontProps | null>(null);
+  const [movedNode, setMovedNode] = useState<NodeFrontProps | null>(null);
   const [edges, setEdges] = useState<EdgeFrontProps[]>([]);
   const [event, setEvent] = useState<React.MouseEvent<
     SVGSVGElement,
@@ -39,11 +39,6 @@ function Graph(graphConfig: ConfigProps) {
       distence: 0,
     },
   ]);
-  useEffect(() => {
-    canvasDragEvent(() => {
-      setEvent(null);
-    });
-  }, [canvasDragEvent]);
 
   return (
     <ConfigContext.Provider value={{ config, setConfig }}>
@@ -51,7 +46,9 @@ function Graph(graphConfig: ConfigProps) {
         <EdgesContext.Provider value={{ edges, setEdges }}>
           <HoveredNodeContext.Provider value={{ hoveredNode, setHoveredNode }}>
             <RightMenuPropsContext.Provider value={{ event, setEvent }}>
-              <Canvas />
+              <MovedNodeContext.Provider value={{ movedNode, setMovedNode }}>
+                <Canvas />
+              </MovedNodeContext.Provider>
             </RightMenuPropsContext.Provider>
           </HoveredNodeContext.Provider>
         </EdgesContext.Provider>
