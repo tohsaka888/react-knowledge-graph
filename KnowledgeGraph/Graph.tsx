@@ -9,7 +9,7 @@
 import React from "react";
 import Canvas from "./Canvas";
 import CanvasConfigController from "./Controller/CanvasConfigController";
-import ConfigContextController from "./Controller/ConfigContextController";
+import ConfigController from "./Controller/ConfigController";
 import EdgeController from "./Controller/EdgeController";
 import HoveredNodeController from "./Controller/HoveredNodeController";
 import MovedNodeController from "./Controller/MovedNodeController";
@@ -20,7 +20,7 @@ import { ConfigProps } from "./typings/Config";
 function Graph(graphConfig: ConfigProps) {
   return (
     <CanvasConfigController>
-      <ConfigContextController graphConfig={graphConfig}>
+      <ConfigController graphConfig={graphConfig}>
         <NodesController>
           <EdgeController>
             <HoveredNodeController>
@@ -32,7 +32,7 @@ function Graph(graphConfig: ConfigProps) {
             </HoveredNodeController>
           </EdgeController>
         </NodesController>
-      </ConfigContextController>
+      </ConfigController>
     </CanvasConfigController>
   );
 }

@@ -7,7 +7,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-function ConfigContextController({ graphConfig, children }: Props) {
+function ConfigController({ graphConfig, children }: Props) {
   const [config, setConfig] = useState<ConfigProps>(graphConfig);
   return (
     <ConfigContext.Provider value={{ config, setConfig }}>
@@ -16,4 +16,4 @@ function ConfigContextController({ graphConfig, children }: Props) {
   );
 }
 
-export default ConfigContextController;
+export default ConfigController;
