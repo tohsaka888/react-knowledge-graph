@@ -6,7 +6,7 @@
  * @Description: 请填写简介
  */
 
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { motion } from "framer-motion";
 import Node from "../Node";
 import { EdgesContext, NodesContext, RightMenuPropsContext } from "../context";
@@ -18,6 +18,10 @@ function Canvas() {
   const { nodes } = useContext(NodesContext)!;
   const { edges } = useContext(EdgesContext)!;
   const { setEvent } = useContext(RightMenuPropsContext)!;
+  const [canvasPosition, setCanvasPosition] = useState<{
+    x: number;
+    y: number;
+  }>({ x: 0, y: 0 });
   return (
     <>
       <motion.svg
@@ -29,12 +33,40 @@ function Canvas() {
           e.preventDefault();
           setEvent(e);
         }}
+        drag
+        dragConstraints={{
+          top: 0,
+          left: 0,
+          bottom: 0,
+          right: 0,
+        }}
+        dragMomentum={false}
+        dragSnapToOrigin={false}
+        dragElastic={0}
+        dragTransition={{
+          bounceStiffness: 0,
+          bounceDamping: 0,
+        }}
         className={"canvas"}
+        onDrag={(e, info) => {
+          requestAnimationFrame(() => {
+            setCanvasPosition(({ x, y }) => ({
+              x: x + info.delta.x,
+              y: y + info.delta.y,
+            }));
+          });
+        }}
         onClick={() => {
           setEvent(null);
         }}
       >
-        <motion.g id={"graph-drag"}>
+        <motion.g
+          id={"graph-drag"}
+          animate={{
+            x: canvasPosition.x,
+            y: canvasPosition.y,
+          }}
+        >
           <motion.g id={"graph-scale"}>
             {edges.map((edge) => {
               return <Edge {...edge} key={edge.id} />;
@@ -53,4 +85,4 @@ function Canvas() {
   );
 }
 
-export default Canvas;
+export default React.memo(Canvas);
