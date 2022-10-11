@@ -18,10 +18,11 @@ function Canvas() {
   const { nodes } = useContext(NodesContext)!;
   const { edges } = useContext(EdgesContext)!;
   const { setEvent } = useContext(RightMenuPropsContext)!;
-  const [canvasPosition, setCanvasPosition] = useState<{
+  const [canvasConfig, setCanvasConfig] = useState<{
     x: number;
     y: number;
-  }>({ x: 0, y: 0 });
+    scale: number;
+  }>({ x: 0, y: 0, scale: 1 });
   return (
     <>
       <motion.svg
@@ -50,24 +51,38 @@ function Canvas() {
         className={"canvas"}
         onDrag={(e, info) => {
           requestAnimationFrame(() => {
-            setCanvasPosition(({ x, y }) => ({
+            setCanvasConfig(({ x, y, scale }) => ({
               x: x + info.delta.x,
               y: y + info.delta.y,
+              scale,
             }));
           });
         }}
         onClick={() => {
           setEvent(null);
         }}
+        onWheel={(e) => {
+          if (e.deltaY < 0) {
+            setCanvasConfig((config) => ({
+              ...config,
+              scale: config.scale * 1.1,
+            }));
+          } else {
+            setCanvasConfig((config) => ({
+              ...config,
+              scale: config.scale * 0.9,
+            }));
+          }
+        }}
       >
         <motion.g
           id={"graph-drag"}
           animate={{
-            x: canvasPosition.x,
-            y: canvasPosition.y,
+            x: canvasConfig.x,
+            y: canvasConfig.y,
           }}
         >
-          <motion.g id={"graph-scale"}>
+          <motion.g id={"graph-scale"} animate={{ scale: canvasConfig.scale }}>
             {edges.map((edge) => {
               return <Edge {...edge} key={edge.id} />;
             })}
