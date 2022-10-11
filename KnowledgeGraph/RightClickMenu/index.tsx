@@ -27,7 +27,7 @@ const nodeItems = ["当前实体居中"];
 
 function RightMenuContent() {
   const { nodes } = useContext(NodesContext)!;
-  const { setCanvasConfig } = useContext(CanvasConfigContext)!;
+  const { canvasConfig, setCanvasConfig } = useContext(CanvasConfigContext)!;
   const { event, setEvent } = useContext(RightMenuPropsContext)!;
   const type = useMemo(() => {
     if (event?.target) {
@@ -61,6 +61,48 @@ function RightMenuContent() {
       y: canvas.clientHeight / 2 - node.position.y,
     });
   }, [event, nodes, setCanvasConfig]);
+
+  const downloadSVG = useCallback(() => {
+    const gElement = document.getElementById("graph-drag")!;
+    const width = gElement.getBoundingClientRect().width + 50;
+    const height = gElement.getBoundingClientRect().height + 50;
+    const left = gElement.getBoundingClientRect().left;
+    const top = gElement.getBoundingClientRect().top;
+    console.log(left, top);
+
+    const graph = document.getElementById("knowledge-graph-canvas")!;
+    const clonedGraph = graph.cloneNode(true) as SVGSVGElement;
+    clonedGraph.setAttribute("transform", `translate(${-left} ${-top})`);
+    console.log(clonedGraph);
+
+    let serializer = new XMLSerializer();
+
+    let source =
+      '<?xml version="1.0" standalone="no"?>\r\n' +
+      serializer.serializeToString(clonedGraph);
+
+    const image = new Image();
+    image.src =
+      "data:image/svg+xml;charset=utf-8," + encodeURIComponent(source);
+
+    image.width = width;
+    image.height = height;
+
+    let canvas = document.createElement("canvas");
+    canvas.width = width;
+    canvas.height = height;
+    let context = canvas.getContext("2d")!;
+    context.fillStyle = "#fff";
+    context.fillRect(0, 0, 10000, 10000);
+
+    image.onload = function () {
+      context.drawImage(image, 0, 0);
+      let a = document.createElement("a");
+      a.download = `图谱.png`;
+      a.href = canvas.toDataURL(`image/png`);
+      a.click();
+    };
+  }, []);
 
   return (
     <>
@@ -97,6 +139,9 @@ function RightMenuContent() {
                       } else {
                         document.documentElement.requestFullscreen();
                       }
+                    }
+                    if (value === "下载当前图谱") {
+                      downloadSVG();
                     }
                     setEvent(null);
                   }}
