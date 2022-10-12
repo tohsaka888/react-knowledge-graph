@@ -15,7 +15,7 @@ devThis is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-n
 ## 功能
 
 - 定义节点大小/颜色/文字颜色/文字大小
-- 支持画布拖拽/缩放
+- 支持画布拖拽
 - 支持异步获取数据/动态探索生成图
 - 支持 Hover 节点时高亮节点及与其有关联的边
 - 根据节点类型定制属性
@@ -26,10 +26,11 @@ devThis is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-n
 - 右键当前实体居中
 - 支持服务端渲染
 - 下载图谱为多种格式图片 (jpg, jpeg, png, bmp)
+- 支持拖拽节点
 
 ## 待定实现的功能
 
-- 拖拽节点 (下个版本支持)
+- 右键实体菜单新增只显示当前节点即其子节点/关系 (下版本支持)
 - `Shift + 左键`多选节点拖拽 (出于性能问题暂不支持)
 - 重绘图 (暂不支持)
 
@@ -176,4 +177,3 @@ export default Home;
 ### 入参说明
 
 待补充
-
