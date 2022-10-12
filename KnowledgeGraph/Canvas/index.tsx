@@ -6,7 +6,7 @@
  * @Description: 请填写简介
  */
 
-import React, { useContext, useState } from "react";
+import React, { useContext, useDeferredValue, useState } from "react";
 import { motion } from "framer-motion";
 import Node from "../Node";
 import {
@@ -22,6 +22,7 @@ import RightClickMenu from "../RightClickMenu";
 function CanvasContainer({ children }: { children: React.ReactNode }) {
   const { setEvent } = useContext(RightMenuPropsContext)!;
   const { canvasConfig, setCanvasConfig } = useContext(CanvasConfigContext)!;
+  const deferredCanvasConfig = useDeferredValue(canvasConfig);
   return (
     <>
       <motion.svg
@@ -79,8 +80,8 @@ function CanvasContainer({ children }: { children: React.ReactNode }) {
         <motion.g
           id={"graph-drag"}
           animate={{
-            x: canvasConfig.x,
-            y: canvasConfig.y,
+            x: deferredCanvasConfig.x,
+            y: deferredCanvasConfig.y,
           }}
           transition={{
             duration: 0,
@@ -88,7 +89,7 @@ function CanvasContainer({ children }: { children: React.ReactNode }) {
         >
           <motion.g
             id={"graph-scale"}
-            animate={{ scale: canvasConfig.scale }}
+            animate={{ scale: deferredCanvasConfig.scale }}
             transition={{
               duration: 0,
             }}
