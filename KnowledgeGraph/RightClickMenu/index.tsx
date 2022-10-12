@@ -95,7 +95,7 @@ function RightMenuContent() {
       canvas.width = width;
       canvas.height = height;
       let context = canvas.getContext("2d")!;
-      context.fillStyle = "#fff";
+      context.fillStyle = "transparent";
       context.fillRect(0, 0, 10000, 10000);
 
       image.onload = function () {
