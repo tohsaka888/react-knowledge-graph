@@ -6,7 +6,7 @@
  * @Description: 请填写简介
  */
 
-import React, { useContext, useDeferredValue, useState } from "react";
+import React, { useContext } from "react";
 import { motion } from "framer-motion";
 import Node from "../Node";
 import {
@@ -21,7 +21,6 @@ import RightClickMenu from "../RightClickMenu";
 function CanvasContainer({ children }: { children: React.ReactNode }) {
   const { setEvent } = useContext(RightMenuPropsContext)!;
   const { canvasConfig, setCanvasConfig } = useContext(CanvasConfigContext)!;
-  const deferredCanvasConfig = useDeferredValue(canvasConfig);
   return (
     <>
       <motion.svg
@@ -65,12 +64,12 @@ function CanvasContainer({ children }: { children: React.ReactNode }) {
             if (e.deltaY < 0) {
               setCanvasConfig((config) => ({
                 ...config,
-                scale: config.scale * 1.1,
+                scale: config.scale * 1.05,
               }));
             } else {
               setCanvasConfig((config) => ({
                 ...config,
-                scale: config.scale * 0.9,
+                scale: config.scale * 0.95,
               }));
             }
           });
@@ -79,22 +78,15 @@ function CanvasContainer({ children }: { children: React.ReactNode }) {
         <motion.g
           id={"graph-drag"}
           animate={{
-            x: deferredCanvasConfig.x,
-            y: deferredCanvasConfig.y,
+            x: canvasConfig.x,
+            y: canvasConfig.y,
+            scale: canvasConfig.scale,
           }}
           transition={{
-            duration: 0,
+            duration: 0.1,
           }}
         >
-          <motion.g
-            id={"graph-scale"}
-            animate={{ scale: deferredCanvasConfig.scale }}
-            transition={{
-              duration: 0,
-            }}
-          >
-            {children}
-          </motion.g>
+          {children}
         </motion.g>
       </motion.svg>
       <RightClickMenu />
