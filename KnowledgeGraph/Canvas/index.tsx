@@ -59,21 +59,21 @@ function CanvasContainer({ children }: { children: React.ReactNode }) {
         onClick={() => {
           setEvent(null);
         }}
-        onWheel={(e) => {
-          requestAnimationFrame(() => {
-            if (e.deltaY < 0) {
-              setCanvasConfig((config) => ({
-                ...config,
-                scale: config.scale * 1.05,
-              }));
-            } else {
-              setCanvasConfig((config) => ({
-                ...config,
-                scale: config.scale * 0.95,
-              }));
-            }
-          });
-        }}
+        // onWheel={(e) => {
+        //   requestAnimationFrame(() => {
+        //     if (e.deltaY < 0) {
+        //       setCanvasConfig((config) => ({
+        //         ...config,
+        //         scale: config.scale * 1.05,
+        //       }));
+        //     } else {
+        //       setCanvasConfig((config) => ({
+        //         ...config,
+        //         scale: config.scale * 0.95,
+        //       }));
+        //     }
+        //   });
+        // }}
       >
         <motion.g
           id={"graph-drag"}
