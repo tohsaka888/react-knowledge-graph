@@ -1,6 +1,6 @@
 {
   "name": "react-knowledge-graph",
-  "version": "0.1.26",
+  "version": "0.1.27",
   "description": "React知识图谱组件",
   "private": false,
   "scripts": {
@@ -11,11 +11,13 @@
     "build:commonjs": "npx swc KnowledgeGraph -C module.type=commonjs -d lib/commonjs --config-file .swcrc",
     "build:module": "npx swc KnowledgeGraph -C module.type=es6 -d lib/module --config-file .swcrc",
     "build:typescript": "npx tsc --project ./tsconfig.typescript.json",
-    "build:package": "pnpm build:commonjs && pnpm build:module && pnpm build:typescript"
+    "build:package": "pnpm build:commonjs && pnpm build:module && pnpm build:typescript",
+    "publish:package": "pnpm build:package && pnpm publish"
   },
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
   "types": "lib/typescript/index.d.ts",
+  "source": "KnowledgeGraph/index.tsx",
   "files": [
     "lib",
     "KnowledgeGraph",
