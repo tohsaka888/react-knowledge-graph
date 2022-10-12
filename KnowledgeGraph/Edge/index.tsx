@@ -63,7 +63,7 @@ function Edge(props: EdgeFrontProps) {
               opacity,
             }}
             transition={{
-              duration: 0.5,
+              duration: 0.3,
             }}
           />
 

@@ -170,7 +170,7 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
           opacity: 1,
         }}
         transition={{
-          duration: 0.5,
+          duration: 0.3,
         }}
         onDoubleClick={(e) => {
           exploreFunc();
@@ -208,7 +208,10 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
           className={"node"}
           node-id={node.id}
           fill={nameColor}
-          fontSize={nameSize}
+          initial={{
+            fontSize: 0,
+          }}
+          animate={{ fontSize: nameSize }}
           textAnchor={"middle"}
           y={radius + nameSize}
         >
@@ -218,7 +221,10 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
           className={"node"}
           node-id={node.id}
           fill={typeColor}
-          fontSize={typeSize}
+          initial={{
+            fontSize: 0,
+          }}
+          animate={{ fontSize: typeSize }}
           textAnchor={"middle"}
           dominantBaseline={"central"}
         >
