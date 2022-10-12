@@ -1,4 +1,4 @@
-import { NodeConfig } from "KnowledgeGraph";
+import { NodeConfig } from "../../KnowledgeGraph/index";
 
 export const defaultNodeConfig: Required<NodeConfig> = {
   fill: "#1890ff",

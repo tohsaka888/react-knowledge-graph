@@ -5,7 +5,7 @@
  * @LastEditTime: 2022-10-09 14:56:29
  * @Description: 请填写简介
  */
-import { EdgeProps } from "KnowledgeGraph";
+import { EdgeProps } from "../../../KnowledgeGraph";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { connectDB } from "utils/server/connectDB";
 

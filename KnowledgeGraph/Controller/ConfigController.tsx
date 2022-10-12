@@ -1,5 +1,5 @@
 import { ConfigContext } from "../context";
-import { ConfigProps } from "KnowledgeGraph";
+import { ConfigProps } from "../typings/Config";
 import React, { useState } from "react";
 
 type Props = {

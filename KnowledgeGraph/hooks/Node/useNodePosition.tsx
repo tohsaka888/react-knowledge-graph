@@ -7,7 +7,7 @@
  */
 
 import React, { useCallback } from "react";
-import { NodeFrontProps, NodeProps } from "KnowledgeGraph";
+import { NodeFrontProps, NodeProps } from "../../../KnowledgeGraph";
 import useCalcDistence from "./useCalcDistence";
 
 type Props = {

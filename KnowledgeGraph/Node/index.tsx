@@ -11,7 +11,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ConfigContext, EdgesContext, HoveredNodeContext } from "../context";
 import Loading from "./Loading";
 import { defaultNodeConfig } from "../config/nodeConfig";
-import { NodeFrontProps } from "KnowledgeGraph";
+import { NodeFrontProps } from "../../KnowledgeGraph";
 import useExplore from "./useExplore";
 
 function UnmemoNode({ node }: { node: NodeFrontProps }) {

@@ -1,5 +1,5 @@
 import React, { useCallback, useContext } from "react";
-import { NodeFrontProps } from "KnowledgeGraph";
+import { NodeFrontProps } from "../../../KnowledgeGraph";
 import { EdgesContext } from "../../context";
 
 type Props = {

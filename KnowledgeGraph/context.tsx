@@ -13,7 +13,7 @@ import {
   RightMenuProps,
   ConfigProps,
   CanvasConfig,
-} from "KnowledgeGraph";
+} from "../KnowledgeGraph/index";
 
 type ConfigContextProps = {
   config: ConfigProps;

@@ -1,9 +1,9 @@
-import { NodesContext, EdgesContext } from "KnowledgeGraph/context";
-import useFormatEdges from "KnowledgeGraph/hooks/Edge/useFormatEdges";
-import useExtendRadius from "KnowledgeGraph/hooks/Node/useExtendRadius";
-import useNodePosition from "KnowledgeGraph/hooks/Node/useNodePosition";
-import { EdgeProps } from "KnowledgeGraph/typings/Edge";
-import { NodeFrontProps, NodeProps } from "KnowledgeGraph/typings/Node";
+import { NodesContext, EdgesContext } from "../context";
+import useFormatEdges from "../hooks/Edge/useFormatEdges";
+import useExtendRadius from "../hooks/Node/useExtendRadius";
+import useNodePosition from "../hooks/Node/useNodePosition";
+import { EdgeProps } from "../typings/Edge";
+import { NodeFrontProps, NodeProps } from "../typings/Node";
 import React, { useCallback, useContext, useState } from "react";
 
 type Props = {

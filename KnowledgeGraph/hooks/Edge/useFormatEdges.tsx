@@ -1,6 +1,6 @@
 import { EdgesContext, NodesContext } from "../../context";
 import React, { useCallback, useContext } from "react";
-import { EdgeProps, NodeFrontProps } from "KnowledgeGraph";
+import { EdgeProps, NodeFrontProps } from "../../../KnowledgeGraph";
 
 type Props = {
   curNodes: NodeFrontProps[];

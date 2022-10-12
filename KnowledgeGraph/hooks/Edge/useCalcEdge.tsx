@@ -12,7 +12,7 @@ import {
   CalcFlagFunc,
   CalcQuadrantFunc,
   NodeFrontProps,
-} from "KnowledgeGraph";
+} from "../../../KnowledgeGraph";
 
 function useCalcEdge() {
   function twoPointDistance(fromNode: NodeFrontProps, toNode: NodeFrontProps) {

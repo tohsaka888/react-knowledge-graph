@@ -1,5 +1,5 @@
 import { HoveredNodeContext } from "../context";
-import { NodeFrontProps } from "KnowledgeGraph";
+import { NodeFrontProps } from "../../KnowledgeGraph/index";
 import React, { useState } from "react";
 
 type Props = {

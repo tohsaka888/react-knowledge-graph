@@ -5,7 +5,7 @@
  * @LastEditTime: 2022-10-09 14:59:08
  * @Description: 请填写简介
  */
-import { NodeProps } from "KnowledgeGraph";
+import { NodeProps } from "../../../KnowledgeGraph";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { connectDB } from "utils/server/connectDB";
 
@@ -24,7 +24,7 @@ export default async function handler(
       res.status(200).send(nodes);
     }
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res.status(200).send([]);
   }
 }
