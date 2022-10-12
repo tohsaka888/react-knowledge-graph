@@ -13,7 +13,7 @@ function useExtendRadius() {
 
   const calcNewPosition = useCallback(
     ({ node, insideLength, outsideLength }: Props) => {
-      const { position, distence, angle } = node;
+      const { position, distence, parentNode, angle: defaultAngle } = node;
       let extendLength = 0;
       if (insideLength && outsideLength) {
         extendLength = 1.1 * distence;
@@ -22,6 +22,14 @@ function useExtendRadius() {
       } else {
         extendLength = 0.5 * distence;
       }
+
+      const angle = parentNode
+        ? Math.PI * 1.5 +
+          Math.atan2(
+            position.y - parentNode.position.y,
+            position.x - parentNode.position.x
+          )
+        : defaultAngle;
 
       const x =
         position.x +
