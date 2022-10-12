@@ -25,11 +25,11 @@ devThis is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-n
 - 全屏
 - 右键当前实体居中
 - 支持服务端渲染
+- 下载图谱为多种格式图片 (jpg, jpeg, png, bmp)
 
 ## 待定实现的功能
 
 - 拖拽节点 (下个版本支持)
-- 下载图 (下个版本支持)
 - `Shift + 左键`多选节点拖拽 (出于性能问题暂不支持)
 - 重绘图 (暂不支持)
 
