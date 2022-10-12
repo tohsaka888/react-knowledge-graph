@@ -71,7 +71,9 @@ function RightMenuContent() {
 
     const graph = document.getElementById("knowledge-graph-canvas")!;
     const clonedGraph = graph.cloneNode(true) as SVGSVGElement;
-    clonedGraph.setAttribute("transform", `translate(${-left} ${-top})`);
+    (clonedGraph.firstChild! as SVGGElement).style.transform = `translateX(${
+      canvasConfig.x - left + 25
+    }px) translateY(${canvasConfig.y - top + 25}px)`;
 
     let serializer = new XMLSerializer();
 
@@ -100,7 +102,7 @@ function RightMenuContent() {
       a.href = canvas.toDataURL(`image/png`);
       a.click();
     };
-  }, []);
+  }, [canvasConfig.x, canvasConfig.y]);
 
   return (
     <>
