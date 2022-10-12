@@ -6,9 +6,9 @@
  * @Description: 节点
  */
 
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useTransition } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ConfigContext, HoveredNodeContext } from "../context";
+import { ConfigContext, EdgesContext, HoveredNodeContext } from "../context";
 import Loading from "./Loading";
 import { defaultNodeConfig } from "../config/nodeConfig";
 import { NodeFrontProps } from "KnowledgeGraph";
@@ -22,6 +22,7 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
 
   const [isHover, setIsHover] = useState<boolean>(false);
   const { setHoveredNode } = useContext(HoveredNodeContext)!;
+  const { setEdges } = useContext(EdgesContext)!;
   const fill = nodeConfig?.fill || defaultNodeConfig.fill;
   const hoverStyle = nodeConfig?.hoverStyle || defaultNodeConfig.hoverStyle;
   const nameColor = nodeConfig?.nameColor || defaultNodeConfig.nameColor;
@@ -31,6 +32,41 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
   const radius = nodeConfig?.radius || defaultNodeConfig.radius;
 
   const { exploreFunc, loading } = useExplore({ explore, node, onExploreEnd });
+
+  const calcEdges = (position: { x: number; y: number }) => {
+    requestAnimationFrame(() => {
+      setEdges((edges) =>
+        edges.map((edge) => {
+          if (edge.fromId === node.id) {
+            const fromNode = edge.fromNode!;
+            return {
+              ...edge,
+              fromNode: {
+                ...fromNode,
+                position,
+              },
+              visible: true,
+            };
+          } else if (edge.toId === node.id) {
+            const toNode = edge.toNode!;
+            return {
+              ...edge,
+              toNode: {
+                ...toNode,
+                position,
+              },
+              visible: true,
+            };
+          } else {
+            return {
+              ...edge,
+              visible: true,
+            };
+          }
+        })
+      );
+    });
+  };
 
   return (
     <AnimatePresence>
@@ -45,13 +81,33 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
           setIsHover(false);
           setHoveredNode(null);
         }}
-        // drag
-        // dragPropagation={false}
-        // dragSnapToOrigin={false}
-        // dragMomentum={false}
-        // onDragEnd={(e, info) => {
-        //   // setHoveredNode({ ...node, position: { x: e.x, y: e.y } });
-        // }}
+        drag
+        dragPropagation={false}
+        dragSnapToOrigin={false}
+        dragMomentum={false}
+        onDragStart={() => {
+          setHoveredNode(null);
+          setEdges((edges) =>
+            edges.map((edge) => {
+              if (edge.fromId === node.id || edge.toId === node.id) {
+                return {
+                  ...edge,
+                  visible: false,
+                };
+              } else {
+                return edge;
+              }
+            })
+          );
+        }}
+        onDragEnd={(e, info) => {
+          position.x += info.offset.x;
+          position.y += info.offset.y;
+          calcEdges({ x: position.x, y: position.y });
+        }}
+        onDrag={(e, info) => {
+          setHoveredNode(null);
+        }}
         initial={{
           cursor: "pointer",
           x: parentNode ? parentNode.position.x : position.x,
