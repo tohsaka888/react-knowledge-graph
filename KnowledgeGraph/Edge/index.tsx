@@ -6,18 +6,21 @@
  * @Description: 边
  */
 
-import React, { useContext, useMemo } from "react";
+import React, { useContext, useMemo, useState } from "react";
 import { motion, MotionConfig } from "framer-motion";
 import { ConfigContext, HoveredNodeContext } from "../context";
 import { defaultEdgeConfig } from "../config/edgeConfig";
 import useCalcEdge from "../hooks/Edge/useCalcEdge";
 import { EdgeFrontProps } from "../typings/Edge";
+import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 
 function Edge(props: EdgeFrontProps) {
   const { id, fromNode, toNode, description, fromId, toId } = props;
   const { hoveredNode } = useContext(HoveredNodeContext)!;
   const { config } = useContext(ConfigContext)!;
   const { edgeConfig } = config;
+  const [opacity, setOpacity] = useState<number>(1);
+  const [isHovered, setIsHovered] = useState<boolean>(false);
   const needHighlight = useMemo(() => {
     return hoveredNode
       ? hoveredNode.id === fromId || hoveredNode.id === toId
@@ -40,20 +43,24 @@ function Edge(props: EdgeFrontProps) {
         <motion.g
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
+          fill={"none"}
           transition={{
             duration: 1,
+          }}
+          onClick={() => {
+            setOpacity((value) => (value !== 1 ? 1 : 0.2));
           }}
         >
           <motion.path
             id={id as string}
             fill={"none"}
             width={20}
-            initial={{ opacity: 0 }}
+            initial={{ opacity: 0, cursor: "pointer" }}
             animate={{
               d,
               stroke: edgeConfig?.stroke || stroke,
               strokeWidth: edgeConfig?.strokeWidth || strokeWidth,
-              opacity: 1,
+              opacity,
             }}
             transition={{
               duration: 0.5,
@@ -86,50 +93,89 @@ function Edge(props: EdgeFrontProps) {
             />
           )}
 
-          <motion.text
-            textAnchor={"middle"}
-            dominantBaseline={"central"}
-            dy={-2}
-          >
-            <motion.textPath
-              href={`#${id}`}
-              fontSize={24}
-              initial={{
-                opacity: 0,
-              }}
-              animate={{
-                fill: needHighlight
-                  ? edgeConfig?.hoveredColor || hoveredColor
-                  : edgeConfig?.stroke || stroke,
-                opacity: needHighlight ? [0.5, 1] : 1,
-              }}
-              startOffset={"50%"}
-              id={id + "direction"}
-            >
-              ▸
-            </motion.textPath>
-          </motion.text>
+          {!isHovered && opacity === 1 && (
+            <>
+              <motion.text
+                textAnchor={"middle"}
+                dominantBaseline={"central"}
+                dy={-2}
+              >
+                <motion.textPath
+                  href={`#${id}`}
+                  fontSize={24}
+                  initial={{
+                    opacity: 0,
+                  }}
+                  animate={{
+                    fill: needHighlight
+                      ? edgeConfig?.hoveredColor || hoveredColor
+                      : edgeConfig?.stroke || stroke,
+                    opacity: needHighlight ? [0.5, 1] : 1,
+                  }}
+                  startOffset={"50%"}
+                  id={id + "direction"}
+                >
+                  ▸
+                </motion.textPath>
+              </motion.text>
+              <motion.text
+                textAnchor={"middle"}
+                dominantBaseline={"central"}
+                dy={-10}
+              >
+                <motion.textPath
+                  href={`#${id}`}
+                  id={id + "description"}
+                  animate={{
+                    fill: needHighlight
+                      ? edgeConfig?.descriptionColor || hoveredColor
+                      : edgeConfig?.descriptionColor || descriptionColor,
+                    fontSize: edgeConfig?.descriptionSize || descriptionSize,
+                    opacity: needHighlight ? [0.5, 1] : 1,
+                  }}
+                  startOffset={"50%"}
+                >
+                  {description}
+                </motion.textPath>
+              </motion.text>
+            </>
+          )}
 
-          <motion.text
-            textAnchor={"middle"}
-            dominantBaseline={"central"}
-            dy={-10}
-          >
-            <motion.textPath
-              href={`#${id}`}
-              id={id + "description"}
-              animate={{
-                fill: needHighlight
-                  ? edgeConfig?.descriptionColor || hoveredColor
-                  : edgeConfig?.descriptionColor || descriptionColor,
-                fontSize: edgeConfig?.descriptionSize || descriptionSize,
-                opacity: needHighlight ? [0.5, 1] : 1,
-              }}
-              startOffset={"50%"}
+          {isHovered && opacity === 1 && (
+            <motion.g
+              style={{ offsetPath: `path("${d}")`, offsetDistance: "50%" }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transform={`translate(-10, -8)`}
             >
-              {description}
-            </motion.textPath>
-          </motion.text>
+              <BsFillEyeFill color="#cecece" style={{ opacity }} />
+            </motion.g>
+          )}
+
+          {opacity !== 1 && (
+            <motion.g
+              style={{ offsetPath: `path("${d}")`, offsetDistance: "50%" }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transform={`translate(-10, -8)`}
+            >
+              <BsFillEyeSlashFill color="#cecece" style={{ opacity: 0.5 }} />
+            </motion.g>
+          )}
+
+          <motion.path
+            d={d}
+            fill={"none"}
+            cursor={"pointer"}
+            stroke={"transparent"}
+            strokeWidth={10}
+            onHoverStart={() => {
+              setIsHovered(true);
+            }}
+            onHoverEnd={() => {
+              setIsHovered(false);
+            }}
+          />
         </motion.g>
       )}
     </MotionConfig>

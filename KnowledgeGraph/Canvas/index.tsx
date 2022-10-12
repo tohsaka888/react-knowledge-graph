@@ -16,7 +16,6 @@ import {
   RightMenuPropsContext,
 } from "../context";
 import Edge from "../Edge";
-import EdgeMenu from "../Edge/EdgeMenu";
 import RightClickMenu from "../RightClickMenu";
 
 function CanvasContainer({ children }: { children: React.ReactNode }) {
@@ -111,9 +110,6 @@ function Canvas() {
       <>
         {edges.map((edge) => {
           return <Edge {...edge} key={edge.id} />;
-        })}
-        {edges.map((edge) => {
-          return <EdgeMenu edge={edge} key={edge.id} />;
         })}
         {nodes.map((node) => {
           return <Node node={node} key={node.id} />;
