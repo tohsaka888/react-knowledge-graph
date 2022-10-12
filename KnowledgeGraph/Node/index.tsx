@@ -6,7 +6,7 @@
  * @Description: 节点
  */
 
-import React, { useContext, useState, useTransition } from "react";
+import React, { useContext, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ConfigContext, EdgesContext, HoveredNodeContext } from "../context";
 import Loading from "./Loading";
@@ -85,7 +85,12 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
         dragPropagation={false}
         dragSnapToOrigin={false}
         dragMomentum={false}
-        onDragStart={() => {
+        whileDrag={{
+          scale: 1.2,
+        }}
+        style={{ willChange: "transform" }}
+        onDragStart={(e) => {
+          e.stopPropagation();
           setHoveredNode(null);
           setEdges((edges) =>
             edges.map((edge) => {
@@ -101,12 +106,11 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
           );
         }}
         onDragEnd={(e, info) => {
+          e.stopPropagation();
+          setHoveredNode(null);
           position.x += info.offset.x;
           position.y += info.offset.y;
           calcEdges({ x: position.x, y: position.y });
-        }}
-        onDrag={(e, info) => {
-          setHoveredNode(null);
         }}
         initial={{
           cursor: "pointer",

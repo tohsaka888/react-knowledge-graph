@@ -28,6 +28,8 @@ function CanvasContainer({ children }: { children: React.ReactNode }) {
         height={"100%"}
         id={"knowledge-graph-canvas"}
         style={{ userSelect: "none" }}
+        // viewBox={"auto"}
+        xmlns="http://www.w3.org/2000/svg"
         onContextMenu={(e) => {
           e.preventDefault();
           setEvent(e);
@@ -59,34 +61,38 @@ function CanvasContainer({ children }: { children: React.ReactNode }) {
         onClick={() => {
           setEvent(null);
         }}
-        // onWheel={(e) => {
-        //   requestAnimationFrame(() => {
-        //     if (e.deltaY < 0) {
-        //       setCanvasConfig((config) => ({
-        //         ...config,
-        //         scale: config.scale * 1.05,
-        //       }));
-        //     } else {
-        //       setCanvasConfig((config) => ({
-        //         ...config,
-        //         scale: config.scale * 0.95,
-        //       }));
-        //     }
-        //   });
-        // }}
+        onWheel={(e) => {
+          requestAnimationFrame(() => {
+            if (e.deltaY < 0) {
+              setCanvasConfig((config) => ({
+                ...config,
+                scale: config.scale * 1.05,
+              }));
+            } else {
+              setCanvasConfig((config) => ({
+                ...config,
+                scale: config.scale <= 2 ? config.scale / 1.05 : 2,
+              }));
+            }
+          });
+        }}
       >
         <motion.g
           id={"graph-drag"}
           animate={{
             x: canvasConfig.x,
             y: canvasConfig.y,
-            scale: canvasConfig.scale,
           }}
           transition={{
             duration: 0.1,
           }}
         >
+          {/* <motion.g
+            animate={{ scale: canvasConfig.scale }}
+            style={{ transformOrigin: "0, 0" }}
+          > */}
           {children}
+          {/* </motion.g> */}
         </motion.g>
       </motion.svg>
       <RightClickMenu />
