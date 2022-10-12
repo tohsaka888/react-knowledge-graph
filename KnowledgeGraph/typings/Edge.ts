@@ -20,6 +20,7 @@ type EdgeFrontProps = EdgeProps & {
   pId: React.Key[];
   fromNode?: NodeFrontProps;
   toNode?: NodeFrontProps;
+  visible: boolean;
 };
 
 export type { EdgeProps, EdgeFrontProps };
