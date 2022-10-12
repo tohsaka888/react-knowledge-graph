@@ -68,12 +68,10 @@ function RightMenuContent() {
     const height = gElement.getBoundingClientRect().height + 50;
     const left = gElement.getBoundingClientRect().left;
     const top = gElement.getBoundingClientRect().top;
-    console.log(left, top);
 
     const graph = document.getElementById("knowledge-graph-canvas")!;
     const clonedGraph = graph.cloneNode(true) as SVGSVGElement;
     clonedGraph.setAttribute("transform", `translate(${-left} ${-top})`);
-    console.log(clonedGraph);
 
     let serializer = new XMLSerializer();
 
