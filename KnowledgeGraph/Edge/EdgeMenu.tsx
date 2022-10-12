@@ -38,6 +38,7 @@ function EdgeMenu({ edge }: Props) {
   useEffect(() => {
     const edge = document.getElementById(id as string);
     const description = document.getElementById(id + "description");
+    const direction = document.getElementById(id + "direction");
     if (isShow) {
       if (edge) {
         edge.style.opacity = "1";
@@ -45,12 +46,18 @@ function EdgeMenu({ edge }: Props) {
       if (description) {
         description.style.opacity = "1";
       }
+      if (direction) {
+        direction.style.opacity = "1";
+      }
     } else {
       if (edge) {
         edge.style.opacity = "0.2";
       }
       if (description) {
         description.style.opacity = "0.2";
+      }
+      if (direction) {
+        direction.style.opacity = "0.2";
       }
     }
   }, [id, isShow]);
