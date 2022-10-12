@@ -124,10 +124,8 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
       setEdges((edges) => {
         return edges.filter(
           (edge) =>
-            ((edge.fromId !== node.id && edge.toId !== node.id) ||
-              edge.fromId === parentNode?.id ||
-              edge.toId === parentNode?.id) &&
-            edge.pId.findIndex((id) => id === node.id) === -1
+            filteredNodes.find((node) => node.id === edge.fromId) &&
+            filteredNodes.find((node) => node.id === edge.toId)
         );
       });
     }
