@@ -12,6 +12,7 @@ import React, {
   useEffect,
   useMemo,
   useRef,
+  useState,
 } from "react";
 import ReactDOM from "react-dom";
 import { motion } from "framer-motion";
@@ -24,6 +25,7 @@ import MenuItem from "./MenuItem";
 
 const canvasItems = ["复位画布", "下载当前图谱", "全屏"];
 const nodeItems = ["当前实体居中"];
+const imageItems = ["JPG", "JPEG", "PNG", "BMP"];
 
 function RightMenuContent() {
   const { nodes } = useContext(NodesContext)!;
@@ -62,47 +64,52 @@ function RightMenuContent() {
     });
   }, [event, nodes, setCanvasConfig]);
 
-  const downloadSVG = useCallback(() => {
-    const gElement = document.getElementById("graph-drag")!;
-    const width = gElement.getBoundingClientRect().width + 50;
-    const height = gElement.getBoundingClientRect().height + 50;
-    const left = gElement.getBoundingClientRect().left;
-    const top = gElement.getBoundingClientRect().top;
+  const downloadSVG = useCallback(
+    (type: string) => {
+      const gElement = document.getElementById("graph-drag")!;
+      const width = gElement.getBoundingClientRect().width + 50;
+      const height = gElement.getBoundingClientRect().height + 50;
+      const left = gElement.getBoundingClientRect().left;
+      const top = gElement.getBoundingClientRect().top;
 
-    const graph = document.getElementById("knowledge-graph-canvas")!;
-    const clonedGraph = graph.cloneNode(true) as SVGSVGElement;
-    (clonedGraph.firstChild! as SVGGElement).style.transform = `translateX(${
-      canvasConfig.x - left + 25
-    }px) translateY(${canvasConfig.y - top + 25}px)`;
+      const graph = document.getElementById("knowledge-graph-canvas")!;
+      const clonedGraph = graph.cloneNode(true) as SVGSVGElement;
+      (clonedGraph.firstChild! as SVGGElement).style.transform = `translateX(${
+        canvasConfig.x - left + 25
+      }px) translateY(${canvasConfig.y - top + 25}px)`;
 
-    let serializer = new XMLSerializer();
+      let serializer = new XMLSerializer();
 
-    let source =
-      '<?xml version="1.0" standalone="no"?>\r\n' +
-      serializer.serializeToString(clonedGraph);
+      let source =
+        '<?xml version="1.0" standalone="no"?>\r\n' +
+        serializer.serializeToString(clonedGraph);
 
-    const image = new Image();
-    image.src =
-      "data:image/svg+xml;charset=utf-8," + encodeURIComponent(source);
+      const image = new Image();
+      image.src =
+        "data:image/svg+xml;charset=utf-8," + encodeURIComponent(source);
 
-    image.width = width;
-    image.height = height;
+      image.width = width;
+      image.height = height;
 
-    let canvas = document.createElement("canvas");
-    canvas.width = width;
-    canvas.height = height;
-    let context = canvas.getContext("2d")!;
-    context.fillStyle = "#fff";
-    context.fillRect(0, 0, 10000, 10000);
+      let canvas = document.createElement("canvas");
+      canvas.width = width;
+      canvas.height = height;
+      let context = canvas.getContext("2d")!;
+      context.fillStyle = "#fff";
+      context.fillRect(0, 0, 10000, 10000);
 
-    image.onload = function () {
-      context.drawImage(image, 0, 0);
-      let a = document.createElement("a");
-      a.download = `图谱.png`;
-      a.href = canvas.toDataURL(`image/png`);
-      a.click();
-    };
-  }, [canvasConfig.x, canvasConfig.y]);
+      image.onload = function () {
+        context.drawImage(image, 0, 0);
+        let a = document.createElement("a");
+        a.download = `图谱.${type.toLowerCase()}`;
+        a.href = canvas.toDataURL(`image/${type.toLowerCase()}`, 1);
+        a.click();
+      };
+    },
+    [canvasConfig.x, canvasConfig.y]
+  );
+
+  const [isDownload, setIsDownload] = useState<boolean>(false);
 
   return (
     <>
@@ -123,37 +130,54 @@ function RightMenuContent() {
       >
         {type === "canvas" ? (
           <motion.div initial={{ border: "1px solid #dfdfdf" }}>
-            {canvasItems.map((item, index) => {
-              return (
-                <MenuItem
-                  index={index}
-                  length={canvasItems.length}
-                  key={item}
-                  onClick={(value) => {
-                    if (value === "复位画布") {
-                      resetCanvas();
-                    }
-                    if (value === "全屏" || value === "退出全屏") {
-                      if (document.fullscreenElement) {
-                        document.exitFullscreen();
-                      } else {
-                        document.documentElement.requestFullscreen();
-                      }
-                    }
-                    if (value === "下载当前图谱") {
-                      downloadSVG();
-                    }
-                    setEvent(null);
-                  }}
-                >
-                  {item === "全屏"
-                    ? !document.fullscreenElement
-                      ? "全屏"
-                      : "退出全屏"
-                    : item}
-                </MenuItem>
-              );
-            })}
+            {!isDownload
+              ? canvasItems.map((item, index) => {
+                  return (
+                    <MenuItem
+                      index={index}
+                      length={canvasItems.length}
+                      key={item}
+                      onClick={(value) => {
+                        if (value === "复位画布") {
+                          resetCanvas();
+                          setEvent(null);
+                        }
+                        if (value === "全屏" || value === "退出全屏") {
+                          if (document.fullscreenElement) {
+                            document.exitFullscreen();
+                          } else {
+                            document.documentElement.requestFullscreen();
+                          }
+                          setEvent(null);
+                        }
+                        if (value === "下载当前图谱") {
+                          setIsDownload(true);
+                        }
+                      }}
+                    >
+                      {item === "全屏"
+                        ? !document.fullscreenElement
+                          ? "全屏"
+                          : "退出全屏"
+                        : item}
+                    </MenuItem>
+                  );
+                })
+              : imageItems.map((item, index) => {
+                  return (
+                    <MenuItem
+                      key={item}
+                      index={index}
+                      length={imageItems.length}
+                      onClick={() => {
+                        downloadSVG(item);
+                        setEvent(null);
+                      }}
+                    >
+                      {item}
+                    </MenuItem>
+                  );
+                })}
           </motion.div>
         ) : (
           <motion.div initial={{ border: "1px solid #dfdfdf" }}>
