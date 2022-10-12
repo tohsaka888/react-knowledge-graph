@@ -43,6 +43,7 @@ function useFormatEdges() {
                   pId: [...(fromNode?.pId || []), ...(toNode?.pId || [])],
                   fromNode,
                   toNode,
+                  visible: true
                 };
               })
               .filter(
