@@ -8,17 +8,9 @@
 
 import React, { useContext, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import {
-  ConfigContext,
-  EdgesContext,
-  HoveredNodeContext,
-  NodesContext,
-} from "../context";
-import useNodePosition from "../hooks/Node/useNodePosition";
-import useExtendRadius from "../hooks/Node/useExtendRadius";
+import { ConfigContext, HoveredNodeContext } from "../context";
 import Loading from "./Loading";
 import { defaultNodeConfig } from "../config/nodeConfig";
-import useFormatEdges from "../hooks/Edge/useFormatEdges";
 import { NodeFrontProps } from "KnowledgeGraph";
 import useExplore from "./useExplore";
 
