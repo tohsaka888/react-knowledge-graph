@@ -15,7 +15,7 @@ import { EdgeFrontProps } from "../typings/Edge";
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 
 function Edge(props: EdgeFrontProps) {
-  const { id, fromNode, toNode, description, fromId, toId } = props;
+  const { id, fromNode, toNode, description, fromId, toId, visible } = props;
   const { hoveredNode } = useContext(HoveredNodeContext)!;
   const { config } = useContext(ConfigContext)!;
   const { edgeConfig } = config;
@@ -39,7 +39,7 @@ function Edge(props: EdgeFrontProps) {
 
   return (
     <MotionConfig reducedMotion="never">
-      {fromNode && toNode && (
+      {fromNode && toNode && visible && (
         <motion.g
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -57,10 +57,10 @@ function Edge(props: EdgeFrontProps) {
             width={20}
             initial={{ opacity: 0, cursor: "pointer" }}
             animate={{
-              d,
               stroke: edgeConfig?.stroke || stroke,
               strokeWidth: edgeConfig?.strokeWidth || strokeWidth,
               opacity,
+              d,
             }}
             transition={{
               duration: 0.3,
