@@ -72,133 +72,141 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
   };
 
   return (
-    <AnimatePresence>
-      <motion.g
-        key={node.id}
-        id={node.id as string}
-        onHoverStart={() => {
-          setIsHover(true);
-          setHoveredNode(node);
-        }}
-        onHoverEnd={() => {
-          setIsHover(false);
-          setHoveredNode(null);
-        }}
-        drag
-        dragPropagation={false}
-        dragSnapToOrigin={false}
-        dragMomentum={false}
-        whileDrag={{
-          scale: 1.2,
-        }}
-        style={{ willChange: "transform" }}
-        onDragStart={(e) => {
-          e.stopPropagation();
-          setIsNodeDrag(true);
-          setIsHover(false);
-          document.body.style.cursor = "none";
-          setHoveredNode(null);
-          setEdges((edges) =>
-            edges.map((edge) => {
-              if (edge.fromId === node.id || edge.toId === node.id) {
-                return {
-                  ...edge,
-                  visible: false,
-                };
-              } else {
-                return edge;
+    <>
+      {node.visible && (
+        <AnimatePresence>
+          <motion.g
+            key={node.id}
+            id={node.id as string}
+            onHoverStart={() => {
+              setIsHover(true);
+              setHoveredNode(node);
+            }}
+            onHoverEnd={() => {
+              setIsHover(false);
+              setHoveredNode(null);
+            }}
+            drag
+            dragPropagation={false}
+            dragSnapToOrigin={false}
+            dragMomentum={false}
+            whileDrag={{
+              scale: 1.2,
+            }}
+            style={{ willChange: "transform" }}
+            onDragStart={(e) => {
+              e.stopPropagation();
+              setIsNodeDrag(true);
+              setIsHover(false);
+              document.body.style.cursor = "none";
+              setHoveredNode(null);
+              setEdges((edges) =>
+                edges.map((edge) => {
+                  if (edge.fromId === node.id || edge.toId === node.id) {
+                    return {
+                      ...edge,
+                      visible: false,
+                    };
+                  } else {
+                    return edge;
+                  }
+                })
+              );
+            }}
+            onDragEnd={(e, info) => {
+              e.stopPropagation();
+              document.body.style.cursor = "default";
+              setIsNodeDrag(false);
+              setHoveredNode(null);
+              setIsHover(false);
+              position.x += info.offset.x;
+              position.y += info.offset.y;
+              calcEdges({ x: position.x, y: position.y });
+            }}
+            initial={{
+              x: parentNode ? parentNode.position.x : position.x,
+              y: parentNode ? parentNode.position.y : position.y,
+              opacity: 0,
+            }}
+            exit={{
+              x: parentNode ? parentNode.position.x : position.x,
+              y: parentNode ? parentNode.position.y : position.y,
+              opacity: 0,
+            }}
+            animate={{
+              x: position.x,
+              y: position.y,
+              opacity: 1,
+            }}
+            transition={{
+              duration: 0.3,
+            }}
+            onDoubleClick={(e) => {
+              exploreFunc();
+            }}
+          >
+            <motion.circle
+              id={node.id + "circle"}
+              node-id={node.id}
+              className={"node"}
+              initial={{
+                r: 0,
+              }}
+              animate={
+                !isHover
+                  ? {
+                      r: radius,
+                      opacity: loading ? 0.3 : 1,
+                      fill: fill,
+                    }
+                  : {
+                      r: radius,
+                      opacity: loading ? 0.3 : 1,
+                      fill: fill,
+                      ...(hoverStyle as any),
+                    }
               }
-            })
-          );
-        }}
-        onDragEnd={(e, info) => {
-          e.stopPropagation();
-          document.body.style.cursor = "default";
-          setIsNodeDrag(false);
-          setHoveredNode(null);
-          setIsHover(false);
-          position.x += info.offset.x;
-          position.y += info.offset.y;
-          calcEdges({ x: position.x, y: position.y });
-        }}
-        initial={{
-          x: parentNode ? parentNode.position.x : position.x,
-          y: parentNode ? parentNode.position.y : position.y,
-          opacity: 0,
-        }}
-        exit={{
-          x: parentNode ? parentNode.position.x : position.x,
-          y: parentNode ? parentNode.position.y : position.y,
-          opacity: 0,
-        }}
-        animate={{
-          x: position.x,
-          y: position.y,
-          opacity: 1,
-        }}
-        transition={{
-          duration: 0.3,
-        }}
-        onDoubleClick={(e) => {
-          exploreFunc();
-        }}
-      >
-        <motion.circle
-          id={node.id + "circle"}
-          node-id={node.id}
-          className={"node"}
-          initial={{
-            r: 0,
-          }}
-          animate={
-            !isHover
-              ? {
-                  r: radius,
-                  opacity: loading ? 0.3 : 1,
-                  fill: fill,
-                }
-              : {
-                  r: radius,
-                  opacity: loading ? 0.3 : 1,
-                  fill: fill,
-                  ...(hoverStyle as any),
-                }
-          }
-          transition={{
-            duration: 0.5,
-          }}
-        />
-        {loading && (
-          <Loading x={-1.25 * radius} y={-1.25 * radius} size={radius / 40} />
-        )}
-        <motion.text
-          className={"node"}
-          node-id={node.id}
-          fill={nameColor}
-          initial={{
-            fontSize: 0,
-          }}
-          animate={{ fontSize: nameSize }}
-          textAnchor={"middle"}
-          y={radius + nameSize}
-        >
-          {name}
-        </motion.text>
-        <motion.text
-          className={"node"}
-          node-id={node.id}
-          fill={typeColor}
-          initial={{
-            fontSize: 0,
-          }}
-          animate={{ fontSize: typeSize }}
-          textAnchor={"middle"}
-          dominantBaseline={"central"}
-        >
-          {type}
-        </motion.text>
-      </motion.g>
-    </AnimatePresence>
+              transition={{
+                duration: 0.5,
+              }}
+            />
+            {loading && (
+              <Loading
+                x={-1.25 * radius}
+                y={-1.25 * radius}
+                size={radius / 40}
+              />
+            )}
+            <motion.text
+              className={"node"}
+              node-id={node.id}
+              fill={nameColor}
+              initial={{
+                fontSize: 0,
+              }}
+              animate={{ fontSize: nameSize }}
+              textAnchor={"middle"}
+              y={radius + nameSize}
+            >
+              {name}
+            </motion.text>
+            <motion.text
+              className={"node"}
+              node-id={node.id}
+              fill={typeColor}
+              initial={{
+                fontSize: 0,
+              }}
+              animate={{ fontSize: typeSize }}
+              textAnchor={"middle"}
+              dominantBaseline={"central"}
+            >
+              {type}
+            </motion.text>
+          </motion.g>
+        </AnimatePresence>
+      )}
+    </>
   );
 }
 
