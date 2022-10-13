@@ -85,7 +85,7 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
 
   return (
     <>
-      {node.visible && (
+      {node.visible && node.id && (
         <AnimatePresence>
           <motion.g
             key={node.id}
