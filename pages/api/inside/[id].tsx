@@ -5,7 +5,7 @@
  * @LastEditTime: 2022-10-09 14:56:44
  * @Description: 请填写简介
  */
-import { NodeProps } from "KnowledgeGraph";
+import { NodeProps } from "../../../KnowledgeGraph/index";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { connectDB } from "utils/server/connectDB";
 

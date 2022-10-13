@@ -1,5 +1,5 @@
 import { EdgesContext } from "../context";
-import { EdgeFrontProps } from "KnowledgeGraph";
+import { EdgeFrontProps } from "../../KnowledgeGraph/index";
 import React, { useState } from "react";
 
 type Props = {
