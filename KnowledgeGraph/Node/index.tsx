@@ -73,10 +73,7 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
               visible: true,
             };
           } else {
-            return {
-              ...edge,
-              visible: true,
-            };
+            return edge;
           }
         })
       );
