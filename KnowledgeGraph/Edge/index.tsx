@@ -13,7 +13,7 @@ import { defaultEdgeConfig } from "../config/edgeConfig";
 import useCalcEdge from "../hooks/Edge/useCalcEdge";
 import { EdgeFrontProps } from "../typings/Edge";
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
-import { IsNodeDragContext } from "KnowledgeGraph/Controller/IsNodeDragController";
+import { IsNodeDragContext } from "../Controller/IsNodeDragController";
 
 function Edge(props: EdgeFrontProps) {
   const { id, fromNode, toNode, description, fromId, toId, visible } = props;
