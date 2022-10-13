@@ -36,12 +36,20 @@ function useNodePosition() {
 
       let rotation: number = 0;
 
+      const parentAngle = parentNode.parentNode
+        ? Math.atan2(
+            parentNode.position.y - parentNode.parentNode.position.y,
+            parentNode.position.x - parentNode.parentNode.position.x
+          ) +
+          Math.PI * 1.5
+        : parentNode.angle;
+
       if (insideLength && outsideLength) {
-        rotation = parentNode.angle;
+        rotation = parentAngle;
       } else if (insideLength && !outsideLength) {
-        rotation = parentNode.angle - Math.PI / 2;
+        rotation = parentAngle - Math.PI / 2;
       } else if (!insideLength && outsideLength) {
-        rotation = parentNode.angle + Math.PI / 2;
+        rotation = parentAngle + Math.PI / 2;
       }
 
       typeNodes.forEach((nodes, i) => {
