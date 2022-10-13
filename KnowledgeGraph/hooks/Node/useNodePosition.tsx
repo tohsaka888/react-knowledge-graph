@@ -66,6 +66,7 @@ function useNodePosition() {
             parentNode,
             angle,
             distence,
+            visible: true,
           };
 
           frontNodes.push(frontNode);
