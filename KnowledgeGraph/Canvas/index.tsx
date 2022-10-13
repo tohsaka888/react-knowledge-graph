@@ -28,7 +28,6 @@ function CanvasContainer({ children }: { children: React.ReactNode }) {
         height={"100%"}
         id={"knowledge-graph-canvas"}
         style={{ userSelect: "none" }}
-        // viewBox={"auto"}
         xmlns="http://www.w3.org/2000/svg"
         onContextMenu={(e) => {
           e.preventDefault();
@@ -84,15 +83,18 @@ function CanvasContainer({ children }: { children: React.ReactNode }) {
             y: canvasConfig.y,
           }}
           transition={{
-            duration: 0.1,
+            duration: 0.05,
           }}
         >
-          {/* <motion.g
+          <motion.g
             animate={{ scale: canvasConfig.scale }}
             style={{ transformOrigin: "0, 0" }}
-          > */}
-          {children}
-          {/* </motion.g> */}
+            transition={{
+              duration: 0,
+            }}
+          >
+            {children}
+          </motion.g>
         </motion.g>
       </motion.svg>
       <RightClickMenu />

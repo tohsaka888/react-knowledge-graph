@@ -13,6 +13,7 @@ import { defaultEdgeConfig } from "../config/edgeConfig";
 import useCalcEdge from "../hooks/Edge/useCalcEdge";
 import { EdgeFrontProps } from "../typings/Edge";
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
+import { IsNodeDragContext } from "KnowledgeGraph/Controller/IsNodeDragController";
 
 function Edge(props: EdgeFrontProps) {
   const { id, fromNode, toNode, description, fromId, toId, visible } = props;
@@ -28,6 +29,7 @@ function Edge(props: EdgeFrontProps) {
   }, [fromId, hoveredNode, toId]);
   const { calcD } = useCalcEdge();
   const d = calcD(props);
+  const { isNodeDrag } = useContext(IsNodeDragContext)!;
 
   const {
     descriptionColor,
@@ -55,12 +57,13 @@ function Edge(props: EdgeFrontProps) {
             id={id as string}
             fill={"none"}
             width={20}
-            initial={{ opacity: 0, cursor: "pointer" }}
+            initial={{ opacity: 0 }}
             animate={{
               stroke: edgeConfig?.stroke || stroke,
               strokeWidth: edgeConfig?.strokeWidth || strokeWidth,
               opacity,
               d,
+              cursor: isNodeDrag ? "none" : "pointer",
             }}
             transition={{
               duration: 0.3,
@@ -166,7 +169,9 @@ function Edge(props: EdgeFrontProps) {
           <motion.path
             d={d}
             fill={"none"}
-            cursor={"pointer"}
+            animate={{
+              cursor: isNodeDrag ? "none" : "pointer",
+            }}
             stroke={"transparent"}
             strokeWidth={10}
             onHoverStart={() => {

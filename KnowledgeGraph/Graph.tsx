@@ -12,6 +12,7 @@ import CanvasConfigController from "./Controller/CanvasConfigController";
 import ConfigController from "./Controller/ConfigController";
 import EdgeController from "./Controller/EdgeController";
 import HoveredNodeController from "./Controller/HoveredNodeController";
+import IsNodeDragController from "./Controller/IsNodeDragController";
 import MovedNodeController from "./Controller/MovedNodeController";
 import NodesController from "./Controller/NodesController";
 import RightMenuController from "./Controller/RightMenuController";
@@ -26,7 +27,9 @@ function Graph(graphConfig: ConfigProps) {
             <HoveredNodeController>
               <RightMenuController>
                 <MovedNodeController>
-                  <Canvas />
+                  <IsNodeDragController>
+                    <Canvas />
+                  </IsNodeDragController>
                 </MovedNodeController>
               </RightMenuController>
             </HoveredNodeController>

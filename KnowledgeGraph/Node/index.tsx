@@ -13,6 +13,7 @@ import Loading from "./Loading";
 import { defaultNodeConfig } from "../config/nodeConfig";
 import { NodeFrontProps } from "../../KnowledgeGraph";
 import useExplore from "./useExplore";
+import { IsNodeDragContext } from "KnowledgeGraph/Controller/IsNodeDragController";
 
 function UnmemoNode({ node }: { node: NodeFrontProps }) {
   const { config } = useContext(ConfigContext)!;
@@ -32,6 +33,8 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
   const radius = nodeConfig?.radius || defaultNodeConfig.radius;
 
   const { exploreFunc, loading } = useExplore({ explore, node, onExploreEnd });
+
+  const { setIsNodeDrag } = useContext(IsNodeDragContext)!;
 
   const calcEdges = (position: { x: number; y: number }) => {
     requestAnimationFrame(() => {
@@ -91,6 +94,9 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
         style={{ willChange: "transform" }}
         onDragStart={(e) => {
           e.stopPropagation();
+          setIsNodeDrag(true);
+          setIsHover(false);
+          document.body.style.cursor = "none";
           setHoveredNode(null);
           setEdges((edges) =>
             edges.map((edge) => {
@@ -107,13 +113,15 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
         }}
         onDragEnd={(e, info) => {
           e.stopPropagation();
+          document.body.style.cursor = "default";
+          setIsNodeDrag(false);
           setHoveredNode(null);
+          setIsHover(false);
           position.x += info.offset.x;
           position.y += info.offset.y;
           calcEdges({ x: position.x, y: position.y });
         }}
         initial={{
-          cursor: "pointer",
           x: parentNode ? parentNode.position.x : position.x,
           y: parentNode ? parentNode.position.y : position.y,
           opacity: 0,
