@@ -23,6 +23,7 @@ type NodeFrontProps = NodeProps & {
   angle: number;
   distence: number;
   parentNode?: NodeFrontProps;
+  visible: boolean;
 };
 
 export type { NodeFrontProps, NodeProps };
