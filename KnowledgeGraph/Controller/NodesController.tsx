@@ -16,6 +16,7 @@ function NodesController({ children }: Props) {
       isExplore: false,
       angle: 0,
       distence: 0,
+      visible: true,
     },
   ]);
   return (
