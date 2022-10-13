@@ -13,7 +13,7 @@ import Loading from "./Loading";
 import { defaultNodeConfig } from "../config/nodeConfig";
 import { NodeFrontProps } from "../../KnowledgeGraph";
 import useExplore from "./useExplore";
-import { IsNodeDragContext } from "../../KnowledgeGraph/Controller/IsNodeDragController";
+import { IsNodeDragContext } from "../Controller/IsNodeDragController";
 
 function UnmemoNode({ node }: { node: NodeFrontProps }) {
   const { config } = useContext(ConfigContext)!;
