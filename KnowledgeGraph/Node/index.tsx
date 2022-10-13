@@ -6,7 +6,7 @@
  * @Description: 节点
  */
 
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ConfigContext, EdgesContext, HoveredNodeContext } from "../context";
 import Loading from "./Loading";
@@ -34,7 +34,19 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
 
   const { exploreFunc, loading } = useExplore({ explore, node, onExploreEnd });
 
-  const { setIsNodeDrag } = useContext(IsNodeDragContext)!;
+  const { setIsNodeDrag, isNodeDrag } = useContext(IsNodeDragContext)!;
+
+  useEffect(() => {
+    if (isHover) {
+      document.body.style.cursor = "none";
+    } else {
+      document.body.style.cursor = "default";
+    }
+
+    return () => {
+      document.body.style.cursor = "default";
+    };
+  }, [isHover]);
 
   const calcEdges = (position: { x: number; y: number }) => {
     requestAnimationFrame(() => {
@@ -95,10 +107,8 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
             }}
             style={{ willChange: "transform" }}
             onDragStart={(e) => {
-              e.stopPropagation();
               setIsNodeDrag(true);
-              setIsHover(false);
-              document.body.style.cursor = "none";
+              setIsHover(true);
               setHoveredNode(null);
               setEdges((edges) =>
                 edges.map((edge) => {
@@ -114,8 +124,6 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
               );
             }}
             onDragEnd={(e, info) => {
-              e.stopPropagation();
-              document.body.style.cursor = "default";
               setIsNodeDrag(false);
               setHoveredNode(null);
               setIsHover(false);
@@ -137,6 +145,7 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
               x: position.x,
               y: position.y,
               opacity: 1,
+              cursor: isNodeDrag ? "none" : "pointer",
             }}
             transition={{
               duration: 0.3,
