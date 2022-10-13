@@ -22,9 +22,10 @@ import {
   RightMenuPropsContext,
 } from "../context";
 import MenuItem from "./MenuItem";
+import useOnlyShowCurrentNode from "../hooks/RightMenu/useOnlyShowCurrentNode";
 
 const canvasItems = ["复位画布", "下载当前图谱", "全屏"];
-const nodeItems = ["当前实体居中"];
+const nodeItems = ["当前实体居中", "显示当前节点关系", "显示所有节点"];
 const imageItems = ["JPG", "JPEG", "PNG", "BMP"];
 
 function RightMenuContent() {
@@ -110,6 +111,7 @@ function RightMenuContent() {
   );
 
   const [isDownload, setIsDownload] = useState<boolean>(false);
+  const { onlyShowCurrentNode, resetAll } = useOnlyShowCurrentNode();
 
   return (
     <>
@@ -190,6 +192,18 @@ function RightMenuContent() {
                   onClick={() => {
                     if (item === "当前实体居中") {
                       moveNodeToCenter();
+                    }
+
+                    if (item === "显示当前节点关系") {
+                      const nodeId = (
+                        event!.target as HTMLElement
+                      ).getAttribute("node-id");
+                      const node = nodes.find((n) => n.id === nodeId)!;
+                      onlyShowCurrentNode({ node });
+                    }
+
+                    if (item === "显示所有节点") {
+                      resetAll();
                     }
                     setEvent(null);
                   }}
