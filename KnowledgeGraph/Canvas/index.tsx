@@ -9,18 +9,22 @@
 import React, { useContext } from "react";
 import { motion } from "framer-motion";
 import Node from "../Node";
-import {
-  CanvasConfigContext,
-  EdgesContext,
-  NodesContext,
-  RightMenuPropsContext,
-} from "../context";
+import { RightMenuPropsContext } from "../context";
 import Edge from "../Edge";
 import RightClickMenu from "../RightClickMenu";
+import { useAppDispatch, useAppSelector } from "../hooks";
+import { initialize } from "../Controller/graphSlice";
+import { ConfigProps } from "../typings/Config";
+import { useEffect } from "react";
+import {
+  setCanvasOffset,
+  setCanvasSize,
+} from "../Controller/canvasConfigSlice";
 
 function CanvasContainer({ children }: { children: React.ReactNode }) {
   const { setEvent } = useContext(RightMenuPropsContext)!;
-  const { canvasConfig, setCanvasConfig } = useContext(CanvasConfigContext)!;
+  const dispatch = useAppDispatch();
+  const canvasConfig = useAppSelector((state) => state.canvasConfig);
   return (
     <>
       <motion.svg
@@ -50,11 +54,12 @@ function CanvasContainer({ children }: { children: React.ReactNode }) {
         className={"canvas"}
         onDrag={(e, info) => {
           requestAnimationFrame(() => {
-            setCanvasConfig(({ x, y, scale }) => ({
-              x: x + info.delta.x,
-              y: y + info.delta.y,
-              scale,
-            }));
+            dispatch(
+              setCanvasOffset({
+                dx: info.delta.x,
+                dy: info.delta.y,
+              })
+            );
           });
         }}
         onClick={() => {
@@ -63,15 +68,9 @@ function CanvasContainer({ children }: { children: React.ReactNode }) {
         onWheel={(e) => {
           requestAnimationFrame(() => {
             if (e.deltaY < 0) {
-              setCanvasConfig((config) => ({
-                ...config,
-                scale: config.scale * 1.05,
-              }));
+              dispatch(setCanvasSize("zoom-in"));
             } else {
-              setCanvasConfig((config) => ({
-                ...config,
-                scale: config.scale <= 2 ? config.scale / 1.05 : 2,
-              }));
+              dispatch(setCanvasSize("zoom-out"));
             }
           });
         }}
@@ -102,16 +101,26 @@ function CanvasContainer({ children }: { children: React.ReactNode }) {
   );
 }
 
-function Canvas() {
-  const { nodes } = useContext(NodesContext)!;
-  const { edges } = useContext(EdgesContext)!;
+function Canvas(graphConfig: ConfigProps) {
+  const graph = useAppSelector((state) => state.graph);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(
+      initialize({
+        node: graphConfig.node,
+        position: graphConfig.position,
+      })
+    );
+  }, [dispatch, graphConfig.node, graphConfig.position]);
+
   return (
     <CanvasContainer>
       <>
-        {edges.map((edge) => {
+        {graph.edges.map((edge) => {
           return <Edge {...edge} key={edge.id} />;
         })}
-        {nodes.map((node) => {
+        {graph.nodes.map((node) => {
           return <Node node={node} key={node.id} />;
         })}
       </>
