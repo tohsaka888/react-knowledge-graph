@@ -7,36 +7,31 @@
  */
 
 import React from "react";
+import { Provider } from "react-redux";
 import Canvas from "./Canvas";
-import CanvasConfigController from "./Controller/CanvasConfigController";
 import ConfigController from "./Controller/ConfigController";
-import EdgeController from "./Controller/EdgeController";
 import HoveredNodeController from "./Controller/HoveredNodeController";
 import IsNodeDragController from "./Controller/IsNodeDragController";
 import MovedNodeController from "./Controller/MovedNodeController";
-import NodesController from "./Controller/NodesController";
 import RightMenuController from "./Controller/RightMenuController";
+import { store } from "./store";
 import { ConfigProps } from "./typings/Config";
 
 function Graph(graphConfig: ConfigProps) {
   return (
-    <CanvasConfigController>
+    <Provider store={store}>
       <ConfigController graphConfig={graphConfig}>
-        <NodesController>
-          <EdgeController>
-            <HoveredNodeController>
-              <RightMenuController>
-                <MovedNodeController>
-                  <IsNodeDragController>
-                    <Canvas />
-                  </IsNodeDragController>
-                </MovedNodeController>
-              </RightMenuController>
-            </HoveredNodeController>
-          </EdgeController>
-        </NodesController>
+        <HoveredNodeController>
+          <RightMenuController>
+            <MovedNodeController>
+              <IsNodeDragController>
+                <Canvas {...graphConfig} />
+              </IsNodeDragController>
+            </MovedNodeController>
+          </RightMenuController>
+        </HoveredNodeController>
       </ConfigController>
-    </CanvasConfigController>
+    </Provider>
   );
 }
 

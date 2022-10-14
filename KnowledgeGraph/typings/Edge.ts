@@ -9,15 +9,15 @@
 import { NodeFrontProps } from "./Node";
 
 type EdgeProps = {
-  id: React.Key; // 边id
-  fromId: React.Key;
-  toId: React.Key;
+  id: string; // 边id
+  fromId: string;
+  toId: string;
   description: string;
 };
 
 type EdgeFrontProps = EdgeProps & {
   type: "straight" | "curve";
-  pId: React.Key[];
+  pId: string[];
   fromNode?: NodeFrontProps;
   toNode?: NodeFrontProps;
   visible: boolean;

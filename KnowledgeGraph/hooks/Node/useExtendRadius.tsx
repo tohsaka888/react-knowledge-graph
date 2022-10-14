@@ -1,6 +1,7 @@
-import React, { useCallback, useContext } from "react";
+import React, { useCallback } from "react";
+import { useAppDispatch } from "..";
 import { NodeFrontProps } from "../../../KnowledgeGraph";
-import { EdgesContext } from "../../context";
+import { moveNodeAndEdge } from "../../Controller/graphSlice";
 
 type Props = {
   node: NodeFrontProps;
@@ -9,9 +10,9 @@ type Props = {
 };
 
 function useExtendRadius() {
-  const { setEdges } = useContext(EdgesContext)!;
+  const dispatch = useAppDispatch();
 
-  const calcNewPosition = useCallback(
+  const extendOffset = useCallback(
     ({ node, insideLength, outsideLength }: Props) => {
       const { position, distence, parentNode, angle: defaultAngle } = node;
       let extendLength = 0;
@@ -31,44 +32,16 @@ function useExtendRadius() {
           )
         : defaultAngle;
 
-      const x =
-        position.x +
-        (!node.isExplore ? 1 : -1) * -extendLength * Math.sin(angle);
-      const y =
-        position.y +
-        (!node.isExplore ? 1 : -1) * extendLength * Math.cos(angle);
+      const dx = (!node.isExplore ? 1 : -1) * -extendLength * Math.sin(angle);
+      const dy = (!node.isExplore ? 1 : -1) * extendLength * Math.cos(angle);
 
-      node.position.x = x;
-      node.position.y = y;
-
-      setEdges((edges) =>
-        edges.map((edge) => {
-          if (edge.fromId === node.id) {
-            return {
-              ...edge,
-              fromNode: {
-                ...node,
-                position: { x, y },
-              },
-            };
-          } else if (edge.toId === node.id) {
-            return {
-              ...edge,
-              toNode: {
-                ...node,
-                position: { x, y },
-              },
-            };
-          } else {
-            return edge;
-          }
-        })
-      );
+      dispatch(moveNodeAndEdge({ node, dx, dy }));
+      return { dx, dy };
     },
-    [setEdges]
+    [dispatch]
   );
 
-  return { calcNewPosition };
+  return { extendOffset };
 }
 
 export default useExtendRadius;

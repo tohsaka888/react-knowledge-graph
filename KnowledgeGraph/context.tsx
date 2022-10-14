@@ -9,7 +9,6 @@
 import React, { createContext } from "react";
 import {
   NodeFrontProps,
-  EdgeFrontProps,
   RightMenuProps,
   ConfigProps,
   CanvasConfig,
@@ -21,20 +20,6 @@ type ConfigContextProps = {
 };
 
 export const ConfigContext = createContext<ConfigContextProps | null>(null);
-
-type NodesContextProps = {
-  nodes: NodeFrontProps[];
-  setNodes: React.Dispatch<React.SetStateAction<NodeFrontProps[]>>;
-};
-
-export const NodesContext = createContext<NodesContextProps | null>(null);
-
-type EdgesContextProps = {
-  edges: EdgeFrontProps[];
-  setEdges: React.Dispatch<React.SetStateAction<EdgeFrontProps[]>>;
-};
-
-export const EdgesContext = createContext<EdgesContextProps | null>(null);
 
 type HoveredNodeContextProps = {
   hoveredNode: NodeFrontProps | null;
@@ -55,11 +40,3 @@ type MovedNodeContextProps = {
 export const MovedNodeContext = createContext<MovedNodeContextProps | null>(
   null
 );
-
-type CanvasConfigContextProps = {
-  canvasConfig: CanvasConfig;
-  setCanvasConfig: React.Dispatch<React.SetStateAction<CanvasConfig>>;
-};
-
-export const CanvasConfigContext =
-  createContext<CanvasConfigContextProps | null>(null);

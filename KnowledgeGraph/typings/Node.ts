@@ -6,10 +6,8 @@
  * @Description: Node Type
  */
 
-import { Key } from "react";
-
 type NodeProps = {
-  id: React.Key;
+  id: string;
   name: string; // 节点名称
   type: string; // 节点类型
   hasMore: boolean; // 是否有子节点
@@ -17,7 +15,7 @@ type NodeProps = {
 };
 
 type NodeFrontProps = NodeProps & {
-  pId: Key[];
+  pId: string[];
   position: { x: number; y: number };
   isExplore: boolean;
   angle: number;
