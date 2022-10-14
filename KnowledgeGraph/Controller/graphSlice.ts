@@ -22,7 +22,7 @@ type SetNodePositionProps = {
   dy: number;
 };
 
-export const nodesSlice = createSlice({
+export const graphSlice = createSlice({
   name: "graph",
   initialState,
   reducers: {
@@ -237,5 +237,5 @@ export const {
   changeExploreState,
   onDragStart,
   showAllNodes,
-} = nodesSlice.actions;
-export default nodesSlice.reducer;
+} = graphSlice.actions;
+export default graphSlice.reducer;
