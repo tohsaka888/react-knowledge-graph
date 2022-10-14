@@ -201,7 +201,7 @@ function RightMenuContent() {
                     }
 
                     if (item === "显示所有节点") {
-                      dispatch(showAllNodes());
+                      dispatch(showAllNodes(undefined));
                     }
                     setEvent(null);
                   }}

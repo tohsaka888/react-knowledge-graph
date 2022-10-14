@@ -2,16 +2,12 @@
   "compilerOptions": {
     "target": "es6",
     "jsx": "react",
-    "baseUrl": ".",
     "outDir": "lib/typescript",
     "allowSyntheticDefaultImports": true,
     "declaration": true,
     "emitDeclarationOnly": true,
     "skipLibCheck": true,
-    "moduleResolution": "node",
-    "paths": {
-      "KnowledgeGraph/*": ["KnowledgeGraph/*"]
-    }
+    "moduleResolution": "node"
   },
   "include": ["KnowledgeGraph/**/*"]
 }

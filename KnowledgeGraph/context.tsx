@@ -11,7 +11,6 @@ import {
   NodeFrontProps,
   RightMenuProps,
   ConfigProps,
-  CanvasConfig,
 } from "../KnowledgeGraph/index";
 
 type ConfigContextProps = {

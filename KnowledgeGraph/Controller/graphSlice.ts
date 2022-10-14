@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, Slice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { NodeFrontProps } from "../typings/Node";
 import { ConfigProps } from "../typings/Config";
@@ -22,7 +22,7 @@ type SetNodePositionProps = {
   dy: number;
 };
 
-export const graphSlice = createSlice({
+export const graphSlice: Slice<typeof initialState> = createSlice({
   name: "graph",
   initialState,
   reducers: {
@@ -103,7 +103,7 @@ export const graphSlice = createSlice({
      * @param {any} state
      * @returns {any}
      */
-    showAllNodes: (state) => {
+    showAllNodes: (state, payload: PayloadAction<void>) => {
       state.nodes.forEach((node) => {
         node.visible = true;
       });
