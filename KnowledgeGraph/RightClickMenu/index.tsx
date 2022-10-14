@@ -16,21 +16,25 @@ import React, {
 } from "react";
 import ReactDOM from "react-dom";
 import { motion } from "framer-motion";
-import {
-  CanvasConfigContext,
-  NodesContext,
-  RightMenuPropsContext,
-} from "../context";
+import { RightMenuPropsContext } from "../context";
 import MenuItem from "./MenuItem";
-import useOnlyShowCurrentNode from "../hooks/RightMenu/useOnlyShowCurrentNode";
+import { useAppDispatch, useAppSelector } from "../hooks";
+import {
+  onlyShowCurrentNodeAndChildren,
+  showAllNodes,
+} from "../Controller/graphSlice";
+import {
+  moveCanvasToPosition,
+  resetCanvas,
+} from "../Controller/canvasConfigSlice";
 
 const canvasItems = ["复位画布", "下载当前图谱", "全屏"];
 const nodeItems = ["当前实体居中", "显示当前节点关系", "显示所有节点"];
 const imageItems = ["JPG", "JPEG", "PNG", "BMP"];
 
 function RightMenuContent() {
-  const { nodes } = useContext(NodesContext)!;
-  const { canvasConfig, setCanvasConfig } = useContext(CanvasConfigContext)!;
+  const canvasConfig = useAppSelector((state) => state.canvasConfig);
+  const dispatch = useAppDispatch();
   const { event, setEvent } = useContext(RightMenuPropsContext)!;
   const type = useMemo(() => {
     if (event?.target) {
@@ -45,25 +49,20 @@ function RightMenuContent() {
     }
   }, [event]);
 
-  const resetCanvas = useCallback(() => {
-    setCanvasConfig({
-      scale: 1,
-      x: 0,
-      y: 0,
-    });
-  }, [setCanvasConfig]);
+  const nodes = useAppSelector((state) => state.graph.nodes);
 
   const moveNodeToCenter = useCallback(() => {
     const nodeId = (event!.target as HTMLElement).getAttribute("node-id");
     const node = nodes.find((n) => n.id === nodeId)!;
     const canvas = document.getElementById("knowledge-graph-canvas")!;
 
-    setCanvasConfig({
-      scale: 1,
-      x: canvas.clientWidth / 2 - node.position.x,
-      y: canvas.clientHeight / 2 - node.position.y,
-    });
-  }, [event, nodes, setCanvasConfig]);
+    dispatch(
+      moveCanvasToPosition({
+        x: canvas.clientWidth / 2 - node.position.x,
+        y: canvas.clientHeight / 2 - node.position.y,
+      })
+    );
+  }, [dispatch, event, nodes]);
 
   const downloadSVG = useCallback(
     (type: string) => {
@@ -111,7 +110,6 @@ function RightMenuContent() {
   );
 
   const [isDownload, setIsDownload] = useState<boolean>(false);
-  const { onlyShowCurrentNode, resetAll } = useOnlyShowCurrentNode();
 
   return (
     <>
@@ -141,7 +139,7 @@ function RightMenuContent() {
                       key={item}
                       onClick={(value) => {
                         if (value === "复位画布") {
-                          resetCanvas();
+                          dispatch(resetCanvas());
                           setEvent(null);
                         }
                         if (value === "全屏" || value === "退出全屏") {
@@ -199,11 +197,11 @@ function RightMenuContent() {
                         event!.target as HTMLElement
                       ).getAttribute("node-id");
                       const node = nodes.find((n) => n.id === nodeId)!;
-                      onlyShowCurrentNode({ node });
+                      dispatch(onlyShowCurrentNodeAndChildren(node));
                     }
 
                     if (item === "显示所有节点") {
-                      resetAll();
+                      dispatch(showAllNodes());
                     }
                     setEvent(null);
                   }}
