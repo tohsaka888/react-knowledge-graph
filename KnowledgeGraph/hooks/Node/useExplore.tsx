@@ -8,10 +8,12 @@ import {
   graphExplore,
   changeExploreState,
   cancelGraphExplore,
+  onMoving,
+  onMoveEnd,
 } from "../../Controller/graphSlice";
 
 type Props = {
-  explore: (id: React.Key) => Promise<{
+  explore: (id: string) => Promise<{
     inside: NodeProps[];
     outside: NodeProps[];
     edges: EdgeProps[];
@@ -32,6 +34,7 @@ function useExplore({ node, explore, onExploreEnd }: Props) {
 
   const exploreFunc = useCallback(async () => {
     setLoading(true);
+    dispatch(onMoving(node));
 
     // 判断当前节点是否已探索
     if (!node.isExplore) {
@@ -94,6 +97,9 @@ function useExplore({ node, explore, onExploreEnd }: Props) {
       dispatch(cancelGraphExplore(node));
     }
     dispatch(changeExploreState(node));
+    window.setTimeout(() => {
+      dispatch(onMoveEnd(undefined));
+    }, 500);
     setLoading(false);
   }, [
     calcNodePosition,
