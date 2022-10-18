@@ -6,25 +6,32 @@
  * @Description: 节点
  */
 
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ConfigContext, HoveredNodeContext } from "../context";
+import { ConfigContext } from "../context";
 import Loading from "./Loading";
 import { defaultNodeConfig } from "../config/nodeConfig";
 import { NodeFrontProps } from "../../KnowledgeGraph";
 import useExplore from "../hooks/Node/useExplore";
-import { IsNodeDragContext } from "../Controller/IsNodeDragController";
 import { useDispatch } from "react-redux";
-import { moveNodeAndEdge, onDragStart } from "../Controller/graphSlice";
+import {
+  filterHighlightEdges,
+  moveNodeAndEdge,
+  notHighlight,
+  onMoveEnd,
+  onMoving,
+} from "../Controller/graphSlice";
+import { useAppSelector } from "../hooks";
+import useCalcEdge from "../hooks/Edge/useCalcEdge";
 
 function UnmemoNode({ node }: { node: NodeFrontProps }) {
   const { config } = useContext(ConfigContext)!;
   const { explore, typeConfig, onExploreEnd } = config;
   const { name, type, position, parentNode } = node;
   const nodeConfig = typeConfig && typeConfig[type];
+  const edges = useAppSelector((state) => state.graph.edges);
 
   const [isHover, setIsHover] = useState<boolean>(false);
-  const { setHoveredNode } = useContext(HoveredNodeContext)!;
   const fill = nodeConfig?.fill || defaultNodeConfig.fill;
   const hoverStyle = nodeConfig?.hoverStyle || defaultNodeConfig.hoverStyle;
   const nameColor = nodeConfig?.nameColor || defaultNodeConfig.nameColor;
@@ -34,20 +41,8 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
   const radius = nodeConfig?.radius || defaultNodeConfig.radius;
 
   const { exploreFunc, loading } = useExplore({ explore, node, onExploreEnd });
-  const { setIsNodeDrag, isNodeDrag } = useContext(IsNodeDragContext)!;
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (isHover) {
-      document.body.style.cursor = "none";
-    } else {
-      document.body.style.cursor = "default";
-    }
-
-    return () => {
-      document.body.style.cursor = "default";
-    };
-  }, [isHover]);
+  const { calcD } = useCalcEdge();
 
   return (
     <>
@@ -55,14 +50,15 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
         <AnimatePresence>
           <motion.g
             key={node.id}
-            id={node.id as string}
+            cursor={"pointer"}
+            id={node.id}
             onHoverStart={() => {
               setIsHover(true);
-              setHoveredNode(node);
+              dispatch(filterHighlightEdges(node));
             }}
             onHoverEnd={() => {
               setIsHover(false);
-              setHoveredNode(null);
+              dispatch(notHighlight(null));
             }}
             drag
             dragPropagation={false}
@@ -73,18 +69,57 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
             }}
             style={{ willChange: "transform" }}
             onDragStart={(e) => {
-              setIsNodeDrag(true);
               setIsHover(true);
-              setHoveredNode(null);
-              dispatch(onDragStart(node));
+              dispatch(onMoving(node));
+            }}
+            onDrag={(e, info) => {
+              const fromEdges = edges.filter((edge) => edge.fromId === node.id);
+              const toEdges = edges.filter((edge) => edge.toId === node.id);
+              fromEdges.forEach((edge) => {
+                const fromNode = edge.fromNode;
+                if (fromNode) {
+                  const d = calcD({
+                    ...edge,
+                    fromNode: {
+                      ...fromNode,
+                      position: {
+                        x: fromNode.position.x + info.offset.x,
+                        y: fromNode.position.y + info.offset.y,
+                      },
+                    },
+                  });
+                  const edgeElement = document.getElementById(edge.id)!;
+                  if (d) {
+                    edgeElement.setAttribute("d", d);
+                  }
+                }
+              });
+              toEdges.forEach((edge) => {
+                const toNode = edge.toNode;
+                if (toNode) {
+                  const d = calcD({
+                    ...edge,
+                    toNode: {
+                      ...toNode,
+                      position: {
+                        x: toNode.position.x + info.offset.x,
+                        y: toNode.position.y + info.offset.y,
+                      },
+                    },
+                  });
+                  const edgeElement = document.getElementById(edge.id)!;
+                  if (d) {
+                    edgeElement.setAttribute("d", d);
+                  }
+                }
+              });
             }}
             onDragEnd={(e, info) => {
-              setIsNodeDrag(false);
-              setHoveredNode(null);
               setIsHover(false);
               dispatch(
                 moveNodeAndEdge({ node, dx: info.offset.x, dy: info.offset.y })
               );
+              dispatch(onMoveEnd(undefined));
             }}
             initial={{
               x: parentNode ? parentNode.position.x : position.x,
@@ -100,7 +135,6 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
               x: position.x,
               y: position.y,
               opacity: 1,
-              cursor: isNodeDrag ? "none" : "pointer",
             }}
             transition={{
               duration: 0.3,
