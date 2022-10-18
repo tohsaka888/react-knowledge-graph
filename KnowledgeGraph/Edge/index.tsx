@@ -16,20 +16,25 @@ import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 import { IsNodeDragContext } from "../Controller/IsNodeDragController";
 
 function Edge(props: EdgeFrontProps) {
-  const { id, fromNode, toNode, description, fromId, toId, visible } = props;
-  const { hoveredNode } = useContext(HoveredNodeContext)!;
+  const {
+    id,
+    fromNode,
+    toNode,
+    description,
+    fromId,
+    toId,
+    visible,
+    needHighlight,
+    isMoving,
+  } = props;
   const { config } = useContext(ConfigContext)!;
   const { edgeConfig } = config;
   const [opacity, setOpacity] = useState<number>(1);
   const [isHovered, setIsHovered] = useState<boolean>(false);
-  const needHighlight = useMemo(() => {
-    return hoveredNode
-      ? hoveredNode.id === fromId || hoveredNode.id === toId
-      : false;
-  }, [fromId, hoveredNode, toId]);
   const { calcD } = useCalcEdge();
   const d = calcD(props);
   const { isNodeDrag } = useContext(IsNodeDragContext)!;
+  const isActive = needHighlight && !isMoving;
 
   const {
     descriptionColor,
@@ -55,22 +60,30 @@ function Edge(props: EdgeFrontProps) {
         >
           <motion.path
             id={id as string}
+            from-id={fromId}
+            to-id={toId}
             fill={"none"}
             width={20}
-            initial={{ opacity: 0 }}
+            initial={{ opacity: 0, pathLength: 0 }}
             animate={{
               stroke: edgeConfig?.stroke || stroke,
               strokeWidth: edgeConfig?.strokeWidth || strokeWidth,
               opacity,
               d,
               cursor: isNodeDrag ? "none" : "pointer",
+              pathLength: [0, 1],
             }}
             transition={{
-              duration: 0.3,
+              d: {
+                duration: isMoving ? 0.3 : 0,
+              },
+              pathLength: {
+                duration: 0.5,
+              },
             }}
           />
 
-          {needHighlight && (
+          {isActive && (
             <motion.path
               id={(id + "active") as string}
               fill={"none"}
@@ -110,10 +123,10 @@ function Edge(props: EdgeFrontProps) {
                     opacity: 0,
                   }}
                   animate={{
-                    fill: needHighlight
+                    fill: isActive
                       ? edgeConfig?.hoveredColor || hoveredColor
                       : edgeConfig?.stroke || stroke,
-                    opacity: needHighlight ? [0.5, 1] : 1,
+                    opacity: false ? [0.5, 1] : 1,
                   }}
                   startOffset={"50%"}
                   id={id + "direction"}
@@ -130,11 +143,11 @@ function Edge(props: EdgeFrontProps) {
                   href={`#${id}`}
                   id={id + "description"}
                   animate={{
-                    fill: needHighlight
+                    fill: isActive
                       ? edgeConfig?.descriptionColor || hoveredColor
                       : edgeConfig?.descriptionColor || descriptionColor,
                     fontSize: edgeConfig?.descriptionSize || descriptionSize,
-                    opacity: needHighlight ? [0.5, 1] : 1,
+                    opacity: false ? [0.5, 1] : 1,
                   }}
                   startOffset={"50%"}
                 >
