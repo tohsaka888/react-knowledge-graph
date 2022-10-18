@@ -34,7 +34,7 @@ type TypeConfig = {
 
 type ConfigProps = {
   basicDistence: number; // 基础半径
-  explore: (id: React.Key) => Promise<{
+  explore: (id: string) => Promise<{
     inside: NodeProps[];
     outside: NodeProps[];
     edges: EdgeProps[];
