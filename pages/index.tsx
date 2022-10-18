@@ -18,13 +18,13 @@ const Home: NextPage = () => {
     return data;
   };
 
-  const getEdge = async (id: Key) => {
+  const getEdge = async (id: string) => {
     const res = await fetch(`${baseUrl}/api/edge/${id}`);
     const data = await res.json();
     return data;
   };
 
-  const explore = async (id: Key) => {
+  const explore = async (id: string) => {
     const inside = await getNode(id, "inside");
     const outside = await getNode(id, "outside");
     const edges = await getEdge(id);
