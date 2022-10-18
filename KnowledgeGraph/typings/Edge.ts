@@ -21,6 +21,8 @@ type EdgeFrontProps = EdgeProps & {
   fromNode?: NodeFrontProps;
   toNode?: NodeFrontProps;
   visible: boolean;
+  needHighlight: boolean;
+  isMoving: boolean;
 };
 
 export type { EdgeProps, EdgeFrontProps };
