@@ -88,6 +88,8 @@ export const graphSlice: Slice<typeof initialState> = createSlice({
             fromNode,
             toNode,
             visible: true,
+            needHighlight: false,
+            isMoving: false,
           };
         })
         .filter(
@@ -225,6 +227,63 @@ export const graphSlice: Slice<typeof initialState> = createSlice({
         }
       });
     },
+    /**
+     * 过滤高亮边
+     * @date 2022-10-18
+     * @param {any} state
+     * @param {any} action:PayloadAction<NodeFrontProps>
+     * @returns {any}
+     */
+    filterHighlightEdges(state, action: PayloadAction<NodeFrontProps>) {
+      const node = action.payload;
+      state.edges.forEach((edge) => {
+        if (edge.fromId === node.id || edge.toId === node.id) {
+          edge.needHighlight = true;
+        } else {
+          edge.needHighlight = false;
+        }
+      });
+    },
+    /**
+     * 取消高亮
+     * @date 2022-10-18
+     * @param {any} state
+     * @returns {any}
+     */
+    notHighlight(state) {
+      state.edges.forEach((edge) => {
+        edge.needHighlight = false;
+      });
+    },
+    /**
+     * 节点移动事件
+     * @date 2022-10-18
+     * @param {any} state
+     * @param {any} action:PayloadAction<NodeFrontProps>
+     * @returns {any}
+     */
+    onMoving(state, action: PayloadAction<NodeFrontProps>) {
+      const node = action.payload;
+      state.edges.forEach((edge) => {
+        if (edge.fromId === node.id || edge.toId === node.id) {
+          edge.isMoving = true;
+        } else {
+          edge.isMoving = false;
+        }
+      });
+    },
+    /**
+     * 移动结束
+     * @date 2022-10-18
+     * @param {any} state
+     * @param {any} action:PayloadAction<undefined>
+     * @returns {any}
+     */
+    onMoveEnd(state, action: PayloadAction<undefined>) {
+      state.edges.forEach((edge) => {
+        edge.isMoving = false;
+      });
+    },
   },
 });
 
@@ -237,5 +296,9 @@ export const {
   changeExploreState,
   onDragStart,
   showAllNodes,
+  filterHighlightEdges,
+  notHighlight,
+  onMoving,
+  onMoveEnd,
 } = graphSlice.actions;
 export default graphSlice.reducer;
