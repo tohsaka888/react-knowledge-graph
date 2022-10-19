@@ -15,7 +15,6 @@ import { store } from "./store";
 import { ConfigProps } from "./typings/Config";
 
 function Graph(graphConfig: ConfigProps) {
-  
   return (
     <ConfigController graphConfig={graphConfig}>
       <Provider store={store}>

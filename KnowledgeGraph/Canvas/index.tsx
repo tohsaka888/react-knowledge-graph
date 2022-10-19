@@ -9,38 +9,20 @@
 import React, { useContext } from "react";
 import { motion } from "framer-motion";
 import Node from "../Node";
-import { ConfigContext, RightMenuPropsContext } from "../context";
+import { RightMenuPropsContext } from "../context";
 import Edge from "../Edge";
 import RightClickMenu from "../RightClickMenu";
 import { useAppDispatch, useAppSelector } from "../hooks";
-import { clearAllGraph, initialize } from "../Controller/graphSlice";
-import { useEffect } from "react";
 import {
   setCanvasOffset,
   setCanvasSize,
 } from "../Controller/canvasConfigSlice";
+import useAutoExplore from "../hooks/Graph/useAutoExplore";
 
 function CanvasContainer({ children }: { children: React.ReactNode }) {
   const { setEvent } = useContext(RightMenuPropsContext)!;
   const dispatch = useAppDispatch();
   const canvasConfig = useAppSelector((state) => state.canvasConfig);
-  const memoGraph = useAppSelector((state) => state.memoGraph);
-  const graph = useAppSelector((state) => state.graph);
-  const { config: graphConfig } = useContext(ConfigContext)!;
-
-  useEffect(() => {
-    dispatch(
-      initialize({
-        node: graphConfig.node,
-        position: graphConfig.position,
-      })
-    );
-
-    return () => {
-      dispatch(clearAllGraph(undefined));
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, graphConfig]);
 
   return (
     <>
@@ -120,6 +102,7 @@ function CanvasContainer({ children }: { children: React.ReactNode }) {
 
 function Canvas() {
   const graph = useAppSelector((state) => state.graph);
+  useAutoExplore();
   return (
     <CanvasContainer>
       <>
