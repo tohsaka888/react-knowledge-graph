@@ -4,7 +4,9 @@ import { NodeFrontProps } from "../typings/Node";
 import { ConfigProps } from "../typings/Config";
 import { EdgeFrontProps, EdgeProps } from "../typings/Edge";
 
-const initialState: { nodes: NodeFrontProps[]; edges: EdgeFrontProps[] } = {
+type GraphProps = { nodes: NodeFrontProps[]; edges: EdgeFrontProps[] };
+
+const initialState: GraphProps = {
   nodes: [],
   edges: [],
 };
@@ -284,6 +286,28 @@ export const graphSlice: Slice<typeof initialState> = createSlice({
         edge.isMoving = false;
       });
     },
+    /**
+     * 清空图
+     * @date 2022-10-19
+     * @param {any} state
+     * @param {any} action:PayloadAction<undefined>
+     * @returns {any}
+     */
+    clearAllGraph(state, action: PayloadAction<undefined>) {
+      state.nodes = [];
+      state.edges = [];
+    },
+    /**
+     * 使用memoGraph
+     * @date 2022-10-19
+     * @param {any} state
+     * @param {any} action:PayloadAction<GraphProps>
+     * @returns {any}
+     */
+    initGraph(state, action: PayloadAction<GraphProps>) {
+      state.nodes = action.payload.nodes;
+      state.edges = action.payload.edges;
+    },
   },
 });
 
@@ -300,5 +324,7 @@ export const {
   notHighlight,
   onMoving,
   onMoveEnd,
+  clearAllGraph,
+  initGraph,
 } = graphSlice.actions;
 export default graphSlice.reducer;
