@@ -47,7 +47,7 @@ const Home: NextPage = () => {
     >
       <KnowledgeGraph
         explore={explore}
-        basicDistence={38}
+        basicDistence={20}
         position={{ x: 100, y: 100 }}
         node={{
           id: "node-0",
@@ -60,26 +60,40 @@ const Home: NextPage = () => {
           message.info("已经到尾节点了!");
         }}
         edgeConfig={{
-          hoveredColor: "#ff0000",
+          hoveredColor: "#e27272",
+          stroke: "#DEDEDE",
         }}
         typeConfig={{
           根节点: {
-            radius: 23,
-            fill: "#404d95",
+            radius: 20,
+            fill: "#747ba6",
             hoverStyle: {
-              fill: "#1429a0",
+              fill: "#3949a3",
             },
           },
           model: {
-            radius: 20,
+            radius: 15,
             fill: "#b4e5a2",
+            typeSize: 8,
+            nameSize: 8,
             hoverStyle: {
               fill: "#6be73e",
             },
           },
+          data: {
+            radius: 15,
+            fill: "#ea52ea",
+            typeSize: 8,
+            nameSize: 8,
+            hoverStyle: {
+              fill: "#e5a2e5",
+            },
+          },
           test: {
-            radius: 18,
+            radius: 13,
             fill: "#89c4fb",
+            typeSize: 8,
+            nameSize: 8,
             hoverStyle: {
               fill: "#2f8fe8",
             },
