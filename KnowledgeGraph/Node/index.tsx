@@ -140,7 +140,9 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
               duration: 0.3,
             }}
             onDoubleClick={(e) => {
-              exploreFunc();
+              if (!loading) {
+                exploreFunc();
+              }
             }}
           >
             <motion.circle
