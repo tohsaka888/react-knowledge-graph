@@ -8,9 +8,9 @@ type Props = {
 };
 
 function ConfigController({ graphConfig, children }: Props) {
-  const [config, setConfig] = useState<ConfigProps>(graphConfig);
+  const [config] = useState<ConfigProps>(graphConfig);
   return (
-    <ConfigContext.Provider value={{ config, setConfig }}>
+    <ConfigContext.Provider value={{ config }}>
       {children}
     </ConfigContext.Provider>
   );
