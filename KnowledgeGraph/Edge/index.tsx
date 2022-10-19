@@ -112,7 +112,7 @@ function Edge(props: EdgeFrontProps) {
               <motion.text
                 textAnchor={"middle"}
                 dominantBaseline={"central"}
-                dy={-2}
+                dy={-1.5}
               >
                 <motion.textPath
                   href={`#${id}`}
