@@ -15,14 +15,15 @@ import { store } from "./store";
 import { ConfigProps } from "./typings/Config";
 
 function Graph(graphConfig: ConfigProps) {
+  
   return (
-    <Provider store={store}>
-      <ConfigController graphConfig={graphConfig}>
+    <ConfigController graphConfig={graphConfig}>
+      <Provider store={store}>
         <RightMenuController>
-          <Canvas {...graphConfig} />
+          <Canvas />
         </RightMenuController>
-      </ConfigController>
-    </Provider>
+      </Provider>
+    </ConfigController>
   );
 }
 

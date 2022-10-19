@@ -9,12 +9,11 @@
 import React, { useContext } from "react";
 import { motion } from "framer-motion";
 import Node from "../Node";
-import { RightMenuPropsContext } from "../context";
+import { ConfigContext, RightMenuPropsContext } from "../context";
 import Edge from "../Edge";
 import RightClickMenu from "../RightClickMenu";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { initialize } from "../Controller/graphSlice";
-import { ConfigProps } from "../typings/Config";
 import { useEffect } from "react";
 import {
   setCanvasOffset,
@@ -25,6 +24,17 @@ function CanvasContainer({ children }: { children: React.ReactNode }) {
   const { setEvent } = useContext(RightMenuPropsContext)!;
   const dispatch = useAppDispatch();
   const canvasConfig = useAppSelector((state) => state.canvasConfig);
+  const { config: graphConfig } = useContext(ConfigContext)!;
+
+  useEffect(() => {
+    dispatch(
+      initialize({
+        node: graphConfig.node,
+        position: graphConfig.position,
+      })
+    );
+  }, [dispatch, graphConfig.node, graphConfig.position]);
+
   return (
     <>
       <motion.svg
@@ -101,19 +111,8 @@ function CanvasContainer({ children }: { children: React.ReactNode }) {
   );
 }
 
-function Canvas(graphConfig: ConfigProps) {
+function Canvas() {
   const graph = useAppSelector((state) => state.graph);
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(
-      initialize({
-        node: graphConfig.node,
-        position: graphConfig.position,
-      })
-    );
-  }, [dispatch, graphConfig.node, graphConfig.position]);
-
   return (
     <CanvasContainer>
       <>
