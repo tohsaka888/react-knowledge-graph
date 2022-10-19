@@ -1,6 +1,6 @@
 import { ConfigContext } from "../context";
 import { ConfigProps } from "../typings/Config";
-import React, { useState } from "react";
+import React from "react";
 
 type Props = {
   graphConfig: ConfigProps;
@@ -8,9 +8,8 @@ type Props = {
 };
 
 function ConfigController({ graphConfig, children }: Props) {
-  const [config] = useState<ConfigProps>(graphConfig);
   return (
-    <ConfigContext.Provider value={{ config }}>
+    <ConfigContext.Provider value={{ config: graphConfig }}>
       {children}
     </ConfigContext.Provider>
   );
