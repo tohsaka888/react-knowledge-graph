@@ -13,7 +13,7 @@ import { ConfigContext, RightMenuPropsContext } from "../context";
 import Edge from "../Edge";
 import RightClickMenu from "../RightClickMenu";
 import { useAppDispatch, useAppSelector } from "../hooks";
-import { initialize } from "../Controller/graphSlice";
+import { clearAllGraph, initialize } from "../Controller/graphSlice";
 import { useEffect } from "react";
 import {
   setCanvasOffset,
@@ -24,6 +24,8 @@ function CanvasContainer({ children }: { children: React.ReactNode }) {
   const { setEvent } = useContext(RightMenuPropsContext)!;
   const dispatch = useAppDispatch();
   const canvasConfig = useAppSelector((state) => state.canvasConfig);
+  const memoGraph = useAppSelector((state) => state.memoGraph);
+  const graph = useAppSelector((state) => state.graph);
   const { config: graphConfig } = useContext(ConfigContext)!;
 
   useEffect(() => {
@@ -33,7 +35,12 @@ function CanvasContainer({ children }: { children: React.ReactNode }) {
         position: graphConfig.position,
       })
     );
-  }, [dispatch, graphConfig.node, graphConfig.position]);
+
+    return () => {
+      dispatch(clearAllGraph(undefined));
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch, graphConfig]);
 
   return (
     <>
