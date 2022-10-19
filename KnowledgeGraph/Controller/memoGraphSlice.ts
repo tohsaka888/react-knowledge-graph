@@ -1,29 +1,43 @@
-import { createSlice, Slice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { NodeFrontProps, NodeProps } from "../typings/Node";
-import { ConfigProps } from "../typings/Config";
-import { EdgeFrontProps, EdgeProps } from "../typings/Edge";
+import { EdgeProps } from "../typings/Edge";
 
-type GraphProps = {
-  [id: string]: {
-    node: NodeProps;
-    inside: NodeProps[];
-    outside: NodeProps[];
-    edges: EdgeProps[];
-  };
+type ExploredProps = {
+  node: NodeFrontProps;
+  inside: NodeProps[];
+  outside: NodeProps[];
+  edges: EdgeProps[];
 };
 
-const initialState: GraphProps[] = [];
+const initialState: ExploredProps[] = [];
 
 const memoGraphSlice = createSlice({
   name: "memoGraph",
   initialState,
   reducers: {
-    addExploredPath(state, action: PayloadAction<GraphProps>) {
-      state.push(action.payload);
+    addExploredPath(state, action: PayloadAction<ExploredProps>) {
+      const { node, inside, outside, edges } = action.payload;
+      const isDuplicate = state.find((path) => path.node.id === node.id);
+      if (!isDuplicate) {
+        state.push({
+          node,
+          inside,
+          outside,
+          edges,
+        });
+      }
+    },
+    removeExploredPath(state, action: PayloadAction<string>) {
+      const currentId = action.payload;
+      return state.filter(
+        (path) =>
+          !path.node.pId.find((pId) => pId === currentId) &&
+          path.node.id !== currentId
+      );
     },
   },
 });
 
-export const { addExploredPath } = memoGraphSlice.actions;
+export const { addExploredPath, removeExploredPath } = memoGraphSlice.actions;
 export default memoGraphSlice.reducer;
