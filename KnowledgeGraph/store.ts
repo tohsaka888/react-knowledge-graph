@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import graphReducer from "./Controller/graphSlice";
 import configReducer from "./Controller/canvasConfigSlice";
+import memoGraphReducer from "./Controller/memoGraphSlice";
 
 export const store = configureStore({
   reducer: {
     graph: graphReducer,
     canvasConfig: configReducer,
+    memoGraph: memoGraphReducer,
   },
 });
 
