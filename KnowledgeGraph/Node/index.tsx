@@ -26,7 +26,7 @@ import useCalcEdge from "../hooks/Edge/useCalcEdge";
 
 function UnmemoNode({ node }: { node: NodeFrontProps }) {
   const { config } = useContext(ConfigContext)!;
-  const { explore, typeConfig, onExploreEnd } = config;
+  const { typeConfig } = config;
   const { name, type, position, parentNode } = node;
   const nodeConfig = typeConfig && typeConfig[type];
   const edges = useAppSelector((state) => state.graph.edges);
@@ -40,7 +40,7 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
   const typeSize = nodeConfig?.typeSize || defaultNodeConfig.typeSize;
   const radius = nodeConfig?.radius || defaultNodeConfig.radius;
 
-  const { exploreFunc, loading } = useExplore({ explore, node, onExploreEnd });
+  const { exploreFunc, loading } = useExplore();
   const dispatch = useDispatch();
   const { calcD } = useCalcEdge();
 
@@ -141,7 +141,7 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
             }}
             onDoubleClick={(e) => {
               if (!loading) {
-                exploreFunc();
+                exploreFunc({ node });
               }
             }}
           >
