@@ -6,14 +6,13 @@
  * @Description: 边
  */
 
-import React, { useContext, useMemo, useState } from "react";
+import React, { useContext, useState } from "react";
 import { motion, MotionConfig } from "framer-motion";
-import { ConfigContext, HoveredNodeContext } from "../context";
+import { ConfigContext } from "../context";
 import { defaultEdgeConfig } from "../config/edgeConfig";
 import useCalcEdge from "../hooks/Edge/useCalcEdge";
 import { EdgeFrontProps } from "../typings/Edge";
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
-import { IsNodeDragContext } from "../Controller/IsNodeDragController";
 
 function Edge(props: EdgeFrontProps) {
   const {
@@ -33,7 +32,6 @@ function Edge(props: EdgeFrontProps) {
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const { calcD } = useCalcEdge();
   const d = calcD(props);
-  const { isNodeDrag } = useContext(IsNodeDragContext)!;
   const isActive = needHighlight && !isMoving;
 
   const {
@@ -70,7 +68,7 @@ function Edge(props: EdgeFrontProps) {
               strokeWidth: edgeConfig?.strokeWidth || strokeWidth,
               opacity,
               d,
-              cursor: isNodeDrag ? "none" : "pointer",
+              cursor: "pointer",
               pathLength: [0, 1],
             }}
             transition={{
@@ -183,7 +181,7 @@ function Edge(props: EdgeFrontProps) {
             d={d}
             fill={"none"}
             animate={{
-              cursor: isNodeDrag ? "none" : "pointer",
+              cursor: "pointer",
             }}
             stroke={"transparent"}
             strokeWidth={10}
