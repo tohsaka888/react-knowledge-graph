@@ -10,9 +10,6 @@ import React from "react";
 import { Provider } from "react-redux";
 import Canvas from "./Canvas";
 import ConfigController from "./Controller/ConfigController";
-import HoveredNodeController from "./Controller/HoveredNodeController";
-import IsNodeDragController from "./Controller/IsNodeDragController";
-import MovedNodeController from "./Controller/MovedNodeController";
 import RightMenuController from "./Controller/RightMenuController";
 import { store } from "./store";
 import { ConfigProps } from "./typings/Config";
@@ -21,15 +18,9 @@ function Graph(graphConfig: ConfigProps) {
   return (
     <Provider store={store}>
       <ConfigController graphConfig={graphConfig}>
-        <HoveredNodeController>
-          <RightMenuController>
-            <MovedNodeController>
-              <IsNodeDragController>
-                <Canvas {...graphConfig} />
-              </IsNodeDragController>
-            </MovedNodeController>
-          </RightMenuController>
-        </HoveredNodeController>
+        <RightMenuController>
+          <Canvas {...graphConfig} />
+        </RightMenuController>
       </ConfigController>
     </Provider>
   );

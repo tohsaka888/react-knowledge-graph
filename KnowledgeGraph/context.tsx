@@ -15,7 +15,6 @@ import {
 
 type ConfigContextProps = {
   config: ConfigProps;
-  setConfig: React.Dispatch<React.SetStateAction<ConfigProps>>;
 };
 
 export const ConfigContext = createContext<ConfigContextProps | null>(null);
