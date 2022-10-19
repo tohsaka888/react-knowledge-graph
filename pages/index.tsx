@@ -8,10 +8,12 @@
 import { KnowledgeGraph } from "../KnowledgeGraph";
 import { baseUrl } from "../config/baseUrl";
 import type { NextPage } from "next";
-import { Key } from "react";
-import { message } from "antd";
+import { Key, useState } from "react";
+import { Button, message } from "antd";
 
 const Home: NextPage = () => {
+  const [width, setWidth] = useState<number>(1);
+
   const getNode = async (id: Key, direction: "inside" | "outside") => {
     const res = await fetch(`${baseUrl}/api/${direction}/${id}`);
     const data = await res.json();
@@ -45,9 +47,10 @@ const Home: NextPage = () => {
         overflow: "hidden",
       }}
     >
+      <Button onClick={() => setWidth(width + 1)}>click</Button>
       <KnowledgeGraph
         explore={explore}
-        basicDistence={30}
+        basicDistence={width}
         position={{ x: 100, y: 100 }}
         node={{
           id: "node-0",
@@ -62,6 +65,7 @@ const Home: NextPage = () => {
         edgeConfig={{
           hoveredColor: "#e27272",
           stroke: "#DEDEDE",
+          strokeWidth: 1,
         }}
         typeConfig={{
           根节点: {
