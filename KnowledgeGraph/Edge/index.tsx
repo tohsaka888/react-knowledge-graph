@@ -160,6 +160,7 @@ function Edge(props: EdgeFrontProps) {
               style={{ offsetPath: `path("${d}")`, offsetDistance: "50%" }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
+              id={id + "icon-open"}
               transform={`translate(-10, -8)`}
             >
               <BsFillEyeFill color="#cecece" style={{ opacity }} />
@@ -171,6 +172,7 @@ function Edge(props: EdgeFrontProps) {
               style={{ offsetPath: `path("${d}")`, offsetDistance: "50%" }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
+              id={id + "icon-close"}
               transform={`translate(-10, -8)`}
             >
               <BsFillEyeSlashFill color="#cecece" style={{ opacity: 0.5 }} />

@@ -89,8 +89,20 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
                     },
                   });
                   const edgeElement = document.getElementById(edge.id)!;
+                  const iconOpen = document.getElementById(
+                    edge.id + "icon-open"
+                  );
+                  const iconClose = document.getElementById(
+                    edge.id + "icon-close"
+                  );
                   if (d) {
                     edgeElement.setAttribute("d", d);
+                    if (iconOpen) {
+                      iconOpen.style.offsetPath = `path("${d}")`;
+                    }
+                    if (iconClose) {
+                      iconClose.style.offsetPath = `path("${d}")`;
+                    }
                   }
                 }
               });
@@ -108,8 +120,20 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
                     },
                   });
                   const edgeElement = document.getElementById(edge.id)!;
+                  const iconOpen = document.getElementById(
+                    edge.id + "icon-open"
+                  );
+                  const iconClose = document.getElementById(
+                    edge.id + "icon-close"
+                  );
                   if (d) {
                     edgeElement.setAttribute("d", d);
+                    if (iconOpen) {
+                      iconOpen.style.offsetPath = `path("${d}")`;
+                    }
+                    if (iconClose) {
+                      iconClose.style.offsetPath = `path("${d}")`;
+                    }
                   }
                 }
               });
