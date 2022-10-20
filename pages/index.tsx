@@ -50,7 +50,7 @@ const Home: NextPage = () => {
       <Button onClick={() => setWidth(width + 1)}>click</Button>
       <KnowledgeGraph
         explore={explore}
-        basicDistence={width}
+        basicDistence={38}
         position={{ x: 100, y: 100 }}
         node={{
           id: "node-0",
