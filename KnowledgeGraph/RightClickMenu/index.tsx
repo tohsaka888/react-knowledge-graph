@@ -27,6 +27,7 @@ import {
   moveCanvasToPosition,
   resetCanvas,
 } from "../Controller/canvasConfigSlice";
+import { FullScreenContext } from "../Controller/FullScreenController";
 
 const canvasItems = ["复位画布", "下载当前图谱", "全屏"];
 const nodeItems = ["当前实体居中", "显示当前节点关系", "显示所有节点"];
@@ -110,6 +111,7 @@ function RightMenuContent() {
   );
 
   const [isDownload, setIsDownload] = useState<boolean>(false);
+  const { setIsFullScreen } = useContext(FullScreenContext)!;
 
   return (
     <>
@@ -145,8 +147,10 @@ function RightMenuContent() {
                         if (value === "全屏" || value === "退出全屏") {
                           if (document.fullscreenElement) {
                             document.exitFullscreen();
+                            setIsFullScreen(false);
                           } else {
                             document.documentElement.requestFullscreen();
+                            setIsFullScreen(true);
                           }
                           setEvent(null);
                         }

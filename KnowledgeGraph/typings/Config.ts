@@ -44,6 +44,13 @@ type ConfigProps = {
   position: { x: number; y: number };
   typeConfig?: TypeConfig;
   edgeConfig?: EdgeConfig;
+  width: number | string;
+  height: number | string;
+  showHelper?: boolean;
+  helperConfig?: {
+    color?: string;
+    size?: number;
+  };
 };
 
 type CanvasConfig = {
