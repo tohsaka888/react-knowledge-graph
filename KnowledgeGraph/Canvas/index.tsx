@@ -6,7 +6,7 @@
  * @Description: 请填写简介
  */
 
-import React, { useContext } from "react";
+import React, { startTransition, useContext } from "react";
 import { motion } from "framer-motion";
 import Node from "../Node";
 import { RightMenuPropsContext } from "../context";
@@ -52,7 +52,7 @@ function CanvasContainer({ children }: { children: React.ReactNode }) {
         }}
         className={"canvas"}
         onDrag={(e, info) => {
-          requestAnimationFrame(() => {
+          startTransition(() => {
             dispatch(
               setCanvasOffset({
                 dx: info.delta.x,
@@ -65,7 +65,7 @@ function CanvasContainer({ children }: { children: React.ReactNode }) {
           setEvent(null);
         }}
         onWheel={(e) => {
-          requestAnimationFrame(() => {
+          startTransition(() => {
             if (e.deltaY < 0) {
               dispatch(setCanvasSize("zoom-in"));
             } else {
