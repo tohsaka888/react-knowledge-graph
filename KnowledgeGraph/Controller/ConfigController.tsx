@@ -17,6 +17,7 @@ function ConfigController({ graphConfig, children }: Props) {
             color: "#cecece",
             size: 24,
           },
+          showNodeMenu: true,
           ...graphConfig,
         },
       }}

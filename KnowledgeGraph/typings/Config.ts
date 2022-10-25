@@ -8,7 +8,7 @@
 
 import { CSSProperties } from "react";
 import { EdgeProps } from "./Edge";
-import { NodeProps } from "./Node";
+import { NodeFrontProps, NodeProps } from "./Node";
 
 type EdgeConfig = {
   stroke?: string;
@@ -51,6 +51,9 @@ type ConfigProps = {
     color?: string;
     size?: number;
   };
+  showNodeMenu?: boolean;
+  onClickInfo?: (node: NodeFrontProps) => void;
+  onClickAddon?: (node: NodeFrontProps) => void;
 };
 
 type CanvasConfig = {

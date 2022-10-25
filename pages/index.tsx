@@ -42,6 +42,12 @@ const Home: NextPage = () => {
       width={800}
       height={500}
       position={{ x: 100, y: 100 }}
+      onClickAddon={(node) => {
+        message.success("addon" + node.id);
+      }}
+      onClickInfo={(node) => {
+        message.success("info" + node.id);
+      }}
       node={{
         id: "node-0",
         type: "根节点",
