@@ -23,12 +23,11 @@ import {
 } from "../Controller/graphSlice";
 import { useAppSelector } from "../hooks";
 import useCalcEdge from "../hooks/Edge/useCalcEdge";
-import { BsFillInfoCircleFill, BsPlayCircleFill } from "react-icons/bs";
-import styles from "./index.module.css";
+import { FcInfo, FcPlus } from "react-icons/fc";
 
 function UnmemoNode({ node }: { node: NodeFrontProps }) {
   const { config } = useContext(ConfigContext)!;
-  const { typeConfig } = config;
+  const { typeConfig, showNodeMenu, onClickAddon, onClickInfo } = config;
   const { name, type, position, parentNode } = node;
   const nodeConfig = typeConfig && typeConfig[type];
   const edges = useAppSelector((state) => state.graph.edges);
@@ -178,8 +177,11 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
                 fill={"transparent"}
                 strokeWidth={8}
                 stroke={"#f6793bb7"}
+                initial={{
+                  strokeOpacity: 0,
+                }}
                 animate={{
-                  strokeOpacity: [0, 1],
+                  strokeOpacity: 1,
                 }}
               />
             )}
@@ -243,31 +245,39 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
               {type}
             </motion.text>
 
-            {isHover && (
+            {showNodeMenu && isHover && (
               <motion.g
                 initial={{
-                  x: -5,
-                  y: radius,
+                  x: -7,
+                  y: radius - 1,
+                  opacity: 0,
                 }}
                 animate={{
-                  opacity: [0, 0.9],
+                  opacity: 1,
+                }}
+                onClick={() => {
+                  onClickInfo && onClickInfo(node);
                 }}
               >
-                <BsFillInfoCircleFill className={styles["menu-icon"]} />
+                <FcInfo />
               </motion.g>
             )}
 
-            {isHover && (
+            {showNodeMenu && isHover && (
               <motion.g
                 initial={{
-                  x: -5,
-                  y: -radius - 12,
+                  x: -7,
+                  y: -radius - 13,
+                  opacity: 0,
                 }}
                 animate={{
-                  opacity: [0, 0.9],
+                  opacity: 1,
+                }}
+                onClick={() => {
+                  onClickAddon && onClickAddon(node);
                 }}
               >
-                <BsPlayCircleFill className={styles["menu-icon"]} />
+                <FcPlus />
               </motion.g>
             )}
           </motion.g>
