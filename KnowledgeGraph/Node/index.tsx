@@ -23,6 +23,8 @@ import {
 } from "../Controller/graphSlice";
 import { useAppSelector } from "../hooks";
 import useCalcEdge from "../hooks/Edge/useCalcEdge";
+import { BsFillInfoCircleFill, BsPlayCircleFill } from "react-icons/bs";
+import styles from "./index.module.css";
 
 function UnmemoNode({ node }: { node: NodeFrontProps }) {
   const { config } = useContext(ConfigContext)!;
@@ -170,6 +172,18 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
               }
             }}
           >
+            {isHover && (
+              <motion.circle
+                r={radius + 4}
+                fill={"transparent"}
+                strokeWidth={8}
+                stroke={"#f6793bb7"}
+                animate={{
+                  strokeOpacity: [0, 1],
+                }}
+              />
+            )}
+
             <motion.circle
               id={node.id + "circle"}
               node-id={node.id}
@@ -211,7 +225,7 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
               }}
               animate={{ fontSize: nameSize }}
               textAnchor={"middle"}
-              y={radius + nameSize}
+              y={isHover ? radius + nameSize + 12 : radius + nameSize}
             >
               {name}
             </motion.text>
@@ -228,6 +242,34 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
             >
               {type}
             </motion.text>
+
+            {isHover && (
+              <motion.g
+                initial={{
+                  x: -5,
+                  y: radius,
+                }}
+                animate={{
+                  opacity: [0, 0.9],
+                }}
+              >
+                <BsFillInfoCircleFill className={styles["menu-icon"]} />
+              </motion.g>
+            )}
+
+            {isHover && (
+              <motion.g
+                initial={{
+                  x: -5,
+                  y: -radius - 12,
+                }}
+                animate={{
+                  opacity: [0, 0.9],
+                }}
+              >
+                <BsPlayCircleFill className={styles["menu-icon"]} />
+              </motion.g>
+            )}
           </motion.g>
         </AnimatePresence>
       )}
