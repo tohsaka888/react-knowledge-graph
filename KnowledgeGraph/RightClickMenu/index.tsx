@@ -16,7 +16,6 @@ import React, {
 } from "react";
 import ReactDOM from "react-dom";
 import { motion } from "framer-motion";
-import { RightMenuPropsContext } from "../context";
 import MenuItem from "./MenuItem";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import {
@@ -28,6 +27,10 @@ import {
   resetCanvas,
 } from "../Controller/canvasConfigSlice";
 import { useDispatchFullScreen } from "../Controller/FullScreenController";
+import {
+  useRightMenuEvent,
+  useRightMenuEventDispatch,
+} from "../Controller/RightMenuController";
 
 const canvasItems = ["复位画布", "下载当前图谱", "全屏"];
 const nodeItems = ["当前实体居中", "显示当前节点关系", "显示所有节点"];
@@ -36,7 +39,8 @@ const imageItems = ["JPG", "JPEG", "PNG", "BMP"];
 function RightMenuContent() {
   const canvasConfig = useAppSelector((state) => state.canvasConfig);
   const dispatch = useAppDispatch();
-  const { event, setEvent } = useContext(RightMenuPropsContext)!;
+  const event = useRightMenuEvent();
+  const setEvent = useRightMenuEventDispatch();
   const type = useMemo(() => {
     if (event?.target) {
       const target = event.target as any;
@@ -223,7 +227,8 @@ function RightMenuContent() {
 
 function RightClickMenu() {
   const bodyRef = useRef<HTMLElement>(null!);
-  const { event, setEvent } = useContext(RightMenuPropsContext)!;
+  const setEvent = useRightMenuEventDispatch();
+  const event = useRightMenuEvent();
 
   useEffect(() => {
     bodyRef.current = document.body;

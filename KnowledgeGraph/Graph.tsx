@@ -9,7 +9,7 @@
 import React, { useContext, useEffect, useRef } from "react";
 import { Provider } from "react-redux";
 import Canvas from "./Canvas";
-import { ConfigContext } from "./context";
+import { ConfigContext } from "./Controller/ConfigController";
 import ConfigController from "./Controller/ConfigController";
 import FullScreenController, {
   useFullScreen,

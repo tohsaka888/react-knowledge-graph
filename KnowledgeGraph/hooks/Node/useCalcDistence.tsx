@@ -6,7 +6,7 @@
  * @Description: 计算距离
  */
 
-import { ConfigContext } from "../../context";
+import { ConfigContext } from "../../Controller/ConfigController";
 import React, { useCallback, useContext } from "react";
 
 type Props = {

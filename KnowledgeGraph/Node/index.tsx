@@ -8,7 +8,7 @@
 
 import React, { useContext, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ConfigContext } from "../context";
+import { ConfigContext } from "../Controller/ConfigController";
 import Loading from "./Loading";
 import { defaultNodeConfig } from "../config/nodeConfig";
 import { NodeFrontProps } from "../../KnowledgeGraph";

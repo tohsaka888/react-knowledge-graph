@@ -15,7 +15,7 @@ import {
   addExploredPath,
   removeExploredPath,
 } from "../../Controller/memoGraphSlice";
-import { ConfigContext } from "../../context";
+import { ConfigContext } from "../../Controller/ConfigController";
 
 type SyncExploreFunc = (id: string) => {
   inside: NodeProps[];
