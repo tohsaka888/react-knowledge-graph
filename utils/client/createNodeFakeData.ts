@@ -1,3 +1,5 @@
+import { NodeProps } from "../../KnowledgeGraph";
+
 type Props = {
   direction: "inside" | "outside";
   length: number;
@@ -8,14 +10,14 @@ type CreateNodeFakeDataFunc = ({
   direction,
   length,
   rootId,
-}: Props) => (Node.NodeProps & { parentId: string })[];
+}: Props) => (NodeProps & { parentId: string })[];
 
 export const createNodeFakeData: CreateNodeFakeDataFunc = ({
   direction,
   length,
   rootId,
 }) => {
-  const nodes: (Node.NodeProps & { parentId: string })[] = [];
+  const nodes: (NodeProps & { parentId: string })[] = [];
 
   for (let i = 0; i < length; i++) {
     const random = Math.random();

@@ -7,7 +7,7 @@
  */
 import { NodeProps } from "../../../KnowledgeGraph/index";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { connectDB } from "utils/server/connectDB";
+import { connectDB } from "../../../utils/server/connectDB";
 
 
 export default async function handler(

@@ -7,7 +7,7 @@
  */
 import { EdgeProps } from "../../../KnowledgeGraph";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { connectDB } from "utils/server/connectDB";
+import { connectDB } from "../../../utils/server/connectDB";
 
 export default async function handler(
   req: NextApiRequest,

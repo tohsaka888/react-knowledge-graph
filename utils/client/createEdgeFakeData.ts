@@ -1,3 +1,5 @@
+import { EdgeProps } from "../../KnowledgeGraph";
+
 type Props = {
   direction: "inside" | "outside";
   length: number;
@@ -10,7 +12,7 @@ type CreateEdgeFakeDataFunc = ({
   length,
   rootId,
   edgeLastId,
-}: Props) => Edge.EdgeProps[];
+}: Props) => EdgeProps[];
 
 export const createEdgeFakeData: CreateEdgeFakeDataFunc = ({
   direction,
@@ -18,7 +20,7 @@ export const createEdgeFakeData: CreateEdgeFakeDataFunc = ({
   rootId,
   edgeLastId,
 }) => {
-  const edges: Edge.EdgeProps[] = [];
+  const edges: EdgeProps[] = [];
   for (let i = 0; i < length; i++) {
     edges.push({
       id: "edge-" + (edgeLastId + i + 1),
