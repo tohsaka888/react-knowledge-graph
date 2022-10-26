@@ -1,7 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { createEdgeFakeData } from "utils/client/createEdgeFakeData";
-import { createNodeFakeData } from "utils/client/createNodeFakeData";
-import { connectDB } from "utils/server/connectDB";
+import { createNodeFakeData } from "../../../../utils/client/createNodeFakeData";
+import { connectDB } from "../../../../utils/server/connectDB";
 
 export default async function handler(
   req: NextApiRequest,
