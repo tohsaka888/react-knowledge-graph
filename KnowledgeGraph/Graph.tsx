@@ -12,7 +12,7 @@ import Canvas from "./Canvas";
 import { ConfigContext } from "./context";
 import ConfigController from "./Controller/ConfigController";
 import FullScreenController, {
-  FullScreenContext,
+  useFullScreen,
 } from "./Controller/FullScreenController";
 import RightMenuController from "./Controller/RightMenuController";
 import Helper from "./Helper";
@@ -21,7 +21,7 @@ import { ConfigProps } from "./typings/Config";
 
 function GraphContainer({ children }: { children: React.ReactNode }) {
   const { config } = useContext(ConfigContext)!;
-  const { isFullScreen } = useContext(FullScreenContext)!;
+  const isFullScreen = useFullScreen();
   const screenRef = useRef<{ width: number; height: number }>({
     width: 0,
     height: 0,
