@@ -9,7 +9,6 @@
 import React, { startTransition, useContext } from "react";
 import { motion } from "framer-motion";
 import Node from "../Node";
-import { RightMenuPropsContext } from "../context";
 import Edge from "../Edge";
 import RightClickMenu from "../RightClickMenu";
 import { useAppDispatch, useAppSelector } from "../hooks";
@@ -18,9 +17,10 @@ import {
   setCanvasSize,
 } from "../Controller/canvasConfigSlice";
 import useAutoExplore from "../hooks/Graph/useAutoExplore";
+import { useRightMenuEventDispatch } from "../Controller/RightMenuController";
 
 function CanvasContainer({ children }: { children: React.ReactNode }) {
-  const { setEvent } = useContext(RightMenuPropsContext)!;
+  const setEvent = useRightMenuEventDispatch();
   const dispatch = useAppDispatch();
   const canvasConfig = useAppSelector((state) => state.canvasConfig);
 

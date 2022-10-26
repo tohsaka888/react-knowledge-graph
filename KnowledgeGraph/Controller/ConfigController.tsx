@@ -1,11 +1,17 @@
-import { ConfigContext } from "../context";
 import { ConfigProps } from "../typings/Config";
-import React from "react";
+import React, { createContext } from "react";
 
 type Props = {
   graphConfig: ConfigProps;
   children: React.ReactNode;
 };
+
+type ConfigContextProps = {
+  config: ConfigProps;
+};
+
+export const ConfigContext = createContext<ConfigContextProps | null>(null);
+
 
 function ConfigController({ graphConfig, children }: Props) {
   return (

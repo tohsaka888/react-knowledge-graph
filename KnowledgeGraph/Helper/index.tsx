@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { BsFillQuestionCircleFill } from "react-icons/bs";
 import { AnimatePresence, motion } from "framer-motion";
-import { ConfigContext } from "../context";
+import { ConfigContext } from "../Controller/ConfigController";
 
 function Helper() {
   const { config } = useContext(ConfigContext)!;

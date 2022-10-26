@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "..";
-import { ConfigContext } from "../../context";
+import { ConfigContext } from "../../Controller/ConfigController";
 import { initialize, clearAllGraph } from "../../Controller/graphSlice";
 import useExplore from "../Node/useExplore";
 

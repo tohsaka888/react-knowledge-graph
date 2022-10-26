@@ -8,7 +8,7 @@
 
 import React, { useContext, useState } from "react";
 import { motion, MotionConfig } from "framer-motion";
-import { ConfigContext } from "../context";
+import { ConfigContext } from "../Controller/ConfigController";
 import { defaultEdgeConfig } from "../config/edgeConfig";
 import useCalcEdge from "../hooks/Edge/useCalcEdge";
 import { EdgeFrontProps } from "../typings/Edge";
