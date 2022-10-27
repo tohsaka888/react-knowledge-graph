@@ -3,7 +3,7 @@
  * @Date: 2022-09-30 09:04:35
  * @LastEditors: tohsaka888
  * @LastEditTime: 2022-10-09 16:25:30
- * @Description: 请填写简介
+ * @Description: Canvas
  */
 
 import React, { startTransition, useContext } from "react";
@@ -53,13 +53,19 @@ function CanvasContainer({ children }: { children: React.ReactNode }) {
         className={"canvas"}
         onDrag={(e, info) => {
           startTransition(() => {
-            dispatch(
-              setCanvasOffset({
-                dx: info.delta.x,
-                dy: info.delta.y,
-              })
-            );
+            const dragElement = document.getElementById("graph-drag")!;
+            dragElement.style.transform = `translateX(${
+              canvasConfig.x + info.offset.x
+            }px) translateY(${canvasConfig.y + info.offset.y}px)`;
           });
+        }}
+        onDragEnd={(e, info) => {
+          dispatch(
+            setCanvasOffset({
+              dx: info.offset.x,
+              dy: info.offset.y,
+            })
+          );
         }}
         onClick={() => {
           setEvent(null);
@@ -81,7 +87,7 @@ function CanvasContainer({ children }: { children: React.ReactNode }) {
             y: canvasConfig.y,
           }}
           transition={{
-            duration: 0.05,
+            duration: 0,
           }}
         >
           <motion.g
