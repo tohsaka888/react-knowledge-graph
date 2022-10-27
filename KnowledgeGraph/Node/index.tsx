@@ -6,7 +6,7 @@
  * @Description: 节点
  */
 
-import React, { useContext, useState } from "react";
+import React, { useContext, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ConfigContext } from "../Controller/ConfigController";
 import Loading from "./Loading";
@@ -24,11 +24,12 @@ import {
 import { useAppSelector } from "../hooks";
 import useCalcEdge from "../hooks/Edge/useCalcEdge";
 import { FcInfo, FcPlus } from "react-icons/fc";
+import { useGraphBounds } from "../Controller/GraphBoundsController";
 
 function UnmemoNode({ node }: { node: NodeFrontProps }) {
   const { config } = useContext(ConfigContext)!;
   const { typeConfig, showNodeMenu, onClickAddon, onClickInfo } = config;
-  const { name, type, position, parentNode } = node;
+  const { name, type, position } = node;
   const nodeConfig = typeConfig && typeConfig[type];
   const edges = useAppSelector((state) => state.graph.edges);
 
@@ -44,10 +45,33 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
   const { exploreFunc, loading } = useExplore();
   const dispatch = useDispatch();
   const { calcD } = useCalcEdge();
+  const { x1, x2, y1, y2 } = useGraphBounds();
+  const scaleSize = useAppSelector((state) => state.canvasConfig.scale);
+
+  const isShowText = useMemo(() => {
+    if (scaleSize <= 0.6) {
+      return false;
+    } else {
+      return true;
+    }
+  }, [scaleSize]);
+
+  const isInScreen = useMemo(() => {
+    if (
+      position.x + radius >= x1 &&
+      position.x <= x2 &&
+      position.y >= y1 &&
+      position.y <= y2
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }, [position.x, position.y, radius, x1, x2, y1, y2]);
 
   return (
     <>
-      {node.visible && node.id && (
+      {isInScreen && node.visible && node.id && (
         <AnimatePresence>
           <motion.g
             key={node.id}
@@ -148,13 +172,8 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
               dispatch(notHighlight(undefined));
             }}
             initial={{
-              x: parentNode ? parentNode.position.x : position.x,
-              y: parentNode ? parentNode.position.y : position.y,
-              opacity: 0,
-            }}
-            exit={{
-              x: parentNode ? parentNode.position.x : position.x,
-              y: parentNode ? parentNode.position.y : position.y,
+              x: position.x,
+              y: position.y,
               opacity: 0,
             }}
             animate={{
@@ -191,7 +210,7 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
               node-id={node.id}
               className={"node"}
               initial={{
-                r: 0,
+                r: radius / 2,
               }}
               animate={
                 !isHover
@@ -218,32 +237,36 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
                 size={radius / 40}
               />
             )}
-            <motion.text
-              className={"node"}
-              node-id={node.id}
-              fill={nameColor}
-              initial={{
-                fontSize: 0,
-              }}
-              animate={{ fontSize: nameSize }}
-              textAnchor={"middle"}
-              y={isHover ? radius + nameSize + 12 : radius + nameSize}
-            >
-              {name}
-            </motion.text>
-            <motion.text
-              className={"node"}
-              node-id={node.id}
-              fill={typeColor}
-              initial={{
-                fontSize: 0,
-              }}
-              animate={{ fontSize: typeSize }}
-              textAnchor={"middle"}
-              dominantBaseline={"central"}
-            >
-              {type}
-            </motion.text>
+            {isShowText && (
+              <>
+                <motion.text
+                  className={"node"}
+                  node-id={node.id}
+                  fill={nameColor}
+                  initial={{
+                    fontSize: 0,
+                  }}
+                  animate={{ fontSize: nameSize }}
+                  textAnchor={"middle"}
+                  y={isHover ? radius + nameSize + 12 : radius + nameSize}
+                >
+                  {name}
+                </motion.text>
+                <motion.text
+                  className={"node"}
+                  node-id={node.id}
+                  fill={typeColor}
+                  initial={{
+                    fontSize: 0,
+                  }}
+                  animate={{ fontSize: typeSize }}
+                  textAnchor={"middle"}
+                  dominantBaseline={"central"}
+                >
+                  {type}
+                </motion.text>
+              </>
+            )}
 
             {showNodeMenu && isHover && (
               <motion.g

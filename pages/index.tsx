@@ -3,7 +3,7 @@
  * @Date: 2022-10-08 08:25:48
  * @LastEditors: tohsaka888
  * @LastEditTime: 2022-10-09 15:05:15
- * @Description: 请填写简介
+ * @Description: demo
  */
 import { KnowledgeGraph } from "../KnowledgeGraph";
 import { baseUrl } from "../config/baseUrl";
@@ -39,8 +39,8 @@ const Home: NextPage = () => {
     <KnowledgeGraph
       explore={explore}
       basicDistence={38}
-      width={800}
-      height={500}
+      width={"100vw"}
+      height={"100vh"}
       position={{ x: 100, y: 100 }}
       onClickAddon={(node) => {
         message.success("addon" + node.id);

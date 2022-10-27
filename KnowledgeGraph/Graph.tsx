@@ -18,6 +18,7 @@ import RightMenuController from "./Controller/RightMenuController";
 import Helper from "./Helper";
 import { store } from "./store";
 import { ConfigProps } from "./typings/Config";
+import GraphBoundsController from "./Controller/GraphBoundsController";
 
 function GraphContainer({ children }: { children: React.ReactNode }) {
   const { config } = useContext(ConfigContext)!;
@@ -53,10 +54,12 @@ function Graph(graphConfig: ConfigProps) {
       <Provider store={store}>
         <RightMenuController>
           <FullScreenController>
-            <GraphContainer>
-              <Helper />
-              <Canvas />
-            </GraphContainer>
+            <GraphBoundsController>
+              <GraphContainer>
+                <Helper />
+                <Canvas />
+              </GraphContainer>
+            </GraphBoundsController>
           </FullScreenController>
         </RightMenuController>
       </Provider>
