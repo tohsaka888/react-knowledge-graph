@@ -25,6 +25,7 @@ import { useAppSelector } from "../hooks";
 import useCalcEdge from "../hooks/Edge/useCalcEdge";
 import { FcInfo, FcPlus } from "react-icons/fc";
 import { useGraphBounds } from "../Controller/GraphBoundsController";
+import useIsShowText from "../hooks/Graph/useIsShowText";
 
 function UnmemoNode({ node }: { node: NodeFrontProps }) {
   const { config } = useContext(ConfigContext)!;
@@ -46,15 +47,8 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
   const dispatch = useDispatch();
   const { calcD } = useCalcEdge();
   const { x1, x2, y1, y2 } = useGraphBounds();
-  const scaleSize = useAppSelector((state) => state.canvasConfig.scale);
 
-  const isShowText = useMemo(() => {
-    if (scaleSize <= 0.6) {
-      return false;
-    } else {
-      return true;
-    }
-  }, [scaleSize]);
+  const isShowText = useIsShowText();
 
   const isInScreen = useMemo(() => {
     if (
