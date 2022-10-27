@@ -6,13 +6,14 @@
  * @Description: 边
  */
 
-import React, { useContext, useState } from "react";
+import React, { useContext, useMemo, useState } from "react";
 import { motion, MotionConfig } from "framer-motion";
 import { ConfigContext } from "../Controller/ConfigController";
 import { defaultEdgeConfig } from "../config/edgeConfig";
 import useCalcEdge from "../hooks/Edge/useCalcEdge";
 import { EdgeFrontProps } from "../typings/Edge";
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
+import { useAppSelector } from "../hooks";
 
 function Edge(props: EdgeFrontProps) {
   const {
@@ -41,6 +42,16 @@ function Edge(props: EdgeFrontProps) {
     stroke,
     strokeWidth,
   } = defaultEdgeConfig;
+
+  const scaleSize = useAppSelector((state) => state.canvasConfig.scale);
+
+  const isShowText = useMemo(() => {
+    if (scaleSize <= 0.6) {
+      return false;
+    } else {
+      return true;
+    }
+  }, [scaleSize]);
 
   return (
     <MotionConfig reducedMotion="never">
@@ -107,7 +118,7 @@ function Edge(props: EdgeFrontProps) {
             />
           )}
 
-          {!isHovered && opacity === 1 && (
+          {isShowText && !isHovered && opacity === 1 && (
             <>
               <motion.text
                 textAnchor={"middle"}
@@ -155,7 +166,7 @@ function Edge(props: EdgeFrontProps) {
             </>
           )}
 
-          {isHovered && opacity === 1 && (
+          {isShowText && isHovered && opacity === 1 && (
             <motion.g
               style={{ offsetPath: `path("${d}")`, offsetDistance: "50%" }}
               initial={{ opacity: 0 }}
@@ -167,7 +178,7 @@ function Edge(props: EdgeFrontProps) {
             </motion.g>
           )}
 
-          {opacity !== 1 && (
+          {isShowText && opacity !== 1 && (
             <motion.g
               style={{ offsetPath: `path("${d}")`, offsetDistance: "50%" }}
               initial={{ opacity: 0 }}
