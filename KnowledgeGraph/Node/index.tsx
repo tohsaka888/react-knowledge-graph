@@ -210,17 +210,15 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
               node-id={node.id}
               className={"node"}
               initial={{
-                r: radius / 2,
+                r: radius,
               }}
               animate={
                 !isHover
                   ? {
-                      r: radius,
                       opacity: loading ? 0.3 : 1,
                       fill: fill,
                     }
                   : {
-                      r: radius,
                       opacity: loading ? 0.3 : 1,
                       fill: fill,
                       ...(hoverStyle as any),
