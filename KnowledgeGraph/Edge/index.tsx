@@ -14,6 +14,7 @@ import useCalcEdge from "../hooks/Edge/useCalcEdge";
 import { EdgeFrontProps } from "../typings/Edge";
 import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 import { useAppSelector } from "../hooks";
+import useIsShowText from "../hooks/Graph/useIsShowText";
 
 function Edge(props: EdgeFrontProps) {
   const {
@@ -43,15 +44,7 @@ function Edge(props: EdgeFrontProps) {
     strokeWidth,
   } = defaultEdgeConfig;
 
-  const scaleSize = useAppSelector((state) => state.canvasConfig.scale);
-
-  const isShowText = useMemo(() => {
-    if (scaleSize <= 0.6) {
-      return false;
-    } else {
-      return true;
-    }
-  }, [scaleSize]);
+  const isShowText = useIsShowText();
 
   return (
     <MotionConfig reducedMotion="never">
