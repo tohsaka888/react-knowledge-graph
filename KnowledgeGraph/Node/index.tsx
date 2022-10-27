@@ -209,10 +209,12 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
               animate={
                 !isHover
                   ? {
+                      r: radius,
                       opacity: loading ? 0.3 : 1,
                       fill: fill,
                     }
                   : {
+                      r: radius,
                       opacity: loading ? 0.3 : 1,
                       fill: fill,
                       ...(hoverStyle as any),
