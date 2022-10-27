@@ -14,9 +14,9 @@ const canvasSlice = createSlice({
   reducers: {
     setCanvasSize(state, action: PayloadAction<"zoom-in" | "zoom-out">) {
       if (action.payload === "zoom-in") {
-        state.scale *= 1.05;
+        state.scale *= 1.1;
       } else {
-        state.scale /= 1.05;
+        state.scale *= 0.9;
       }
     },
     setCanvasOffset(state, action: PayloadAction<{ dx: number; dy: number }>) {
