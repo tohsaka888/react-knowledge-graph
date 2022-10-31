@@ -9,5 +9,5 @@
     "skipLibCheck": true,
     "moduleResolution": "node"
   },
-  "include": ["KnowledgeGraph/**/*"]
+  "include": ["next-env.d.ts", "KnowledgeGraph/**/*"]
 }
