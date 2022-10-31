@@ -58,6 +58,9 @@ const Home: NextPage = () => {
       onExploreEnd={() => {
         message.info("已经到尾节点了!");
       }}
+      onClickFilterType={(nodes, isShowNodesAndEdges) => {
+        nodes.forEach((node) => isShowNodesAndEdges(node, false));
+      }}
       edgeConfig={{
         hoveredColor: "#e27272",
         stroke: "#DEDEDE",

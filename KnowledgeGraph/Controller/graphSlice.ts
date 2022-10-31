@@ -308,6 +308,37 @@ export const graphSlice: Slice<typeof initialState> = createSlice({
       state.nodes = action.payload.nodes;
       state.edges = action.payload.edges;
     },
+    /**
+     * 是否显示当前节点子节点和边
+     * @date 2022-10-31
+     * @param {any} state
+     * @param {any} action:PayloadAction<{node:NodeFrontProps;visible:boolean}>
+     * @returns {any}
+     */
+    isShowNodesAndEdges(
+      state,
+      action: PayloadAction<{ node: NodeFrontProps; visible: boolean }>
+    ) {
+      const currentNode = action.payload.node;
+      const visible = action.payload.visible;
+      state.nodes.forEach((n) => {
+        if (
+          n.pId.find((pId) => pId === currentNode.id) ||
+          n.id === currentNode.id
+        ) {
+          n.visible = visible;
+        }
+      });
+      state.edges.forEach((edge) => {
+        if (
+          edge.fromId === currentNode.id ||
+          edge.toId === currentNode.id ||
+          edge.pId.find((pId) => pId === currentNode.id)
+        ) {
+          edge.visible = visible;
+        }
+      });
+    },
   },
 });
 
@@ -326,5 +357,6 @@ export const {
   onMoveEnd,
   clearAllGraph,
   initGraph,
+  isShowNodesAndEdges,
 } = graphSlice.actions;
 export default graphSlice.reducer;

@@ -59,6 +59,10 @@ type ConfigProps = {
     color?: string;
     size?: number;
   };
+  onClickFilterType?: (
+    typeNodes: NodeFrontProps[],
+    unShowNodesAndEdges: (node: NodeFrontProps, visible: boolean) => void
+  ) => void;
 };
 
 type CanvasConfig = {
