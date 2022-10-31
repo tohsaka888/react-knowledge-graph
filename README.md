@@ -15,7 +15,6 @@ devThis is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-n
 [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](https://github.com/tohsaka888/react-knowledge-graph/blob/master/LICENSE)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-
 ## 简介
 
 基于 `Next.js`实现通用知识图谱组件。
@@ -91,6 +90,14 @@ yarn add react-knowledge-graph
 ```
 
 ### 使用
+
+在顶部文件引入样式文件:
+
+```tsx
+import "react-knowledge-graph/KnowledgeGraph/index.css";
+```
+
+下一步:
 
 ```tsx
 <KnowledgeGraph
