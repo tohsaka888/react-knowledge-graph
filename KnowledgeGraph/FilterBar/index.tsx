@@ -4,7 +4,6 @@ import { BsFillFilterCircleFill } from "react-icons/bs";
 import { ConfigContext } from "../Controller/ConfigController";
 import { isShowNodesAndEdges } from "../Controller/graphSlice";
 import { useAppDispatch, useAppSelector } from "../hooks";
-import styles from "./index.module.css";
 
 function FilterBar() {
   const [visible, setVisible] = useState<boolean>(false);
@@ -56,7 +55,7 @@ function FilterBar() {
             />
           </motion.div>
           <motion.div
-            className={styles["bar-container"]}
+            className={"bar-container"}
             animate={{
               opacity: visible ? 1 : 0,
               top: visible ? "0px" : "-100px",
