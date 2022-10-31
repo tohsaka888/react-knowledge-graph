@@ -54,6 +54,11 @@ type ConfigProps = {
   showNodeMenu?: boolean;
   onClickInfo?: (node: NodeFrontProps) => void;
   onClickAddon?: (node: NodeFrontProps) => void;
+  showFilter?: boolean;
+  filterConfig?: {
+    color?: string;
+    size?: number;
+  };
 };
 
 type CanvasConfig = {
