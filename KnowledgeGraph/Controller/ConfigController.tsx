@@ -12,7 +12,6 @@ type ConfigContextProps = {
 
 export const ConfigContext = createContext<ConfigContextProps | null>(null);
 
-
 function ConfigController({ graphConfig, children }: Props) {
   return (
     <ConfigContext.Provider
@@ -20,6 +19,11 @@ function ConfigController({ graphConfig, children }: Props) {
         config: {
           showHelper: true,
           helperConfig: {
+            color: "#cecece",
+            size: 24,
+          },
+          showFilter: true,
+          filterConfig: {
             color: "#cecece",
             size: 24,
           },
