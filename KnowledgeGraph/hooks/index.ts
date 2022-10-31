@@ -14,5 +14,4 @@ export { default as useCalcEdge } from "./Edge/useCalcEdge";
 export { default as useAutoExplore } from "./Graph/useAutoExplore";
 export { default as useIsShowText } from "./Graph/useIsShowText";
 
-export { default as useUnShowNodesAndEdges } from "./Node/useUnShowNodesAndEdges";
 export { default as useNodes } from "./Node/useNodes";
