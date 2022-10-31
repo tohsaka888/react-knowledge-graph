@@ -19,6 +19,7 @@ import Helper from "./Helper";
 import { store } from "./store";
 import { ConfigProps } from "./typings/Config";
 import GraphBoundsController from "./Controller/GraphBoundsController";
+import FilterBar from "./FilterBar";
 
 function GraphContainer({ children }: { children: React.ReactNode }) {
   const { config } = useContext(ConfigContext)!;
@@ -57,6 +58,7 @@ function Graph(graphConfig: ConfigProps) {
             <GraphBoundsController>
               <GraphContainer>
                 <Helper />
+                <FilterBar />
                 <Canvas />
               </GraphContainer>
             </GraphBoundsController>
