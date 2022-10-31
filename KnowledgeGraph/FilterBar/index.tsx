@@ -31,77 +31,81 @@ function FilterBar() {
 
   return (
     <>
-      <motion.div
-        initial={{
-          position: "absolute",
-          top: "16px",
-          right: "48px",
-          background: "transparent",
-          cursor: "pointer",
-          userSelect: "none",
-          zIndex: 10,
-        }}
-        onClick={() => setVisible(!visible)}
-        whileHover={{
-          opacity: 0.5,
-        }}
-      >
-        <BsFillFilterCircleFill
-          style={{
-            fontSize: config.filterConfig?.size,
-            color: config.filterConfig?.color,
-          }}
-        />
-      </motion.div>
-      <motion.div
-        className={styles["bar-container"]}
-        animate={{
-          opacity: visible ? 1 : 0,
-          top: visible ? "0px" : "-100px",
-          background: "#fff",
-          width: "100%",
-          overflowX: "auto",
-          overflowY: "hidden",
-        }}
-        transition={{
-          type: "spring",
-        }}
-      >
-        {types.map((type) => {
-          return (
-            <motion.div
-              key={type.type}
-              onClick={() => {
-                const typeNodes = nodes.filter(
-                  (node) => node.type === type.type
-                );
-                config.onClickFilterType &&
-                  config.onClickFilterType(typeNodes, (node, visible) => {
-                    console.log(node);
-                    dispatch(isShowNodesAndEdges({ node, visible }));
-                  });
+      {config.showFilter && (
+        <>
+          <motion.div
+            initial={{
+              position: "absolute",
+              top: "16px",
+              right: "48px",
+              background: "transparent",
+              cursor: "pointer",
+              userSelect: "none",
+              zIndex: 10,
+            }}
+            onClick={() => setVisible(!visible)}
+            whileHover={{
+              opacity: 0.5,
+            }}
+          >
+            <BsFillFilterCircleFill
+              style={{
+                fontSize: config.filterConfig?.size,
+                color: config.filterConfig?.color,
               }}
-              initial={{
-                fontSize: "10px",
-                marginRight: "8px",
-                borderRadius: "5px",
-                background: config.typeConfig![type.type].fill,
-                padding: "2px 6px",
-                color: "#fff",
-                cursor: "pointer",
-                overflow: "hidden",
-                whiteSpace: "nowrap",
-                minWidth: "max-content",
-              }}
-            >
-              <motion.span initial={{ marginRight: "4px" }}>
-                {type.type}
-              </motion.span>
-              <motion.span>{type.count}个</motion.span>
-            </motion.div>
-          );
-        })}
-      </motion.div>
+            />
+          </motion.div>
+          <motion.div
+            className={styles["bar-container"]}
+            animate={{
+              opacity: visible ? 1 : 0,
+              top: visible ? "0px" : "-100px",
+              background: "#fff",
+              width: "100%",
+              overflowX: "auto",
+              overflowY: "hidden",
+            }}
+            transition={{
+              type: "spring",
+            }}
+          >
+            {types.map((type) => {
+              return (
+                <motion.div
+                  key={type.type}
+                  onClick={() => {
+                    const typeNodes = nodes.filter(
+                      (node) => node.type === type.type
+                    );
+                    config.onClickFilterType &&
+                      config.onClickFilterType(typeNodes, (node, visible) => {
+                        console.log(node);
+                        dispatch(isShowNodesAndEdges({ node, visible }));
+                      });
+                  }}
+                  initial={{
+                    fontSize: "10px",
+                    marginRight: "8px",
+                    borderRadius: "5px",
+                    background: config.typeConfig![type.type].fill,
+                    padding: "2px 6px",
+                    color: "#fff",
+                    cursor: "pointer",
+                    overflow: "hidden",
+                    whiteSpace: "nowrap",
+                    minWidth: "max-content",
+                  }}
+                >
+                  <motion.span initial={{ marginRight: "4px" }}>
+                    {type.type}
+                  </motion.span>
+                  <motion.span>{type.count}个</motion.span>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </>
+      )}
     </>
   );
 }
