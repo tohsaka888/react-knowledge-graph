@@ -88,7 +88,7 @@ function FilterBar() {
               <motion.span initial={{ marginRight: "4px" }}>
                 {type.type}
               </motion.span>
-              <motion.span>{type.count}</motion.span>
+              <motion.span>{type.count}个</motion.span>
             </motion.div>
           );
         })}
