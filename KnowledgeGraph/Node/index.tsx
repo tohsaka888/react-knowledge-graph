@@ -24,7 +24,7 @@ import {
 import { useAppSelector } from "../hooks";
 import useCalcEdge from "../hooks/Edge/useCalcEdge";
 import { FcInfo, FcPlus } from "react-icons/fc";
-import { useGraphBounds } from "../Controller/GraphBoundsController";
+// import { useGraphBounds } from "../Controller/GraphBoundsController";
 import useIsShowText from "../hooks/Graph/useIsShowText";
 
 function UnmemoNode({ node }: { node: NodeFrontProps }) {
@@ -46,26 +46,27 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
   const { exploreFunc, loading } = useExplore();
   const dispatch = useDispatch();
   const { calcD } = useCalcEdge();
-  const { x1, x2, y1, y2 } = useGraphBounds();
+  // const { x1, x2, y1, y2 } = useGraphBounds();
 
   const isShowText = useIsShowText();
 
-  const isInScreen = useMemo(() => {
-    if (
-      position.x + radius >= x1 &&
-      position.x <= x2 &&
-      position.y >= y1 &&
-      position.y <= y2
-    ) {
-      return true;
-    } else {
-      return false;
-    }
-  }, [position.x, position.y, radius, x1, x2, y1, y2]);
+  // const isInScreen = useMemo(() => {
+  //   // if (
+  //   //   position.x + radius >= x1 &&
+  //   //   position.x <= x2 &&
+  //   //   position.y >= y1 &&
+  //   //   position.y <= y2
+  //   // ) {
+  //   //   return true;
+  //   // } else {
+  //   //   return false;
+  //   // }
+  //   return true
+  // }, [position.x, position.y, radius, x1, x2, y1, y2]);
 
   return (
     <>
-      {isInScreen && node.visible && node.id && (
+      {node.visible && node.id && (
         <AnimatePresence>
           <motion.g
             key={node.id}
