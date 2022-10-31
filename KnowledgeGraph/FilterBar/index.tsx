@@ -17,7 +17,7 @@ function FilterBar() {
         if (!current) {
           res.push({
             type,
-            count: 0,
+            count: 1,
           });
         } else {
           current.count++;
@@ -69,7 +69,6 @@ function FilterBar() {
         }}
         transition={{
           type: "spring",
-          bounce: 0.5,
         }}
       >
         {types.map((type) => {
