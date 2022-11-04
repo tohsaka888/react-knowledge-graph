@@ -7,7 +7,7 @@ specifiers:
   '@types/node': 18.11.9
   '@types/react': 18.0.24
   '@types/react-dom': 18.0.8
-  antd: 4.24.0
+  antd: 4.24.1
   eslint: 8.26.0
   eslint-config-next: 13.0.2
   framer-motion: 7.6.4
@@ -31,7 +31,7 @@ devDependencies:
   '@types/node': 18.11.9
   '@types/react': 18.0.24
   '@types/react-dom': 18.0.8
-  antd: 4.24.0_biqbaboplfbrettd7655fr4n2y
+  antd: 4.24.1_biqbaboplfbrettd7655fr4n2y
   eslint: 8.26.0
   eslint-config-next: 13.0.2_wyqvi574yv7oiwfeinomdzmc3m
   mongodb: 4.11.0
@@ -1383,8 +1383,8 @@ packages:
       color-convert: 2.0.1
     dev: true
 
-  /antd/4.24.0_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-ksk856MY359Gw7fMEPcOOKP7szvDHDNOaVd/uc5d4MK0qVX9LNjnmBGvp2BMUz20aAGalSrT5uVEhVdpxU9USA==}
+  /antd/4.24.1_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-YzHOODx3kbgUKQ7FouuukkkWzLGnbAjIxN6VShOnzOiRWe8EHo7wXyM8De0cASjw/8+SmrqyyK0np+ohQ7WntQ==}
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
