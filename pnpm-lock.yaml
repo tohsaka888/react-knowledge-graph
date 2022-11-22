@@ -7,7 +7,7 @@ specifiers:
   '@types/node': 18.11.9
   '@types/react': 18.0.25
   '@types/react-dom': 18.0.9
-  antd: 5.0.0
+  antd: 5.0.1
   eslint: 8.27.0
   eslint-config-next: 13.0.4
   framer-motion: 7.6.7
@@ -31,7 +31,7 @@ devDependencies:
   '@types/node': 18.11.9
   '@types/react': 18.0.25
   '@types/react-dom': 18.0.9
-  antd: 5.0.0_biqbaboplfbrettd7655fr4n2y
+  antd: 5.0.1_biqbaboplfbrettd7655fr4n2y
   eslint: 8.27.0
   eslint-config-next: 13.0.4_e3uo4sehh4zr4i6m57mkkxxv7y
   mongodb: 4.12.0
@@ -48,8 +48,8 @@ packages:
       '@ctrl/tinycolor': 3.4.1
     dev: true
 
-  /@ant-design/cssinjs/0.0.0-alpha.60_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-EQlU5f20flZMQ9XDbR/RL5MhQedgkHXR6o4pfbe6cMv0YMXK/jv669++N8msC7ZoNnGf2OxbmGRkvVS0OqG3iw==}
+  /@ant-design/cssinjs/1.0.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-MXrr59WU03RMK2Zlp1zjJzevC8bqNiK4Hkv/WUEounBH35qirbx83DbY2ASkVSn6pdEGI9lCF2LS4oVytDOauQ==}
     peerDependencies:
       react: '>=16.0.0'
       react-dom: '>=16.0.0'
@@ -1436,14 +1436,14 @@ packages:
       color-convert: 2.0.1
     dev: true
 
-  /antd/5.0.0_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-3IGHXl3KokGrkYIk2P2fQytDloTmdw9vgMHJzFsusBrAEnRXoN8oSWrN/N6D7f5hWqRusSaAIlPTsYSIcPHFrQ==}
+  /antd/5.0.1_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-t+YqAWW2smxdQsxTTtNHt9nErESnCS/pcuze4EgPNOi5M++fv7wXBhmk1ZJgxNTDKKxoy134H9vL1ZFq3cWpgQ==}
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
     dependencies:
       '@ant-design/colors': 6.0.0
-      '@ant-design/cssinjs': 0.0.0-alpha.60_biqbaboplfbrettd7655fr4n2y
+      '@ant-design/cssinjs': 1.0.0_biqbaboplfbrettd7655fr4n2y
       '@ant-design/icons': 4.7.0_biqbaboplfbrettd7655fr4n2y
       '@ant-design/react-slick': 0.29.2_react@18.2.0
       '@babel/runtime': 7.19.0
@@ -1468,7 +1468,7 @@ packages:
       rc-motion: 2.6.2_biqbaboplfbrettd7655fr4n2y
       rc-notification: 5.0.0-alpha.9_biqbaboplfbrettd7655fr4n2y
       rc-pagination: 3.2.0_biqbaboplfbrettd7655fr4n2y
-      rc-picker: 3.0.0-4_biqbaboplfbrettd7655fr4n2y
+      rc-picker: 3.1.1_cgitjz73zezuu2blrtaxijn4d4
       rc-progress: 3.4.1_biqbaboplfbrettd7655fr4n2y
       rc-rate: 2.9.2_biqbaboplfbrettd7655fr4n2y
       rc-resize-observer: 1.2.0_biqbaboplfbrettd7655fr4n2y
@@ -1490,6 +1490,9 @@ packages:
       react-dom: 18.2.0_react@18.2.0
       scroll-into-view-if-needed: 2.2.29
       shallowequal: 1.1.0
+    transitivePeerDependencies:
+      - date-fns
+      - moment
     dev: true
 
   /argparse/2.0.1:
@@ -1683,11 +1686,6 @@ packages:
 
   /damerau-levenshtein/1.0.8:
     resolution: {integrity: sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==}
-    dev: true
-
-  /date-fns/2.29.3:
-    resolution: {integrity: sha512-dDCnyH2WnnKusqvZZ6+jA1O51Ibt8ZMRNkDZdyAyK4YfbDwa/cEmuztzG5pk6hqlp9aSBPYcjOlktquahGwGeA==}
-    engines: {node: '>=0.11'}
     dev: true
 
   /dayjs/1.11.5:
@@ -2657,10 +2655,6 @@ packages:
     resolution: {integrity: sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==}
     dev: true
 
-  /moment/2.29.4:
-    resolution: {integrity: sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==}
-    dev: true
-
   /mongodb-connection-string-url/2.5.4:
     resolution: {integrity: sha512-SeAxuWs0ez3iI3vvmLk/j2y+zHwigTDKQhtdxTgt5ZCOQQS5+HW4g45/Xw5vzzbn7oQXCNQ24Z40AkJsizEy7w==}
     dependencies:
@@ -3173,18 +3167,26 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: true
 
-  /rc-picker/3.0.0-4_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-2otFBRBCACE/cubgLgkhtuo+M6AAuYssgjQmRmD+g/R+RDPQVV0MZTRDYhy6YOmlK8yj+gUc73YfUEYhfecBZw==}
+  /rc-picker/3.1.1_cgitjz73zezuu2blrtaxijn4d4:
+    resolution: {integrity: sha512-Z61U2upedvnMJ0SafnGF89tyiQd421lYrkZCTZmywOcJpC4zKieuVmsGD/uHnlx4gMtcwooVWNCuVezomNtk8g==}
     engines: {node: '>=8.x'}
     peerDependencies:
+      date-fns: '>= 2.x'
+      dayjs: '>= 1.x'
+      moment: '>= 2.x'
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
+    peerDependenciesMeta:
+      date-fns:
+        optional: true
+      dayjs:
+        optional: true
+      moment:
+        optional: true
     dependencies:
       '@babel/runtime': 7.19.0
       classnames: 2.3.2
-      date-fns: 2.29.3
       dayjs: 1.11.5
-      moment: 2.29.4
       rc-trigger: 5.3.1_biqbaboplfbrettd7655fr4n2y
       rc-util: 5.24.4_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
