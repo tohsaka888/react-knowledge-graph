@@ -1,6 +1,6 @@
 {
   "name": "react-knowledge-graph",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "React知识图谱组件",
   "private": false,
   "scripts": {
