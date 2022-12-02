@@ -226,12 +226,14 @@ function RightMenuContent() {
 }
 
 function RightClickMenu() {
-  const bodyRef = useRef<HTMLElement>(null!);
+  const knowledgeGraphRef = useRef<HTMLElement>(null!);
   const setEvent = useRightMenuEventDispatch();
   const event = useRightMenuEvent();
 
   useEffect(() => {
-    bodyRef.current = document.body;
+    knowledgeGraphRef.current = document.getElementById(
+      "knowledge-graph-container"
+    ) as HTMLElement;
 
     return () => {
       setEvent(null);
@@ -239,8 +241,11 @@ function RightClickMenu() {
   }, [setEvent]);
 
   return (
-    bodyRef.current &&
-    ReactDOM.createPortal(<>{event && <RightMenuContent />}</>, bodyRef.current)
+    knowledgeGraphRef.current &&
+    ReactDOM.createPortal(
+      <>{event && <RightMenuContent />}</>,
+      knowledgeGraphRef.current
+    )
   );
 }
 
