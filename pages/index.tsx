@@ -24,7 +24,6 @@ const Home: NextPage = () => {
   };
 
   const explore = async (id: string, node: NodeProps) => {
-    console.log(node);
     const inside = await getNode(id, "inside");
     const outside = await getNode(id, "outside");
     const edges = await getEdge(id);
@@ -49,6 +48,7 @@ const Home: NextPage = () => {
       onClickInfo={(node) => {
         message.success("info" + node.id);
       }}
+      style={{ background: "#fff", color: "#000" }}
       node={{
         id: "node-0",
         type: "根节点",
