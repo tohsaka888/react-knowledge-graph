@@ -32,13 +32,18 @@ type TypeConfig = {
   [type: string]: NodeConfig;
 };
 
+type ExploreFunc = (
+  id: string,
+  node: NodeProps
+) => Promise<{
+  inside: NodeProps[];
+  outside: NodeProps[];
+  edges: EdgeProps[];
+}>;
+
 type ConfigProps = {
   basicDistence: number; // 基础半径
-  explore: (id: string) => Promise<{
-    inside: NodeProps[];
-    outside: NodeProps[];
-    edges: EdgeProps[];
-  }>;
+  explore: ExploreFunc;
   onExploreEnd?: () => void;
   node: NodeProps;
   position: { x: number; y: number };
@@ -71,4 +76,11 @@ type CanvasConfig = {
   scale: number;
 };
 
-export type { EdgeConfig, ConfigProps, NodeConfig, TypeConfig, CanvasConfig };
+export type {
+  EdgeConfig,
+  ConfigProps,
+  NodeConfig,
+  TypeConfig,
+  CanvasConfig,
+  ExploreFunc,
+};
