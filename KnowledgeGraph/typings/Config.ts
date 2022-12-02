@@ -6,7 +6,7 @@
  * @Description: config type
  */
 
-import { CSSProperties } from "react";
+import { CSSProperties, HTMLAttributes } from "react";
 import { EdgeProps } from "./Edge";
 import { NodeFrontProps, NodeProps } from "./Node";
 
@@ -68,7 +68,7 @@ type ConfigProps = {
     typeNodes: NodeFrontProps[],
     unShowNodesAndEdges: (node: NodeFrontProps, visible: boolean) => void
   ) => void;
-};
+} & HTMLAttributes<HTMLDivElement>;
 
 type CanvasConfig = {
   x: number;
