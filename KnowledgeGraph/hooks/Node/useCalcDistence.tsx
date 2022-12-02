@@ -20,7 +20,11 @@ function useCalcDistence() {
   const calcDistence = useCallback(
     ({ deg, length }: Props) => {
       const basicDistence = config.basicDistence;
-      return basicDistence + basicDistence * 0.1 * (30 / deg) * length;
+      return (
+        basicDistence +
+        basicDistence * (1 / deg) +
+        (length / 3) * basicDistence
+      );
     },
     [config.basicDistence]
   );
