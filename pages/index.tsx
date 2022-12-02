@@ -5,7 +5,7 @@
  * @LastEditTime: 2022-10-09 15:05:15
  * @Description: demo
  */
-import { KnowledgeGraph } from "../KnowledgeGraph";
+import { KnowledgeGraph, NodeProps } from "../KnowledgeGraph";
 import { baseUrl } from "../config/baseUrl";
 import type { NextPage } from "next";
 import { message } from "antd";
@@ -23,7 +23,8 @@ const Home: NextPage = () => {
     return data;
   };
 
-  const explore = async (id: string) => {
+  const explore = async (id: string, node: NodeProps) => {
+    console.log(node);
     const inside = await getNode(id, "inside");
     const outside = await getNode(id, "outside");
     const edges = await getEdge(id);
@@ -57,9 +58,6 @@ const Home: NextPage = () => {
       }}
       onExploreEnd={() => {
         message.info("已经到尾节点了!");
-      }}
-      onClickFilterType={(nodes, isShowNodesAndEdges) => {
-        nodes.forEach((node) => isShowNodesAndEdges(node, false));
       }}
       edgeConfig={{
         hoveredColor: "#e27272",
