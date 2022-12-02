@@ -38,7 +38,7 @@ const Home: NextPage = () => {
   return (
     <KnowledgeGraph
       explore={explore}
-      basicDistence={60}
+      basicDistence={100}
       width={"100vw"}
       height={"100vh"}
       position={{ x: 100, y: 100 }}

@@ -22,8 +22,8 @@ function useCalcDistence() {
       const basicDistence = config.basicDistence;
       return (
         basicDistence +
-        basicDistence * (1 / deg) +
-        (length / 3) * basicDistence
+        basicDistence * (0.5 / deg) +
+        (length / 5) * basicDistence
       );
     },
     [config.basicDistence]
