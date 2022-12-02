@@ -40,8 +40,8 @@ function GraphContainer({ children }: { children: React.ReactNode }) {
         id={"knowledge-graph-container"}
         style={{
           position: "relative",
-          width: !isFullScreen ? config.width : screenRef.current.width,
-          height: !isFullScreen ? config.height : screenRef.current.height,
+          width: config.width,
+          height: config.height,
           overflow: "hidden",
         }}
       >
