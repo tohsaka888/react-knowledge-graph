@@ -35,16 +35,18 @@ function GraphContainer({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <div
-      style={{
-        position: "relative",
-        width: !isFullScreen ? config.width : screenRef.current.width,
-        height: !isFullScreen ? config.height : screenRef.current.height,
-        overflow: "hidden",
-      }}
-      id={"knowledge-graph-container"}
-    >
-      {children}
+    <div {...config}>
+      <div
+        id={"knowledge-graph-container"}
+        style={{
+          position: "relative",
+          width: !isFullScreen ? config.width : screenRef.current.width,
+          height: !isFullScreen ? config.height : screenRef.current.height,
+          overflow: "hidden",
+        }}
+      >
+        {children}
+      </div>
     </div>
   );
 }
