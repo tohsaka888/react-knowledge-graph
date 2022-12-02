@@ -60,6 +60,7 @@ type ConfigProps = {
   onClickInfo?: (node: NodeFrontProps) => void;
   onClickAddon?: (node: NodeFrontProps) => void;
   showFilter?: boolean;
+  enableAutoExplore?: boolean;
   filterConfig?: {
     color?: string;
     size?: number;

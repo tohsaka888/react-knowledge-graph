@@ -19,14 +19,15 @@ function useAutoExplore() {
 
     exploredPath.forEach((path) => {
       const { node, inside, outside, edges } = path;
-      exploreFunc({
-        node,
-        syncExplore: () => ({
-          inside,
-          outside,
-          edges,
-        }),
-      });
+      graphConfig.enableAutoExplore &&
+        exploreFunc({
+          node,
+          syncExplore: () => ({
+            inside,
+            outside,
+            edges,
+          }),
+        });
     });
 
     return () => {

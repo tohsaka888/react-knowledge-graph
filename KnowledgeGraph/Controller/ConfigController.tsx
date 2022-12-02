@@ -28,6 +28,7 @@ function ConfigController({ graphConfig, children }: Props) {
             size: 24,
           },
           showNodeMenu: true,
+          enableAutoExplore: true,
           ...graphConfig,
         },
       }}
