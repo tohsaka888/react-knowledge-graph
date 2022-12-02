@@ -17,9 +17,14 @@ function useAutoExplore() {
       })
     );
 
+    const shouldAutoExplore = exploredPath.length
+      ? exploredPath[0].node.id === graphConfig.node.id
+      : false;
+
     exploredPath.forEach((path) => {
       const { node, inside, outside, edges } = path;
       graphConfig.enableAutoExplore &&
+        shouldAutoExplore &&
         exploreFunc({
           node,
           syncExplore: () => ({
