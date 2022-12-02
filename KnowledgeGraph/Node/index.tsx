@@ -241,9 +241,11 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
                   initial={{
                     fontSize: 0,
                   }}
-                  animate={{ fontSize: nameSize }}
+                  animate={{
+                    fontSize: nameSize,
+                    y: isHover ? radius + nameSize + 12 : radius + nameSize + 3,
+                  }}
                   textAnchor={"middle"}
-                  y={isHover ? radius + nameSize + 12 : radius + nameSize}
                 >
                   {name}
                 </motion.text>
