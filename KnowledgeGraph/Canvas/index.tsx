@@ -71,7 +71,7 @@ function CanvasContainer({ children }: { children: React.ReactNode }) {
           setEvent(null);
         }}
         onWheel={(e) => {
-          startTransition(() => {
+          requestAnimationFrame(() => {
             if (e.deltaY < 0) {
               dispatch(setCanvasSize("zoom-in"));
             } else {
