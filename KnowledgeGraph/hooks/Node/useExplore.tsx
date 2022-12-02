@@ -49,7 +49,7 @@ function useExplore() {
       if (!node.isExplore) {
         const { inside, outside, edges } = syncExplore
           ? syncExplore(node.id)
-          : await explore(node.id);
+          : await explore(node.id, node);
 
         dispatch(addExploredPath({ node, inside, outside, edges }));
 
