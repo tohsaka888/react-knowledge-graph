@@ -8,7 +8,7 @@
 
 import React, {
   useCallback,
-  useContext,
+  // useContext,
   useEffect,
   useMemo,
   useRef,
@@ -26,7 +26,7 @@ import {
   moveCanvasToPosition,
   resetCanvas,
 } from "../Controller/canvasConfigSlice";
-import { useDispatchFullScreen } from "../Controller/FullScreenController";
+// import { useDispatchFullScreen } from "../Controller/FullScreenController";
 import {
   useRightMenuEvent,
   useRightMenuEventDispatch,
@@ -37,7 +37,7 @@ const nodeItems = ["当前实体居中", "显示当前节点关系", "显示所�
 const imageItems = ["JPG", "JPEG", "PNG", "BMP"];
 
 function RightMenuContent() {
-  const canvasConfig = useAppSelector((state) => state.canvasConfig);
+  // const canvasConfig = useAppSelector((state) => state.canvasConfig);
   const dispatch = useAppDispatch();
   const event = useRightMenuEvent();
   const setEvent = useRightMenuEventDispatch();
@@ -74,14 +74,16 @@ function RightMenuContent() {
       const gElement = document.getElementById("graph-drag")!;
       const width = gElement.getBoundingClientRect().width + 50;
       const height = gElement.getBoundingClientRect().height + 50;
-      const left = gElement.getBoundingClientRect().left;
-      const top = gElement.getBoundingClientRect().top;
+      // const left = gElement.getBoundingClientRect().left;
+      // const top = gElement.getBoundingClientRect().top;
+      const minX = Math.min(...nodes.map((n) => n.position.x));
+      const minY = Math.min(...nodes.map((n) => n.position.y));
 
       const graph = document.getElementById("knowledge-graph-canvas")!;
       const clonedGraph = graph.cloneNode(true) as SVGSVGElement;
       (clonedGraph.firstChild! as SVGGElement).style.transform = `translateX(${
-        canvasConfig.x - left + 25
-      }px) translateY(${canvasConfig.y - top + 25}px)`;
+        -minX + 25
+      }px) translateY(${-minY + 25}px)`;
 
       let serializer = new XMLSerializer();
 
@@ -111,7 +113,7 @@ function RightMenuContent() {
         a.click();
       };
     },
-    [canvasConfig.x, canvasConfig.y]
+    [nodes]
   );
 
   const [isDownload, setIsDownload] = useState<boolean>(false);

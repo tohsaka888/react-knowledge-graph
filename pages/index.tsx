@@ -36,7 +36,7 @@ const Home: NextPage = () => {
   };
 
   return (
-    <Modal open={true} width={1000}>
+    // <Modal open={true} width={1000}>
       <KnowledgeGraph
         explore={explore}
         basicDistence={100}
@@ -102,7 +102,7 @@ const Home: NextPage = () => {
           },
         }}
       />
-    </Modal>
+    // </Modal>
   );
 };
 
