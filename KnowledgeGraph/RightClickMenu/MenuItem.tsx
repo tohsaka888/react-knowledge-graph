@@ -20,14 +20,15 @@ function MenuItem({ children, onClick: clickEvent, index, length }: Props) {
   return (
     <motion.div
       initial={{
-        width: "150px",
-        height: "38px",
+        width: "130px",
+        height: "30px",
         background: "#fff",
         display: "flex",
         alignItems: "center",
         color: "#666666",
         padding: "0px 16px",
         cursor: "pointer",
+        fontSize: "12px",
         borderBottom: index !== length - 1 ? "1px solid #dfdfdf" : "none",
       }}
       whileHover={{
