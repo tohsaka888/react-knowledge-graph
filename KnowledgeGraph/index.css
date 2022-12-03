@@ -27,3 +27,27 @@
 .bar-container::-webkit-scrollbar-thumb:window-inactive {
   background: rgba(255, 0, 0, 0.4);
 }
+
+.arrow-active {
+  animation: followpath 3s linear infinite;
+}
+
+@keyframes followpath {
+  0% {
+    offset-distance: 0%;
+    opacity: 0;
+    transform: scale(1);
+  }
+  50% {
+    motion-offset: 40%;
+    offset-distance: 40%;
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  100% {
+    motion-offset: 100%;
+    offset-distance: 100%;
+    opacity: 0.5;
+    transform: scale(0.5);
+  }
+}
