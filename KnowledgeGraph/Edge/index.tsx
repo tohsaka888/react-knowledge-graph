@@ -6,14 +6,17 @@
  * @Description: 边
  */
 
-import React, { useContext, useMemo, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { motion, MotionConfig } from "framer-motion";
 import { ConfigContext } from "../Controller/ConfigController";
 import { defaultEdgeConfig } from "../config/edgeConfig";
 import useCalcEdge from "../hooks/Edge/useCalcEdge";
 import { EdgeFrontProps } from "../typings/Edge";
-import { BsFillEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
-import { useAppSelector } from "../hooks";
+import {
+  BsCursorFill,
+  BsFillEyeFill,
+  BsFillEyeSlashFill,
+} from "react-icons/bs";
 import useIsShowText from "../hooks/Graph/useIsShowText";
 
 function Edge(props: EdgeFrontProps) {
@@ -42,9 +45,11 @@ function Edge(props: EdgeFrontProps) {
     hoveredColor,
     stroke,
     strokeWidth,
+    flyLineEffect,
   } = defaultEdgeConfig;
 
   const isShowText = useIsShowText();
+  const edgeRef = useRef<SVGPathElement>(null!);
 
   return (
     <MotionConfig reducedMotion="never">
@@ -66,6 +71,7 @@ function Edge(props: EdgeFrontProps) {
             to-id={toId}
             fill={"none"}
             width={20}
+            ref={edgeRef}
             initial={{ opacity: 0, pathLength: 0 }}
             animate={{
               stroke: edgeConfig?.stroke || stroke,
@@ -85,57 +91,73 @@ function Edge(props: EdgeFrontProps) {
             }}
           />
 
-          {isActive && (
-            <motion.path
-              id={(id + "active") as string}
-              fill={"none"}
-              animate={{
-                d,
-                stroke: "#2890ff",
-                // opacity: needHighlight ? [0.5, 1] : 1,
-                strokeWidth: 3,
-                pathSpacing: 1,
-                pathLength: [0, 0.5],
-                pathOffset: [0, 1],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                repeatType: "loop",
-                repeatDelay: 0,
-                delay: 0,
-                d: {
-                  duration: 0,
-                },
-              }}
-            />
-          )}
+          {(edgeConfig?.flyLineEffect || flyLineEffect) === "line" &&
+            isActive && (
+              <motion.path
+                id={(id + "active") as string}
+                fill={"none"}
+                animate={{
+                  d,
+                  stroke: isActive
+                    ? edgeConfig?.hoveredColor || "#1890ff"
+                    : edgeConfig?.stroke || "#cecece",
+                  // opacity: needHighlight ? [0.5, 1] : 1,
+                  strokeWidth: 2,
+                  // pathSpacing: 1,
+                  pathLength: [0, 0.3],
+                  pathOffset: [0, 1],
+                  opacity: [0, 1, 0],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  d: {
+                    duration: 0,
+                  },
+                }}
+              />
+            )}
 
           {isShowText && !isHovered && opacity === 1 && (
             <>
-              <motion.text
-                textAnchor={"middle"}
-                dominantBaseline={"central"}
-                dy={-1.5}
+              <motion.g
+                style={{
+                  offsetPath: `path("${d}")`,
+                  offsetDistance: "50%",
+                }}
+                initial={{ opacity: 0 }}
+                animate={{
+                  opacity: 1,
+                }}
+                id={id + "arrow"}
+                className={
+                  (edgeConfig?.flyLineEffect || flyLineEffect) === "arrow" &&
+                  isActive
+                    ? "arrow-active"
+                    : undefined
+                }
               >
-                <motion.textPath
-                  href={`#${id}`}
-                  fontSize={24}
-                  initial={{
-                    opacity: 0,
-                  }}
-                  animate={{
-                    fill: isActive
-                      ? edgeConfig?.hoveredColor || hoveredColor
-                      : edgeConfig?.stroke || stroke,
-                    opacity: false ? [0.5, 1] : 1,
-                  }}
-                  startOffset={"50%"}
-                  id={id + "direction"}
-                >
-                  ▸
-                </motion.textPath>
-              </motion.text>
+                {edgeConfig?.arrowIcon ? (
+                  edgeConfig.arrowIcon
+                ) : (
+                  <motion.g
+                    initial={{
+                      transform: "rotate(45deg) translate(0px, -7.9px)",
+                    }}
+                  >
+                    <BsCursorFill
+                      color={
+                        isActive
+                          ? edgeConfig?.hoveredColor || "#1890ff"
+                          : edgeConfig?.stroke || "#cecece"
+                      }
+                      style={{ opacity }}
+                      size={10}
+                    />
+                  </motion.g>
+                )}
+              </motion.g>
               <motion.text
                 textAnchor={"middle"}
                 dominantBaseline={"central"}
@@ -149,7 +171,7 @@ function Edge(props: EdgeFrontProps) {
                       ? edgeConfig?.descriptionColor || hoveredColor
                       : edgeConfig?.descriptionColor || descriptionColor,
                     fontSize: edgeConfig?.descriptionSize || descriptionSize,
-                    opacity: false ? [0.5, 1] : 1,
+                    opacity: 1,
                   }}
                   startOffset={"50%"}
                 >
