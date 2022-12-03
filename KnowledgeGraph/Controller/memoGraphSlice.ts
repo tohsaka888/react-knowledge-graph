@@ -18,7 +18,7 @@ const memoGraphSlice = createSlice({
   reducers: {
     addExploredPath(state, action: PayloadAction<ExploredProps>) {
       const { node, inside, outside, edges } = action.payload;
-      const isDuplicate = state.find((path) => path.node.id === node.id);
+      const isDuplicate = state.some((path) => path.node.id === node.id);
       if (!isDuplicate) {
         state.push({
           node,
