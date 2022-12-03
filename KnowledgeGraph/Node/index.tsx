@@ -6,12 +6,12 @@
  * @Description: 节点
  */
 
-import React, { useContext, useMemo, useState } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ConfigContext } from "../Controller/ConfigController";
 import Loading from "./Loading";
 import { defaultNodeConfig } from "../config/nodeConfig";
-import { NodeFrontProps } from "../../KnowledgeGraph";
+import { EdgeFrontProps, NodeFrontProps } from "../../KnowledgeGraph";
 import useExplore from "../hooks/Node/useExplore";
 import { useDispatch } from "react-redux";
 import {
@@ -64,6 +64,25 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
   //   return true
   // }, [position.x, position.y, radius, x1, x2, y1, y2]);
 
+  const modifyIcons = useCallback((edge: EdgeFrontProps, d: string) => {
+    const edgeElement = document.getElementById(edge.id)!;
+    const iconOpen = document.getElementById(edge.id + "icon-open");
+    const iconClose = document.getElementById(edge.id + "icon-close");
+    const arrow = document.getElementById(edge.id + "arrow");
+    if (d) {
+      edgeElement.setAttribute("d", d);
+      if (iconOpen) {
+        iconOpen.style.offsetPath = `path("${d}")`;
+      }
+      if (iconClose) {
+        iconClose.style.offsetPath = `path("${d}")`;
+      }
+      if (arrow) {
+        arrow.style.offsetPath = `path("${d}")`;
+      }
+    }
+  }, []);
+
   return (
     <>
       {node.visible && node.id && (
@@ -107,23 +126,8 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
                         y: fromNode.position.y + info.offset.y,
                       },
                     },
-                  });
-                  const edgeElement = document.getElementById(edge.id)!;
-                  const iconOpen = document.getElementById(
-                    edge.id + "icon-open"
-                  );
-                  const iconClose = document.getElementById(
-                    edge.id + "icon-close"
-                  );
-                  if (d) {
-                    edgeElement.setAttribute("d", d);
-                    if (iconOpen) {
-                      iconOpen.style.offsetPath = `path("${d}")`;
-                    }
-                    if (iconClose) {
-                      iconClose.style.offsetPath = `path("${d}")`;
-                    }
-                  }
+                  })!;
+                  modifyIcons(edge, d);
                 }
               });
               toEdges.forEach((edge) => {
@@ -138,23 +142,8 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
                         y: toNode.position.y + info.offset.y,
                       },
                     },
-                  });
-                  const edgeElement = document.getElementById(edge.id)!;
-                  const iconOpen = document.getElementById(
-                    edge.id + "icon-open"
-                  );
-                  const iconClose = document.getElementById(
-                    edge.id + "icon-close"
-                  );
-                  if (d) {
-                    edgeElement.setAttribute("d", d);
-                    if (iconOpen) {
-                      iconOpen.style.offsetPath = `path("${d}")`;
-                    }
-                    if (iconClose) {
-                      iconClose.style.offsetPath = `path("${d}")`;
-                    }
-                  }
+                  })!;
+                  modifyIcons(edge, d);
                 }
               });
             }}
@@ -187,7 +176,7 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
           >
             {isHover && (
               <motion.circle
-                r={radius + 4}
+                r={radius + 2}
                 fill={"transparent"}
                 strokeWidth={8}
                 stroke={"#f6793bb7"}
@@ -268,8 +257,8 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
             {showNodeMenu && isHover && (
               <motion.g
                 initial={{
-                  x: -7,
-                  y: radius - 1,
+                  x: -6,
+                  y: radius,
                   opacity: 0,
                 }}
                 animate={{
@@ -279,15 +268,15 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
                   onClickInfo && onClickInfo(node);
                 }}
               >
-                <FcInfo />
+                <FcInfo size={12} />
               </motion.g>
             )}
 
             {showNodeMenu && isHover && (
               <motion.g
                 initial={{
-                  x: -7,
-                  y: -radius - 13,
+                  x: -6,
+                  y: -radius - 11.5,
                   opacity: 0,
                 }}
                 animate={{
@@ -297,7 +286,7 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
                   onClickAddon && onClickAddon(node);
                 }}
               >
-                <FcPlus />
+                <FcPlus size={12} />
               </motion.g>
             )}
           </motion.g>
