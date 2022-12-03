@@ -48,18 +48,9 @@ function useExplore() {
 
       // 判断当前节点是否已探索
       if (!node.isExplore) {
-        const {
-          inside: unFilterInside,
-          outside: unFilterOutside,
-          edges,
-        } = syncExplore ? syncExplore(node.id) : await explore(node.id, node);
-
-        const inside = unFilterInside.filter(
-          (n) => nodes.some((node) => node.id !== n.id)
-        );
-        const outside = unFilterOutside.filter(
-          (n) => nodes.some((node) => node.id !== n.id)
-        );
+        const { inside, outside, edges } = syncExplore
+          ? syncExplore(node.id)
+          : await explore(node.id, node);
 
         dispatch(addExploredPath({ node, inside, outside, edges }));
 
@@ -133,6 +124,7 @@ function useExplore() {
       dispatch,
       explore,
       extendOffset,
+      nodes,
       onExploreEnd,
     ]
   );

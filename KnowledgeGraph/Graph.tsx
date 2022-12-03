@@ -23,7 +23,6 @@ import FilterBar from "./FilterBar";
 
 function GraphContainer({ children }: { children: React.ReactNode }) {
   const { config } = useContext(ConfigContext)!;
-  const isFullScreen = useFullScreen();
   const screenRef = useRef<{ width: number; height: number }>({
     width: 0,
     height: 0,
@@ -35,7 +34,7 @@ function GraphContainer({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <div {...config}>
+    <div style={config.style} className={config.className}>
       <div
         id={"knowledge-graph-container"}
         style={{

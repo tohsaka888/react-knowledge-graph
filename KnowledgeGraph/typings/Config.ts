@@ -6,7 +6,7 @@
  * @Description: config type
  */
 
-import { CSSProperties, HTMLAttributes } from "react";
+import React, { CSSProperties, HTMLAttributes } from "react";
 import { EdgeProps } from "./Edge";
 import { NodeFrontProps, NodeProps } from "./Node";
 
@@ -16,6 +16,8 @@ type EdgeConfig = {
   descriptionColor?: string;
   descriptionSize?: number;
   hoveredColor?: string;
+  flyLineEffect?: "line" | "arrow";
+  arrowIcon?: React.ReactNode;
 };
 
 type NodeConfig = {

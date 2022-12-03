@@ -3,6 +3,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import { NodeFrontProps } from "../typings/Node";
 import { ConfigProps } from "../typings/Config";
 import { EdgeFrontProps, EdgeProps } from "../typings/Edge";
+import uniqBy from "lodash.uniqby";
 
 type GraphProps = { nodes: NodeFrontProps[]; edges: EdgeFrontProps[] };
 
@@ -64,7 +65,7 @@ export const graphSlice: Slice<typeof initialState> = createSlice({
       const edges = action.payload.edges;
       const preNodes = state.nodes.slice();
 
-      state.nodes = [...state.nodes, ...inside, ...outside];
+      state.nodes = uniqBy([...state.nodes, ...inside, ...outside], "id");
 
       // 去重
       const filteredEdges = edges.filter(

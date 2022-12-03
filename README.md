@@ -6,7 +6,9 @@
  * @Description: 请填写简介
 -->
 
-devThis is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# React-Knowledge-Graph
+
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 [![CodeFactor](https://www.codefactor.io/repository/github/tohsaka888/react-knowledge-graph/badge?style=flat-square)](https://www.codefactor.io/repository/github/tohsaka888/react-knowledge-graph)
 [![GitHub Release Date](https://img.shields.io/github/release-date/tohsaka888/react-knowledge-graph.svg?style=flat-square)](https://github.com/tohsaka888/react-knowledge-graph/releases)
@@ -37,6 +39,7 @@ devThis is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-n
 - 右键实体菜单新增只显示当前节点即其子节点/关系
 - 右键菜单显示所有节点
 - 动态配置
+- 配置飞线效果
 - 节点菜单
   - 显示当前节点信息按钮: 可以根据自己项目的需求判断是否需要, 比如: 知识卡片功能
   - 显示增加节点至实体按钮: 可以根据自己项目的需求判断是否需要, 比如: 当前节点加入知识应用
