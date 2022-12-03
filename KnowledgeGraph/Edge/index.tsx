@@ -49,7 +49,6 @@ function Edge(props: EdgeFrontProps) {
   } = defaultEdgeConfig;
 
   const isShowText = useIsShowText();
-  const edgeRef = useRef<SVGPathElement>(null!);
 
   return (
     <MotionConfig reducedMotion="never">
@@ -71,11 +70,12 @@ function Edge(props: EdgeFrontProps) {
             to-id={toId}
             fill={"none"}
             width={20}
-            ref={edgeRef}
             initial={{ opacity: 0, pathLength: 0 }}
             animate={{
-              stroke: edgeConfig?.stroke || stroke,
-              strokeWidth: edgeConfig?.strokeWidth || strokeWidth,
+              stroke: isActive
+                ? edgeConfig?.hoveredColor || "#1890ff"
+                : edgeConfig?.stroke || stroke,
+              strokeWidth: edgeConfig?.strokeWidth || strokeWidth!,
               opacity,
               d,
               cursor: "pointer",
@@ -119,16 +119,12 @@ function Edge(props: EdgeFrontProps) {
               />
             )}
 
-          {isShowText && !isHovered && opacity === 1 && (
-            <>
-              <motion.g
+          {isShowText && !isHovered && !isMoving && opacity === 1 && (
+            <motion.g initial={{ opacity: 0 }} animate={{ opacity: [0, 1] }}>
+              <g
                 style={{
                   offsetPath: `path("${d}")`,
                   offsetDistance: "50%",
-                }}
-                initial={{ opacity: 0 }}
-                animate={{
-                  opacity: 1,
                 }}
                 id={id + "arrow"}
                 className={
@@ -143,7 +139,7 @@ function Edge(props: EdgeFrontProps) {
                 ) : (
                   <motion.g
                     initial={{
-                      transform: "rotate(45deg) translate(0px, -7.9px)",
+                      transform: "rotate(45deg) translate(-8px, 0px)",
                     }}
                   >
                     <BsCursorFill
@@ -157,7 +153,7 @@ function Edge(props: EdgeFrontProps) {
                     />
                   </motion.g>
                 )}
-              </motion.g>
+              </g>
               <motion.text
                 textAnchor={"middle"}
                 dominantBaseline={"central"}
@@ -178,30 +174,30 @@ function Edge(props: EdgeFrontProps) {
                   {description}
                 </motion.textPath>
               </motion.text>
-            </>
-          )}
-
-          {isShowText && isHovered && opacity === 1 && (
-            <motion.g
-              style={{ offsetPath: `path("${d}")`, offsetDistance: "50%" }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              id={id + "icon-open"}
-              transform={`translate(-10, -8)`}
-            >
-              <BsFillEyeFill color="#cecece" style={{ opacity }} />
             </motion.g>
           )}
 
-          {isShowText && opacity !== 1 && (
-            <motion.g
-              style={{ offsetPath: `path("${d}")`, offsetDistance: "50%" }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              id={id + "icon-close"}
-              transform={`translate(-10, -8)`}
-            >
-              <BsFillEyeSlashFill color="#cecece" style={{ opacity: 0.5 }} />
+          {isShowText && isHovered && !isMoving && opacity === 1 && (
+            <motion.g initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+              <g
+                style={{ offsetPath: `path("${d}")`, offsetDistance: "50%" }}
+                id={id + "icon-open"}
+                transform={`translate(-10, -8)`}
+              >
+                <BsFillEyeFill color="#cecece" style={{ opacity }} />
+              </g>
+            </motion.g>
+          )}
+
+          {isShowText && opacity !== 1 && !isMoving && (
+            <motion.g initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+              <g
+                style={{ offsetPath: `path("${d}")`, offsetDistance: "50%" }}
+                id={id + "icon-close"}
+                transform={`translate(-10, -8)`}
+              >
+                <BsFillEyeSlashFill color="#cecece" style={{ opacity: 0.5 }} />
+              </g>
             </motion.g>
           )}
 
