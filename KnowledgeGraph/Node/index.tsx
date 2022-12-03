@@ -112,39 +112,43 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
               dispatch(onMoving(node));
             }}
             onDrag={(e, info) => {
-              const fromEdges = edges.filter((edge) => edge.fromId === node.id);
-              const toEdges = edges.filter((edge) => edge.toId === node.id);
-              fromEdges.forEach((edge) => {
-                const fromNode = edge.fromNode;
-                if (fromNode) {
-                  const d = calcD({
-                    ...edge,
-                    fromNode: {
-                      ...fromNode,
-                      position: {
-                        x: fromNode.position.x + info.offset.x,
-                        y: fromNode.position.y + info.offset.y,
+              requestAnimationFrame(() => {
+                const fromEdges = edges.filter(
+                  (edge) => edge.fromId === node.id
+                );
+                const toEdges = edges.filter((edge) => edge.toId === node.id);
+                fromEdges.forEach((edge) => {
+                  const fromNode = edge.fromNode;
+                  if (fromNode) {
+                    const d = calcD({
+                      ...edge,
+                      fromNode: {
+                        ...fromNode,
+                        position: {
+                          x: fromNode.position.x + info.offset.x,
+                          y: fromNode.position.y + info.offset.y,
+                        },
                       },
-                    },
-                  })!;
-                  modifyIcons(edge, d);
-                }
-              });
-              toEdges.forEach((edge) => {
-                const toNode = edge.toNode;
-                if (toNode) {
-                  const d = calcD({
-                    ...edge,
-                    toNode: {
-                      ...toNode,
-                      position: {
-                        x: toNode.position.x + info.offset.x,
-                        y: toNode.position.y + info.offset.y,
+                    })!;
+                    modifyIcons(edge, d);
+                  }
+                });
+                toEdges.forEach((edge) => {
+                  const toNode = edge.toNode;
+                  if (toNode) {
+                    const d = calcD({
+                      ...edge,
+                      toNode: {
+                        ...toNode,
+                        position: {
+                          x: toNode.position.x + info.offset.x,
+                          y: toNode.position.y + info.offset.y,
+                        },
                       },
-                    },
-                  })!;
-                  modifyIcons(edge, d);
-                }
+                    })!;
+                    modifyIcons(edge, d);
+                  }
+                });
               });
             }}
             onDragEnd={(e, info) => {
