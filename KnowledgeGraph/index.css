@@ -29,7 +29,7 @@
 }
 
 .arrow-active {
-  animation: followpath 3s linear infinite;
+  animation: followpath 2.5s linear infinite;
 }
 
 @keyframes followpath {
