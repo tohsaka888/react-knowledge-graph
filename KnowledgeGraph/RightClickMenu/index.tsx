@@ -8,7 +8,6 @@
 
 import React, {
   useCallback,
-  // useContext,
   useEffect,
   useMemo,
   useRef,
@@ -26,7 +25,7 @@ import {
   moveCanvasToPosition,
   resetCanvas,
 } from "../Controller/canvasConfigSlice";
-// import { useDispatchFullScreen } from "../Controller/FullScreenController";
+
 import {
   useRightMenuEvent,
   useRightMenuEventDispatch,
@@ -37,7 +36,7 @@ const nodeItems = ["当前实体居中", "显示当前节点关系", "显示所�
 const imageItems = ["JPG", "JPEG", "PNG", "BMP"];
 
 function RightMenuContent() {
-  // const canvasConfig = useAppSelector((state) => state.canvasConfig);
+  const canvasConfig = useAppSelector((state) => state.canvasConfig);
   const dispatch = useAppDispatch();
   const event = useRightMenuEvent();
   const setEvent = useRightMenuEventDispatch();
@@ -71,19 +70,28 @@ function RightMenuContent() {
 
   const downloadSVG = useCallback(
     (type: string) => {
+      const scaleSize = 5;
       const gElement = document.getElementById("graph-drag")!;
-      const width = gElement.getBoundingClientRect().width + 50;
-      const height = gElement.getBoundingClientRect().height + 50;
-      // const left = gElement.getBoundingClientRect().left;
-      // const top = gElement.getBoundingClientRect().top;
-      const minX = Math.min(...nodes.map((n) => n.position.x));
-      const minY = Math.min(...nodes.map((n) => n.position.y));
+      const width =
+        (gElement.getBoundingClientRect().width / canvasConfig.scale + 50) *
+        scaleSize;
+      const height =
+        (gElement.getBoundingClientRect().height / canvasConfig.scale + 50) *
+        scaleSize;
+      const minX =
+        (Math.min(...nodes.map((n) => n.position.x)) - 25) * scaleSize;
+      const minY =
+        (Math.min(...nodes.map((n) => n.position.y)) - 25) * scaleSize;
 
       const graph = document.getElementById("knowledge-graph-canvas")!;
       const clonedGraph = graph.cloneNode(true) as SVGSVGElement;
-      (clonedGraph.firstChild! as SVGGElement).style.transform = `translateX(${
-        -minX + 25
-      }px) translateY(${-minY + 25}px)`;
+      const scaleElement = clonedGraph.getElementById(
+        "graph-scale"
+      ) as SVGGElement;
+      scaleElement.style.transform = `scale(${scaleSize})`;
+
+      const dragElement = clonedGraph.firstChild! as SVGGElement;
+      dragElement.style.transform = `translateX(${-minX}px) translateY(${-minY}px)`;
 
       let serializer = new XMLSerializer();
 
@@ -113,7 +121,7 @@ function RightMenuContent() {
         a.click();
       };
     },
-    [nodes]
+    [canvasConfig.scale, nodes]
   );
 
   const [isDownload, setIsDownload] = useState<boolean>(false);
