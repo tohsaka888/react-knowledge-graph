@@ -86,7 +86,9 @@ function FilterBar() {
                     fontSize: "10px",
                     marginRight: "8px",
                     borderRadius: "5px",
-                    background: config.typeConfig![type.type].fill,
+                    background: config.typeConfig
+                      ? config.typeConfig[type.type]?.fill || "#cecece"
+                      : "#cecece",
                     padding: "2px 6px",
                     color: "#fff",
                     cursor: "pointer",
