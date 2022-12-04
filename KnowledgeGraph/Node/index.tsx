@@ -6,8 +6,15 @@
  * @Description: 节点
  */
 
-import React, { useCallback, useContext, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import React, {
+  startTransition,
+  useCallback,
+  useContext,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import { AnimatePresence, motion, PanInfo } from "framer-motion";
 import { ConfigContext } from "../Controller/ConfigController";
 import Loading from "./Loading";
 import { defaultNodeConfig } from "../config/nodeConfig";
@@ -26,10 +33,12 @@ import useCalcEdge from "../hooks/Edge/useCalcEdge";
 import { FcInfo, FcPlus } from "react-icons/fc";
 // import { useGraphBounds } from "../Controller/GraphBoundsController";
 import useIsShowText from "../hooks/Graph/useIsShowText";
+import { defaultEdgeConfig } from "../config/edgeConfig";
 
 function UnmemoNode({ node }: { node: NodeFrontProps }) {
   const { config } = useContext(ConfigContext)!;
-  const { typeConfig, showNodeMenu, onClickAddon, onClickInfo } = config;
+  const { typeConfig, showNodeMenu, onClickAddon, onClickInfo, edgeConfig } =
+    config;
   const { name, type, position } = node;
   const nodeConfig = typeConfig && typeConfig[type];
   const edges = useAppSelector((state) => state.graph.edges);
@@ -64,24 +73,66 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
   //   return true
   // }, [position.x, position.y, radius, x1, x2, y1, y2]);
 
-  const modifyIcons = useCallback((edge: EdgeFrontProps, d: string) => {
-    const edgeElement = document.getElementById(edge.id)!;
-    const iconOpen = document.getElementById(edge.id + "icon-open");
-    const iconClose = document.getElementById(edge.id + "icon-close");
-    const arrow = document.getElementById(edge.id + "arrow");
-    if (d) {
-      edgeElement.setAttribute("d", d);
-      if (iconOpen) {
-        iconOpen.style.offsetPath = `path("${d}")`;
+  const modifyEdges = useCallback((info: PanInfo) => {
+    edgesElementRef.current.forEach(({ element, direction, edge }) => {
+      const fromNode = edge.fromNode!;
+      const toNode = edge.toNode!;
+      const d = calcD(
+        direction === "from"
+          ? {
+              ...edge,
+              fromNode: {
+                ...fromNode,
+                position: {
+                  x: fromNode.position.x + info.offset.x,
+                  y: fromNode.position.y + info.offset.y,
+                },
+              } as NodeFrontProps,
+            }
+          : {
+              ...edge,
+              toNode: {
+                ...toNode,
+                position: {
+                  x: toNode.position.x + info.offset.x,
+                  y: toNode.position.y + info.offset.y,
+                },
+              } as NodeFrontProps,
+            }
+      );
+      if (d) {
+        element.setAttribute("d", d);
+        const iconOpen = document.getElementById(edge.id + "icon-open");
+        const iconClose = document.getElementById(edge.id + "icon-close");
+        const arrow = document.getElementById(edge.id + "arrow");
+        if (iconOpen) {
+          iconOpen.style.offsetPath = `path("${d}")`;
+        }
+        if (iconClose) {
+          iconClose.style.offsetPath = `path("${d}")`;
+        }
+        if (arrow) {
+          arrow.style.offsetPath = `path("${d}")`;
+        }
       }
-      if (iconClose) {
-        iconClose.style.offsetPath = `path("${d}")`;
-      }
-      if (arrow) {
-        arrow.style.offsetPath = `path("${d}")`;
-      }
-    }
+    });
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const needCalcEdges = useMemo(
+    () =>
+      edges.filter((edge) => edge.fromId === node.id || edge.toId === node.id),
+    [edges, node.id]
+  );
+
+  const edgesElementRef = useRef<
+    {
+      element: SVGPathElement;
+      direction: "from" | "to";
+      edge: EdgeFrontProps;
+    }[]
+  >(null!);
 
   return (
     <>
@@ -92,12 +143,12 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
             cursor={"pointer"}
             id={node.id}
             onHoverStart={() => {
-              setIsHover(true);
               dispatch(filterHighlightEdges(node));
+              setIsHover(true);
             }}
             onHoverEnd={() => {
-              setIsHover(false);
               dispatch(notHighlight(null));
+              setIsHover(false);
             }}
             drag
             dragPropagation={false}
@@ -108,56 +159,32 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
             }}
             style={{ willChange: "transform" }}
             onDragStart={(e) => {
-              setIsHover(true);
-              dispatch(onMoving(node));
+              edgesElementRef.current = needCalcEdges.map((edge) => {
+                let direction: "from" | "to" = "from";
+                if (edge.fromId === node.id) {
+                  direction = "from";
+                } else {
+                  direction = "to";
+                }
+                return {
+                  direction,
+                  element: document.getElementById(
+                    edge.id
+                  )! as unknown as SVGPathElement,
+                  edge,
+                };
+              });
             }}
             onDrag={(e, info) => {
-              requestAnimationFrame(() => {
-                const fromEdges = edges.filter(
-                  (edge) => edge.fromId === node.id
-                );
-                const toEdges = edges.filter((edge) => edge.toId === node.id);
-                fromEdges.forEach((edge) => {
-                  const fromNode = edge.fromNode;
-                  if (fromNode) {
-                    const d = calcD({
-                      ...edge,
-                      fromNode: {
-                        ...fromNode,
-                        position: {
-                          x: fromNode.position.x + info.offset.x,
-                          y: fromNode.position.y + info.offset.y,
-                        },
-                      },
-                    })!;
-                    modifyIcons(edge, d);
-                  }
-                });
-                toEdges.forEach((edge) => {
-                  const toNode = edge.toNode;
-                  if (toNode) {
-                    const d = calcD({
-                      ...edge,
-                      toNode: {
-                        ...toNode,
-                        position: {
-                          x: toNode.position.x + info.offset.x,
-                          y: toNode.position.y + info.offset.y,
-                        },
-                      },
-                    })!;
-                    modifyIcons(edge, d);
-                  }
-                });
+              startTransition(() => {
+                modifyEdges(info);
               });
             }}
             onDragEnd={(e, info) => {
-              setIsHover(false);
               dispatch(
                 moveNodeAndEdge({ node, dx: info.offset.x, dy: info.offset.y })
               );
               dispatch(onMoveEnd(undefined));
-              dispatch(notHighlight(undefined));
             }}
             initial={{
               x: position.x,
