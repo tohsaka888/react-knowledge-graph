@@ -161,12 +161,10 @@ function RightMenuContent() {
                         if (value === "全屏" || value === "退出全屏") {
                           if (document.fullscreenElement) {
                             document.exitFullscreen();
-                            // dispatchFullScreen(false);
                           } else {
                             document
                               .getElementById("knowledge-graph-container")!
                               .requestFullscreen();
-                            // dispatchFullScreen(true);
                           }
                           setEvent(null);
                         }
