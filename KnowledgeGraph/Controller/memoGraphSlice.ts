@@ -36,8 +36,15 @@ const memoGraphSlice = createSlice({
           path.node.id !== currentId
       );
     },
+    clearMemo(state, action: PayloadAction<boolean>) {
+      const shouldAutoExplore = action.payload;
+      if (!shouldAutoExplore) {
+        state.length = 0;
+      }
+    },
   },
 });
 
-export const { addExploredPath, removeExploredPath } = memoGraphSlice.actions;
+export const { addExploredPath, removeExploredPath, clearMemo } =
+  memoGraphSlice.actions;
 export default memoGraphSlice.reducer;
