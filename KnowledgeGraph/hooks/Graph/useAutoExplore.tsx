@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "..";
 import { ConfigContext } from "../../Controller/ConfigController";
 import { initialize, clearAllGraph } from "../../Controller/graphSlice";
+import { clearMemo } from "../../Controller/memoGraphSlice";
 import useExplore from "../Node/useExplore";
 
 function useAutoExplore() {
@@ -21,10 +22,12 @@ function useAutoExplore() {
       ? exploredPath[0].node.id === graphConfig.node.id
       : false;
 
-    exploredPath.forEach((path) => {
-      const { node, inside, outside, edges } = path;
+    dispatch(clearMemo(shouldAutoExplore));
+
+    shouldAutoExplore &&
       graphConfig.enableAutoExplore &&
-        shouldAutoExplore &&
+      exploredPath.forEach((path) => {
+        const { node, inside, outside, edges } = path;
         exploreFunc({
           node,
           syncExplore: () => ({
@@ -33,7 +36,7 @@ function useAutoExplore() {
             edges,
           }),
         });
-    });
+      });
 
     return () => {
       dispatch(clearAllGraph(undefined));
