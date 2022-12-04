@@ -11,9 +11,6 @@ import { Provider } from "react-redux";
 import Canvas from "./Canvas";
 import { ConfigContext } from "./Controller/ConfigController";
 import ConfigController from "./Controller/ConfigController";
-import FullScreenController, {
-  useFullScreen,
-} from "./Controller/FullScreenController";
 import RightMenuController from "./Controller/RightMenuController";
 import Helper from "./Helper";
 import { store } from "./store";
@@ -23,29 +20,19 @@ import FilterBar from "./FilterBar";
 
 function GraphContainer({ children }: { children: React.ReactNode }) {
   const { config } = useContext(ConfigContext)!;
-  const screenRef = useRef<{ width: number; height: number }>({
-    width: 0,
-    height: 0,
-  });
-
-  useEffect(() => {
-    screenRef.current.width = window.screen.width;
-    screenRef.current.height = window.screen.height;
-  }, []);
-
   return (
-    <div style={config.style} className={config.className}>
-      <div
-        id={"knowledge-graph-container"}
-        style={{
-          position: "relative",
-          width: config.width,
-          height: config.height,
-          overflow: "hidden",
-        }}
-      >
-        {children}
-      </div>
+    <div
+      id={"knowledge-graph-container"}
+      style={{
+        position: "relative",
+        width: config.width,
+        height: config.height,
+        overflow: "hidden",
+        ...config.style,
+      }}
+      className={config.className}
+    >
+      {children}
     </div>
   );
 }
@@ -55,15 +42,13 @@ function Graph(graphConfig: ConfigProps) {
     <ConfigController graphConfig={graphConfig}>
       <Provider store={store}>
         <RightMenuController>
-          <FullScreenController>
-            <GraphBoundsController>
-              <GraphContainer>
-                <Helper />
-                <FilterBar />
-                <Canvas />
-              </GraphContainer>
-            </GraphBoundsController>
-          </FullScreenController>
+          <GraphBoundsController>
+            <GraphContainer>
+              <Helper />
+              <FilterBar />
+              <Canvas />
+            </GraphContainer>
+          </GraphBoundsController>
         </RightMenuController>
       </Provider>
     </ConfigController>
