@@ -1,5 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "..";
+import { resetCanvas } from "../../Controller/canvasConfigSlice";
 import { ConfigContext } from "../../Controller/ConfigController";
 import { initialize, clearAllGraph } from "../../Controller/graphSlice";
 import { clearMemo } from "../../Controller/memoGraphSlice";
@@ -23,6 +24,10 @@ function useAutoExplore() {
       : false;
 
     dispatch(clearMemo(shouldAutoExplore));
+
+    if (!shouldAutoExplore) {
+      dispatch(resetCanvas());
+    }
 
     shouldAutoExplore &&
       graphConfig.enableAutoExplore &&
