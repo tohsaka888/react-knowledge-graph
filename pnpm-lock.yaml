@@ -8,7 +8,7 @@ specifiers:
   '@types/node': 18.11.11
   '@types/react': 18.0.26
   '@types/react-dom': 18.0.9
-  antd: 5.0.4
+  antd: 5.0.5
   eslint: 8.29.0
   eslint-config-next: 13.0.6
   framer-motion: 7.6.19
@@ -35,7 +35,7 @@ devDependencies:
   '@types/node': 18.11.11
   '@types/react': 18.0.26
   '@types/react-dom': 18.0.9
-  antd: 5.0.4_biqbaboplfbrettd7655fr4n2y
+  antd: 5.0.5_biqbaboplfbrettd7655fr4n2y
   eslint: 8.29.0
   eslint-config-next: 13.0.6_ha6vam6werchizxrnqvarmz2zu
   mongodb: 4.12.1
@@ -1459,8 +1459,8 @@ packages:
       color-convert: 2.0.1
     dev: true
 
-  /antd/5.0.4_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-SbMmMTpenY8OfNABJl9/xEGhLP+2mQBbFxelT8ySFb7BR6KwsaVbz6BJOaBWmHBwNq86gXQWJtouQ9Znb6p0RA==}
+  /antd/5.0.5_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-8jWUjZ65urNHZPg9/Ywa9V0PlNfqjhewKgSPF4nraN9X5v434lDJkRBQGN7meNixQ6aM2B/JhXPm9UaJ/tAQmA==}
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
@@ -1501,7 +1501,7 @@ packages:
       rc-steps: 6.0.0-alpha.2_biqbaboplfbrettd7655fr4n2y
       rc-switch: 4.0.0_biqbaboplfbrettd7655fr4n2y
       rc-table: 7.26.0_biqbaboplfbrettd7655fr4n2y
-      rc-tabs: 12.4.1_biqbaboplfbrettd7655fr4n2y
+      rc-tabs: 12.4.2_biqbaboplfbrettd7655fr4n2y
       rc-textarea: 0.4.5_biqbaboplfbrettd7655fr4n2y
       rc-tooltip: 5.2.2_biqbaboplfbrettd7655fr4n2y
       rc-tree: 5.7.0_biqbaboplfbrettd7655fr4n2y
@@ -1511,7 +1511,7 @@ packages:
       rc-util: 5.25.2_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      scroll-into-view-if-needed: 2.2.29
+      scroll-into-view-if-needed: 3.0.3
       shallowequal: 1.1.0
     transitivePeerDependencies:
       - date-fns
@@ -1676,8 +1676,8 @@ packages:
     engines: {node: '>= 10'}
     dev: true
 
-  /compute-scroll-into-view/1.0.17:
-    resolution: {integrity: sha512-j4dx+Fb0URmzbwwMUrhqWM2BEWHdFGx+qZ9qqASHRPqvTYdqvWnHg0H1hIbcyLnvgnoNAVMlwkepyqM3DaIFUg==}
+  /compute-scroll-into-view/2.0.2:
+    resolution: {integrity: sha512-W+4Iti92hktsTtNPNeRM1vE0JdqCBk5qIabRafpr5pGrQhQ+xzCv0NGnFzTCKmW4yGLm9Aovbw8YNxloe2z9tQ==}
     dev: true
 
   /concat-map/0.0.1:
@@ -3342,8 +3342,8 @@ packages:
       shallowequal: 1.1.0
     dev: true
 
-  /rc-tabs/12.4.1_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-yViBZypldDnPffk3IPTarplF1RAv8VQDDnOt9sHDU7pjCnqE72csCU+7kjbLPtPpYniIMQJYyWxh/lsBUcagSA==}
+  /rc-tabs/12.4.2_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-FFlGwuTjQUznWzJtyhmHc6KAp5lRQFxKUv9Aj1UtsOYe2e7WGmuzcrd+/LQchuPe0VjhaZPdGkmFGcqGqNO6ow==}
     engines: {node: '>=8.x'}
     peerDependencies:
       react: '>=16.9.0'
@@ -3640,10 +3640,10 @@ packages:
     dependencies:
       loose-envify: 1.4.0
 
-  /scroll-into-view-if-needed/2.2.29:
-    resolution: {integrity: sha512-hxpAR6AN+Gh53AdAimHM6C8oTN1ppwVZITihix+WqalywBeFcQ6LdQP5ABNl26nX8GTEL7VT+b8lKpdqq65wXg==}
+  /scroll-into-view-if-needed/3.0.3:
+    resolution: {integrity: sha512-QoCH0lVw0tbA7Rl6sToH7e1tO3n95Oi6JgBgC8hEpNNZUC91MfasJ/4E1ZdbzGueNDZ+Y7ObfRaelKUgTyPbJA==}
     dependencies:
-      compute-scroll-into-view: 1.0.17
+      compute-scroll-into-view: 2.0.2
     dev: true
 
   /semver/6.3.0:
