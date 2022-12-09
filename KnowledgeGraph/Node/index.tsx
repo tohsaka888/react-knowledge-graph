@@ -185,6 +185,8 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
                 moveNodeAndEdge({ node, dx: info.offset.x, dy: info.offset.y })
               );
               dispatch(onMoveEnd(undefined));
+              dispatch(notHighlight(null));
+              setIsHover(false);
             }}
             initial={{
               x: position.x,
