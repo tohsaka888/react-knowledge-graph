@@ -25,15 +25,13 @@ const Home: NextPage = () => {
   };
 
   const explore = async (id: string, node: NodeProps) => {
-    const inside = await getNode(id, "inside");
-    const outside = await getNode(id, "outside");
-    const edges = await getEdge(id);
-
-    return {
-      edges,
-      inside,
-      outside,
-    };
+    const results = Promise.all([
+      getNode(id, "inside"),
+      getNode(id, "outside"),
+      getEdge(id),
+    ]);
+    const data = await results;
+    return { inside: data[0], outside: data[1], edges: data[2] };
   };
 
   const [basicDistence, setBasicDistence] = useState<number>(80);
