@@ -6,4 +6,7 @@
  * @Description: baseUrl
  */
 
-export const baseUrl = `http://localhost:3000`;
+export const baseUrl =
+  process.env.NODE_ENV === "development"
+    ? `http://localhost:3000`
+    : `https://knowledge-graph-demo.vercel.app`;
