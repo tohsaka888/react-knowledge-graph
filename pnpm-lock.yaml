@@ -13,7 +13,7 @@ specifiers:
   eslint-config-next: 13.0.7
   framer-motion: 7.10.2
   lodash.uniqby: ^4.7.0
-  mongodb: 4.12.1
+  mongodb: 4.13.0
   next: 13.0.7
   react: 18.2.0
   react-dom: 18.2.0
@@ -38,7 +38,7 @@ devDependencies:
   antd: 5.0.7_biqbaboplfbrettd7655fr4n2y
   eslint: 8.30.0
   eslint-config-next: 13.0.7_lzzuuodtsqwxnvqeq4g4likcqa
-  mongodb: 4.12.1
+  mongodb: 4.13.0
   next: 13.0.7_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -2680,8 +2680,8 @@ packages:
       whatwg-url: 11.0.0
     dev: true
 
-  /mongodb/4.12.1:
-    resolution: {integrity: sha512-koT87tecZmxPKtxRQD8hCKfn+ockEL2xBiUvx3isQGI6mFmagWt4f4AyCE9J4sKepnLhMacoCTQQA6SLAI2L6w==}
+  /mongodb/4.13.0:
+    resolution: {integrity: sha512-+taZ/bV8d1pYuHL4U+gSwkhmDrwkWbH1l4aah4YpmpscMwgFBkufIKxgP/G7m87/NUuQzc2Z75ZTI7ZOyqZLbw==}
     engines: {node: '>=12.9.0'}
     dependencies:
       bson: 4.7.0
