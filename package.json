@@ -40,7 +40,7 @@
     "antd": "5.0.7",
     "eslint": "8.30.0",
     "eslint-config-next": "13.0.7",
-    "mongodb": "4.12.1",
+    "mongodb": "4.13.0",
     "next": "13.0.7",
     "react": "18.2.0",
     "react-dom": "18.2.0",
