@@ -39,14 +39,14 @@ const Home: NextPage = () => {
   return (
     // <Modal open={true} width={1000}>
     <>
-      {/* <Button
+      <Button
         style={{ position: "fixed", zIndex: 999 }}
         onClick={() => {
           setBasicDistence(basicDistence + 10);
         }}
       >
         Extend
-      </Button> */}
+      </Button>
       <KnowledgeGraph
         explore={explore}
         basicDistence={basicDistence}
