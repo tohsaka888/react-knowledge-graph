@@ -2,7 +2,7 @@ import { animate, motion } from "framer-motion";
 import React, { useContext, useMemo, useState } from "react";
 import { BsFillFilterCircleFill } from "react-icons/bs";
 import { ConfigContext } from "../Controller/ConfigController";
-import { isShowNodesAndEdges } from "../Controller/graphSlice";
+import { setHoveredNodesAndEdges } from "../Controller/graphSlice";
 import { useAppDispatch, useAppSelector } from "../hooks";
 
 function FilterBar() {
@@ -76,11 +76,11 @@ function FilterBar() {
                     const typeNodes = nodes.filter(
                       (node) => node.type === type.type
                     );
-                    config.onClickFilterType &&
-                      config.onClickFilterType(typeNodes, (node, visible) => {
-                        console.log(node);
-                        dispatch(isShowNodesAndEdges({ node, visible }));
-                      });
+                    dispatch(
+                      setHoveredNodesAndEdges({
+                        nodes: typeNodes,
+                      })
+                    );
                   }}
                   initial={{
                     fontSize: "10px",
