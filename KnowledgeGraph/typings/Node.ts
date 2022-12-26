@@ -22,6 +22,7 @@ type NodeFrontProps = NodeProps & {
   distence: number;
   parentNode?: NodeFrontProps;
   visible: boolean;
+  isHovered: boolean;
 };
 
 export type { NodeFrontProps, NodeProps };
