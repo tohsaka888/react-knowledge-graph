@@ -11,7 +11,7 @@ specifiers:
   antd: 5.1.0
   eslint: 8.30.0
   eslint-config-next: 13.1.1
-  framer-motion: 8.0.1
+  framer-motion: 8.0.2
   lodash.uniqby: ^4.7.0
   mongodb: 4.13.0
   next: 13.1.1
@@ -23,7 +23,7 @@ specifiers:
 
 dependencies:
   '@reduxjs/toolkit': 1.8.6_kuo2ie247izvzll3jejufdtq3q
-  framer-motion: 8.0.1_biqbaboplfbrettd7655fr4n2y
+  framer-motion: 8.0.2_biqbaboplfbrettd7655fr4n2y
   lodash.uniqby: 4.7.0
   react-icons: 4.7.1_react@18.2.0
   react-redux: 8.0.4_ie75ejlwqy5zh3tldgt7pftwcu
@@ -2571,8 +2571,8 @@ packages:
     resolution: {integrity: sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==}
     dev: true
 
-  /framer-motion/8.0.1_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-rr9Sb97cGM5BWU0jMsmTi9x5w8hF90p6wRUlXto5IFejxMVS8YUxT8Ljjy8RspQKPEGOQUZDIZNvlcLBhs0tMw==}
+  /framer-motion/8.0.2_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-xuIiQchVh/cLqUzzu5/8ok4o0nkwYPyIRtkDl8wDvrQUNRhSfRaZu1MMdzN0TjpBtG66oP03PSLO7Qtu1YqPrA==}
     peerDependencies:
       react: ^18.0.0
       react-dom: ^18.0.0
