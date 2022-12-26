@@ -1,6 +1,6 @@
 # React-Knowledge-Graph
 
-English | [简体中文](/README_zh.md)
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 [![CodeFactor](https://www.codefactor.io/repository/github/tohsaka888/react-knowledge-graph/badge?style=flat-square)](https://www.codefactor.io/repository/github/tohsaka888/react-knowledge-graph)
 [![GitHub Release Date](https://img.shields.io/github/release-date/tohsaka888/react-knowledge-graph.svg?style=flat-square)](https://github.com/tohsaka888/react-knowledge-graph/releases)
@@ -9,38 +9,36 @@ English | [简体中文](/README_zh.md)
 [![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](https://github.com/tohsaka888/react-knowledge-graph/blob/master/LICENSE)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-## Introduction
+## 简介
 
-a react component that can help you create a dynamic knowledge-graph built with `Next.js`.
+基于 `Next.js`实现通用知识图谱组件。
 
-## Features
+## 功能
 
-- Customize node size/color/text color/text size
-- Canvas drag and drop support
-- Support asynchronous data acquisition / dynamic exploration to generate graphs
-- Support for highlighting nodes and their associated edges when Hovering nodes
-- Customize properties by node type 
-- Option to hide edges when Hover edge is supported
-- Hide explored nodes and edges when explored nodes are clicked
-- Reset Canvas
-- Fullscreen
-- Right click to center the current entity
-- Support server-side rendering
-- Download the chart as a multi-format image (jpg, jpeg, png, bmp)
-- Support drag and drop nodes
-- Right-click entity menu adds only the current node i.e. its children/relationships
-- Right-click menu display all nodes
-- Dynamic configuration
-- Configuration flying line effect
-- Click the highlights of the same type of node highlight
-- Node Menu
-- display help memu
-  - Display the current node information button: You can judge whether you need it according to the needs of your own project, such as: knowledge card function
-  - Show the increase node to the physical button: you can determine whether it is required according to the needs of your own project, for example: the current node is added to the knowledge application
-- and so on
-## Accepted data structures
+- 定义节点大小/颜色/文字颜色/文字大小
+- 支持画布拖拽
+- 支持异步获取数据/动态探索生成图
+- 支持 Hover 节点时高亮节点及与其有关联的边
+- 根据节点类型定制属性
+- 支持 Hover 边时可选择隐藏边
+- 已探索节点点击后隐藏已经探索的节点和边
+- 复位画布
+- 全屏
+- 右键当前实体居中
+- 支持服务端渲染
+- 下载图谱为多种格式图片 (jpg, jpeg, png, bmp)
+- 支持拖拽节点
+- 右键实体菜单新增只显示当前节点即其子节点/关系
+- 右键菜单显示所有节点
+- 动态配置
+- 配置飞线效果
+- 节点菜单
+  - 显示当前节点信息按钮: 可以根据自己项目的需求判断是否需要, 比如: 知识卡片功能
+  - 显示增加节点至实体按钮: 可以根据自己项目的需求判断是否需要, 比如: 当前节点加入知识应用
 
-### Nodes
+## 接受的数据结构
+
+### 点
 
 ```typescript
 type NodeProps = {
@@ -52,7 +50,7 @@ type NodeProps = {
 };
 ```
 
-### Edges
+### 边
 
 ```typescript
 type EdgeProps = {
@@ -63,10 +61,10 @@ type EdgeProps = {
 };
 ```
 
-### Explore Function
+### 探索函数
 
-> Need to accept an asynchronous function, this library will return the parameter `id - Node Id`, `node - current node`
-> Need to return `inside` in edge node, `outside` out edge node, `edge` array of edges
+> 需要接受一个异步函数,本库会返回参数 `id - 节点Id`
+> 需要返回 `inside`入边节点,`outside`出边节点,`edge`边集合
 
 ```typescript
 type explore = (id: React.Key) => Promise<{
@@ -76,8 +74,9 @@ type explore = (id: React.Key) => Promise<{
 }>;
 ```
 
+## 使用
 
-## install
+### 安装
 
 ```bash
 npm install react-knowledge-graph
@@ -85,15 +84,15 @@ npm install react-knowledge-graph
 yarn add react-knowledge-graph
 ```
 
-## Usage
+### 使用
 
-import style files in the top file:
+在顶部文件引入样式文件:
 
 ```tsx
 import "react-knowledge-graph/KnowledgeGraph/index.css";
 ```
 
-Next:
+下一步:
 
 ```tsx
 <KnowledgeGraph
@@ -156,4 +155,4 @@ Next:
 
 ### Demo
 
-[click to show the Demo](https://react-knowledge-graph.vercel.app/)
+[点击查看 Demo](https://react-knowledge-graph.vercel.app/)
