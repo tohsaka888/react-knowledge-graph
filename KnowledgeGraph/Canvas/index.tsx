@@ -1,11 +1,3 @@
-/*
- * @Author: tohsaka888
- * @Date: 2022-09-30 09:04:35
- * @LastEditors: tohsaka888
- * @LastEditTime: 2022-10-09 16:25:30
- * @Description: Canvas
- */
-
 import React, { startTransition, useContext } from "react";
 import { motion } from "framer-motion";
 import Node from "../Node";

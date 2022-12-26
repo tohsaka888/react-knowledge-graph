@@ -1,11 +1,3 @@
-/*
- * @Author: tohsaka888
- * @Date: 2022-09-30 11:59:36
- * @LastEditors: tohsaka888
- * @LastEditTime: 2022-10-09 14:10:15
- * @Description: 计算距离
- */
-
 import { ConfigContext } from "../../Controller/ConfigController";
 import React, { useCallback, useContext } from "react";
 

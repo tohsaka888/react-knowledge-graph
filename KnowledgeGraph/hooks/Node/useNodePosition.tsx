@@ -1,11 +1,3 @@
-/*
- * @Author: tohsaka888
- * @Date: 2022-09-30 11:18:38
- * @LastEditors: tohsaka888
- * @LastEditTime: 2022-10-09 15:03:23
- * @Description: 计算Node位置
- */
-
 import React, { useCallback } from "react";
 import { NodeFrontProps, NodeProps } from "../../../KnowledgeGraph";
 import useCalcDistence from "./useCalcDistence";

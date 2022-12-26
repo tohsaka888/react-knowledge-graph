@@ -1,11 +1,3 @@
-/*
- * @Author: tohsaka888
- * @Date: 2022-10-08 11:25:58
- * @LastEditors: tohsaka888
- * @LastEditTime: 2022-10-09 15:01:35
- * @Description: 计算Basel弯曲方向
- */
-
 import React, { useCallback } from "react";
 import {
   EdgeFrontProps,

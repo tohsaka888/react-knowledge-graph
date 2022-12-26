@@ -1,11 +1,3 @@
-/*
- * @Author: tohsaka888
- * @Date: 2022-09-30 16:14:10
- * @LastEditors: tohsaka888
- * @LastEditTime: 2022-10-09 14:11:24
- * @Description: 边
- */
-
 import React, { useContext, useRef, useState } from "react";
 import { motion, MotionConfig } from "framer-motion";
 import { ConfigContext } from "../Controller/ConfigController";
