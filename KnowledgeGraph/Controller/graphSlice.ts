@@ -4,6 +4,7 @@ import { NodeFrontProps } from "../typings/Node";
 import { ConfigProps } from "../typings/Config";
 import { EdgeFrontProps, EdgeProps } from "../typings/Edge";
 import uniqBy from "lodash.uniqby";
+import nodeTest from "node:test";
 
 type GraphProps = { nodes: NodeFrontProps[]; edges: EdgeFrontProps[] };
 
@@ -49,6 +50,7 @@ export const graphSlice: Slice<typeof initialState> = createSlice({
         angle: 0,
         distence: 0,
         visible: true,
+        isHovered: false,
       });
     },
     /**
@@ -340,6 +342,17 @@ export const graphSlice: Slice<typeof initialState> = createSlice({
         }
       });
     },
+    setHoveredNodesAndEdges(
+      state,
+      { payload }: PayloadAction<{ nodes: NodeFrontProps[] }>
+    ) {
+      const nodes = payload.nodes;
+      state.nodes
+        .filter((n) => nodes.some((node) => node.id === n.id))
+        .forEach((node) => {
+          node.isHovered = !node.isHovered;
+        });
+    },
   },
 });
 
@@ -359,5 +372,6 @@ export const {
   clearAllGraph,
   initGraph,
   isShowNodesAndEdges,
+  setHoveredNodesAndEdges,
 } = graphSlice.actions;
 export default graphSlice.reducer;

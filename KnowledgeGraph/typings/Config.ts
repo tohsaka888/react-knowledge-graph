@@ -1,11 +1,3 @@
-/*
- * @Author: tohsaka888
- * @Date: 2022-09-30 11:57:19
- * @LastEditors: tohsaka888
- * @LastEditTime: 2022-10-09 16:23:46
- * @Description: config type
- */
-
 import React, { CSSProperties, HTMLAttributes } from "react";
 import { EdgeProps } from "./Edge";
 import { NodeFrontProps, NodeProps } from "./Node";
@@ -67,10 +59,6 @@ type ConfigProps = {
     color?: string;
     size?: number;
   };
-  onClickFilterType?: (
-    typeNodes: NodeFrontProps[],
-    unShowNodesAndEdges: (node: NodeFrontProps, visible: boolean) => void
-  ) => void;
 } & HTMLAttributes<HTMLDivElement>;
 
 type CanvasConfig = {
