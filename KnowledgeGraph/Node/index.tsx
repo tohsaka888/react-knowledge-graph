@@ -1,11 +1,3 @@
-/*
- * @Author: tohsaka888
- * @Date: 2022-09-30 09:02:25
- * @LastEditors: tohsaka888
- * @LastEditTime: 2022-10-09 16:16:37
- * @Description: 节点
- */
-
 import React, {
   startTransition,
   useCallback,
@@ -207,7 +199,7 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
               }
             }}
           >
-            {isHover && (
+            {(isHover || node.isHovered) && (
               <motion.circle
                 r={radius + 2}
                 fill={"transparent"}
@@ -287,7 +279,7 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
               </>
             )}
 
-            {showNodeMenu && isHover && (
+            {showNodeMenu && (isHover || node.isHovered) && (
               <motion.g
                 initial={{
                   x: -6,
@@ -305,7 +297,7 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
               </motion.g>
             )}
 
-            {showNodeMenu && isHover && (
+            {showNodeMenu && (isHover || node.isHovered) && (
               <motion.g
                 initial={{
                   x: -6,
