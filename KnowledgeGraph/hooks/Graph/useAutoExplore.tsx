@@ -33,14 +33,16 @@ function useAutoExplore() {
       graphConfig.enableAutoExplore &&
       exploredPath.forEach((path) => {
         const { node, inside, outside, edges } = path;
-        exploreFunc({
-          node,
-          syncExplore: () => ({
-            inside,
-            outside,
-            edges,
-          }),
-        });
+        if (node.hasMore) {
+          exploreFunc({
+            node,
+            syncExplore: () => ({
+              inside,
+              outside,
+              edges,
+            }),
+          });
+        }
       });
 
     return () => {
