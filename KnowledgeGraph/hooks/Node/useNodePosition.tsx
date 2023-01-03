@@ -32,16 +32,15 @@ function useNodePosition() {
         ? Math.atan2(
             parentNode.position.y - parentNode.parentNode.position.y,
             parentNode.position.x - parentNode.parentNode.position.x
-          ) +
-          Math.PI * 1.5
-        : parentNode.angle;
+          )
+        : 0;
 
       if (insideLength && outsideLength) {
         rotation = parentAngle;
       } else if (insideLength && !outsideLength) {
-        rotation = parentAngle - Math.PI / 2;
+        rotation = parentAngle + Math.PI;
       } else if (!insideLength && outsideLength) {
-        rotation = parentAngle + Math.PI / 2;
+        rotation = parentAngle;
       }
 
       typeNodes.forEach((nodes, i) => {
@@ -67,7 +66,7 @@ function useNodePosition() {
             angle,
             distence,
             visible: true,
-            isHovered: false
+            isHovered: false,
           };
 
           frontNodes.push(frontNode);
