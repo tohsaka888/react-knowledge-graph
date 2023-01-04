@@ -85,6 +85,17 @@ function RightMenuContent() {
 
       const graph = document.getElementById("knowledge-graph-canvas")!;
       const clonedGraph = graph.cloneNode(true) as SVGSVGElement;
+
+      clonedGraph.querySelectorAll(".nodes").forEach((ele) => {
+        (ele as any).style.visibility = "visible";
+        (ele as any).style.opacity = 1;
+      });
+
+      clonedGraph.querySelectorAll(".edges").forEach((ele) => {
+        (ele as any).style.visibility = "visible";
+        (ele as any).style.opacity = 1;
+      });
+
       const scaleElement = clonedGraph.getElementById(
         "graph-scale"
       ) as SVGGElement;
