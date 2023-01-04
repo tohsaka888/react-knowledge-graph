@@ -35,6 +35,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 - 节点菜单
   - 显示当前节点信息按钮: 可以根据自己项目的需求判断是否需要, 比如: 知识卡片功能
   - 显示增加节点至实体按钮: 可以根据自己项目的需求判断是否需要, 比如: 当前节点加入知识应用
+- 提供两种优化拖拽画布的优化方案-使用`react`或者使用`dom`，默认采用`react`进行优化
 
 ## 接受的数据结构
 
