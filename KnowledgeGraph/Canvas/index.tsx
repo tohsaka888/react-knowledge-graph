@@ -1,4 +1,4 @@
-import React, { startTransition, useContext } from "react";
+import React, { useContext } from "react";
 import { motion } from "framer-motion";
 import Node from "../Node";
 import Edge from "../Edge";
@@ -10,11 +10,16 @@ import {
 } from "../Controller/canvasConfigSlice";
 import useAutoExplore from "../hooks/Graph/useAutoExplore";
 import { useRightMenuEventDispatch } from "../Controller/RightMenuController";
+import { ConfigContext } from "../Controller/ConfigController";
 
 function CanvasContainer({ children }: { children: React.ReactNode }) {
   const setEvent = useRightMenuEventDispatch();
   const dispatch = useAppDispatch();
   const canvasConfig = useAppSelector((state) => state.canvasConfig);
+
+  const { config } = useContext(ConfigContext)!;
+
+  const { dragRenderOptimization } = config;
 
   return (
     <>
@@ -44,20 +49,32 @@ function CanvasContainer({ children }: { children: React.ReactNode }) {
         }}
         className={"canvas"}
         onDrag={(e, info) => {
-          startTransition(() => {
-            const dragElement = document.getElementById("graph-drag")!;
-            dragElement.style.transform = `translateX(${
-              canvasConfig.x + info.offset.x
-            }px) translateY(${canvasConfig.y + info.offset.y}px)`;
+          requestAnimationFrame(() => {
+            // s2 更改state
+            if (dragRenderOptimization === "react") {
+              dispatch(setCanvasOffset({ dx: info.delta.x, dy: info.delta.y }));
+            } else {
+              // s1 直接修改dom
+              const dragElement = document.getElementById("graph-drag")!;
+              dragElement.style.transform = `translateX(${
+                canvasConfig.x + info.offset.x
+              }px) translateY(${canvasConfig.y + info.offset.y}px)`;
+            }
           });
         }}
         onDragEnd={(e, info) => {
-          dispatch(
-            setCanvasOffset({
-              dx: info.offset.x,
-              dy: info.offset.y,
-            })
-          );
+          if (dragRenderOptimization === "react") {
+            // s2 更改state
+            dispatch(setCanvasOffset({ dx: info.delta.x, dy: info.delta.y }));
+          } else {
+            // s1
+            dispatch(
+              setCanvasOffset({
+                dx: info.offset.x,
+                dy: info.offset.y,
+              })
+            );
+          }
         }}
         onClick={() => {
           setEvent(null);
