@@ -37,6 +37,7 @@ a react component that can help you create a dynamic knowledge-graph built with 
 - display help memu
   - Display the current node information button: You can judge whether you need it according to the needs of your own project, such as: knowledge card function
   - Show the increase node to the physical button: you can determine whether it is required according to the needs of your own project, for example: the current node is added to the knowledge application
+- two way to optimize dragging performance: use `react` or use `dom`
 - and so on
 ## Accepted data structures
 
