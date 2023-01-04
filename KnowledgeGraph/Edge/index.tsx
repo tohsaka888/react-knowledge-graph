@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useMemo, useRef, useState } from "react";
 import { motion, MotionConfig } from "framer-motion";
 import { ConfigContext } from "../Controller/ConfigController";
 import { defaultEdgeConfig } from "../config/edgeConfig";
@@ -10,6 +10,7 @@ import {
   BsFillEyeSlashFill,
 } from "react-icons/bs";
 import useIsShowText from "../hooks/Graph/useIsShowText";
+import { useGraphBounds } from "../Controller/GraphBoundsController";
 
 function Edge(props: EdgeFrontProps) {
   const {
@@ -42,16 +43,37 @@ function Edge(props: EdgeFrontProps) {
 
   const isShowText = useIsShowText();
 
+  const { x1, x2, y1, y2 } = useGraphBounds();
+
+  const isInScreen = useMemo(() => {
+    const fromX = fromNode?.position.x || 0;
+    const fromY = fromNode?.position.y || 0;
+    const toX = toNode?.position.x || 0;
+    const toY = toNode?.position.y || 0;
+    if (
+      (fromX >= x1 && fromX <= x2 && fromY >= y1 && fromY <= y2) ||
+      (toX >= x1 && toX <= x2 && toY >= y1 && toY <= y2)
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }, [fromNode, toNode, x1, x2, y1, y2]);
+
   return (
     <MotionConfig reducedMotion="never">
       {fromNode && toNode && visible && (
         <motion.g
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          animate={{
+            opacity: 1,
+            visibility: isInScreen ? "visible" : "hidden",
+          }}
           fill={"none"}
           transition={{
             duration: 1,
           }}
+          className={"edges"}
           onClick={() => {
             setOpacity((value) => (value !== 1 ? 1 : 0.2));
           }}
