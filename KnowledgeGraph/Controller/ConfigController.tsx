@@ -29,6 +29,7 @@ function ConfigController({ graphConfig, children }: Props) {
           },
           showNodeMenu: true,
           enableAutoExplore: true,
+          dragRenderOptimization: "react",
           ...graphConfig,
         },
       }}

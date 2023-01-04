@@ -23,9 +23,8 @@ import {
 import { useAppSelector } from "../hooks";
 import useCalcEdge from "../hooks/Edge/useCalcEdge";
 import { FcInfo, FcPlus } from "react-icons/fc";
-// import { useGraphBounds } from "../Controller/GraphBoundsController";
 import useIsShowText from "../hooks/Graph/useIsShowText";
-import { defaultEdgeConfig } from "../config/edgeConfig";
+import { useGraphBounds } from "../Controller/GraphBoundsController";
 
 function UnmemoNode({ node }: { node: NodeFrontProps }) {
   const { config } = useContext(ConfigContext)!;
@@ -47,23 +46,22 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
   const { exploreFunc, loading } = useExplore();
   const dispatch = useDispatch();
   const { calcD } = useCalcEdge();
-  // const { x1, x2, y1, y2 } = useGraphBounds();
+  const { x1, x2, y1, y2 } = useGraphBounds();
 
   const isShowText = useIsShowText();
 
-  // const isInScreen = useMemo(() => {
-  //   // if (
-  //   //   position.x + radius >= x1 &&
-  //   //   position.x <= x2 &&
-  //   //   position.y >= y1 &&
-  //   //   position.y <= y2
-  //   // ) {
-  //   //   return true;
-  //   // } else {
-  //   //   return false;
-  //   // }
-  //   return true
-  // }, [position.x, position.y, radius, x1, x2, y1, y2]);
+  const isInScreen = useMemo(() => {
+    if (
+      position.x + radius >= x1 &&
+      position.x <= x2 &&
+      position.y >= y1 &&
+      position.y <= y2
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }, [position.x, position.y, radius, x1, x2, y1, y2]);
 
   const modifyEdges = useCallback((info: PanInfo) => {
     edgesElementRef.current.forEach(({ element, direction, edge }) => {
@@ -128,11 +126,12 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
 
   return (
     <>
-      {node.visible && node.id && (
+      {node.id && (
         <AnimatePresence>
           <motion.g
             key={node.id}
             cursor={"pointer"}
+            className={"nodes"}
             id={node.id}
             onHoverStart={() => {
               dispatch(filterHighlightEdges(node));
@@ -149,7 +148,9 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
             whileDrag={{
               scale: 1.2,
             }}
-            style={{ willChange: "transform" }}
+            style={{
+              willChange: "transform",
+            }}
             onDragStart={(e) => {
               edgesElementRef.current = needCalcEdges.map((edge) => {
                 let direction: "from" | "to" = "from";
@@ -188,10 +189,17 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
             animate={{
               x: position.x,
               y: position.y,
-              opacity: 1,
+              opacity: isInScreen ? 1 : 0,
+              visibility: node.visible && isInScreen ? "visible" : "hidden",
             }}
             transition={{
               duration: 0.3,
+              visibility: {
+                duration: 0,
+              },
+              opacity: {
+                duration: 0.6,
+              },
             }}
             onDoubleClick={(e) => {
               if (!loading) {
