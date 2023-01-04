@@ -59,6 +59,7 @@ type ConfigProps = {
     color?: string;
     size?: number;
   };
+  dragRenderOptimization?: "react" | "dom";
 } & HTMLAttributes<HTMLDivElement>;
 
 type CanvasConfig = {
