@@ -1,11 +1,18 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { createEdgeFakeData } from "../../../../utils/client/createEdgeFakeData";
 import { connectDB } from "../../../../utils/server/connectDB";
+import { runMiddleware } from "../../../../utils/server/runMiddleware";
+import Cors from "cors";
+
+const cors = Cors({
+  methods: ["POST", "GET", "HEAD"],
+});
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  await runMiddleware(req, res, cors);
   try {
     const db = await connectDB();
     const id = req.query.id as string;
@@ -31,14 +38,12 @@ export default async function handler(
       length: +outsideLength,
       edgeLastId: lastEdgeId + +insideLength,
     });
-    collection.insertMany([...insdieEdgeFakeData, ...outsideEdgeFakeData])
+    collection.insertMany([...insdieEdgeFakeData, ...outsideEdgeFakeData]);
     if (db) {
-      res
-        .status(200)
-        .send({
-          insideEdges: insdieEdgeFakeData,
-          outsideEdges: outsideEdgeFakeData,
-        });
+      res.status(200).send({
+        insideEdges: insdieEdgeFakeData,
+        outsideEdges: outsideEdgeFakeData,
+      });
     }
   } catch (error) {
     res.status(200).send([]);

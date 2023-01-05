@@ -1,11 +1,18 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { createNodeFakeData } from "../../../../utils/client/createNodeFakeData";
 import { connectDB } from "../../../../utils/server/connectDB";
+import { runMiddleware } from "../../../../utils/server/runMiddleware";
+import Cors from "cors";
+
+const cors = Cors({
+  methods: ["POST", "GET", "HEAD"],
+});
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  await runMiddleware(req, res, cors);
   try {
     const db = await connectDB();
     // collection.insertMany([...insdieEdgeFakeData, ...outsideEdgeFakeData])
