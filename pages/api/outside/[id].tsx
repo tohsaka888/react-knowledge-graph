@@ -1,10 +1,3 @@
-/*
- * @Author: tohsaka888
- * @Date: 2022-10-08 08:25:48
- * @LastEditors: tohsaka888
- * @LastEditTime: 2022-10-09 14:59:08
- * @Description: 请填写简介
- */
 import { NodeProps } from "../../../KnowledgeGraph";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { connectDB } from "../../../utils/server/connectDB";
