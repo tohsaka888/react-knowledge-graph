@@ -9,7 +9,7 @@ specifiers:
   '@types/node': 18.11.18
   '@types/react': 18.0.26
   '@types/react-dom': 18.0.10
-  antd: 5.1.5
+  antd: 5.1.6
   cors: ^2.8.5
   eslint: 8.32.0
   eslint-config-next: 13.1.2
@@ -38,7 +38,7 @@ devDependencies:
   '@types/node': 18.11.18
   '@types/react': 18.0.26
   '@types/react-dom': 18.0.10
-  antd: 5.1.5_biqbaboplfbrettd7655fr4n2y
+  antd: 5.1.6_biqbaboplfbrettd7655fr4n2y
   cors: 2.8.5
   eslint: 8.32.0
   eslint-config-next: 13.1.2_7uibuqfxkfaozanbtbziikiqje
@@ -56,8 +56,8 @@ packages:
       '@ctrl/tinycolor': 3.4.1
     dev: true
 
-  /@ant-design/cssinjs/1.4.0_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-siFyX5VyiJWKBQAffI8zE0WZ4OWfI35QnqesbtHaVg49QxHFAcFN9VbJ+Qoos24JxABcxfopEwMWe2joZ2QVBQ==}
+  /@ant-design/cssinjs/1.5.6_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-1S7LUPC9BMyQ/CUYgzfePJJwEfsbVHJe3Tpd9zhujTxRM/6LYpN9N4FTaPHVqpnPazm0S2vG0WBkh2T5Erwuug==}
     peerDependencies:
       react: '>=16.0.0'
       react-dom: '>=16.0.0'
@@ -1521,14 +1521,14 @@ packages:
       color-convert: 2.0.1
     dev: true
 
-  /antd/5.1.5_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-f1gfmDG8CApTu1h6gtM7i/krMTP6WH55w7pUPAMHlp9jsviKR+ElPqSQeLZV3UjuxVNn0DWvGwWEJ0Rv/kbeEQ==}
+  /antd/5.1.6_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-9bn2B4rZ1c7IXtn5U95aNGJXmLOZyL1V5TiGq3pk3S3bGD13BA2eynSI//e3c2FAslZlqQlQEGV+NHms9ygAVA==}
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
     dependencies:
       '@ant-design/colors': 7.0.0
-      '@ant-design/cssinjs': 1.4.0_biqbaboplfbrettd7655fr4n2y
+      '@ant-design/cssinjs': 1.5.6_biqbaboplfbrettd7655fr4n2y
       '@ant-design/icons': 5.0.0_biqbaboplfbrettd7655fr4n2y
       '@ant-design/react-slick': 1.0.0_react@18.2.0
       '@babel/runtime': 7.20.6
@@ -1550,7 +1550,7 @@ packages:
       rc-input: 0.1.4_biqbaboplfbrettd7655fr4n2y
       rc-input-number: 7.4.0_biqbaboplfbrettd7655fr4n2y
       rc-mentions: 1.13.1_biqbaboplfbrettd7655fr4n2y
-      rc-menu: 9.8.0_biqbaboplfbrettd7655fr4n2y
+      rc-menu: 9.8.2_biqbaboplfbrettd7655fr4n2y
       rc-motion: 2.6.2_biqbaboplfbrettd7655fr4n2y
       rc-notification: 5.0.0_biqbaboplfbrettd7655fr4n2y
       rc-pagination: 3.2.0_biqbaboplfbrettd7655fr4n2y
@@ -3824,7 +3824,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.20.6
       classnames: 2.3.2
-      rc-menu: 9.8.0_biqbaboplfbrettd7655fr4n2y
+      rc-menu: 9.8.2_biqbaboplfbrettd7655fr4n2y
       rc-textarea: 0.4.5_biqbaboplfbrettd7655fr4n2y
       rc-trigger: 5.3.4_biqbaboplfbrettd7655fr4n2y
       rc-util: 5.27.1_biqbaboplfbrettd7655fr4n2y
@@ -3832,8 +3832,8 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: true
 
-  /rc-menu/9.8.0_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-ftO5ExUMMSprzinxtHQz11KIRWY6P/tOs5ZexboWJ835LVQAMXuqDFqkjB/BXVC8WAKjj9t3eZmmweZp+guoYw==}
+  /rc-menu/9.8.2_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-EahOJVjLuEnJsThoPN+mGnVm431RzVzDLZWHRS/YnXTQULa7OsgdJa/Y7qXxc3Z5sz8mgT6xYtgpmBXLxrZFaQ==}
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
@@ -3846,7 +3846,6 @@ packages:
       rc-util: 5.27.1_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      shallowequal: 1.1.0
     dev: true
 
   /rc-motion/2.6.2_biqbaboplfbrettd7655fr4n2y:
@@ -4071,7 +4070,7 @@ packages:
       '@babel/runtime': 7.20.6
       classnames: 2.3.2
       rc-dropdown: 4.0.1_biqbaboplfbrettd7655fr4n2y
-      rc-menu: 9.8.0_biqbaboplfbrettd7655fr4n2y
+      rc-menu: 9.8.2_biqbaboplfbrettd7655fr4n2y
       rc-motion: 2.6.2_biqbaboplfbrettd7655fr4n2y
       rc-resize-observer: 1.2.0_biqbaboplfbrettd7655fr4n2y
       rc-util: 5.27.1_biqbaboplfbrettd7655fr4n2y
