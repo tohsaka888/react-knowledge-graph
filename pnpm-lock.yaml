@@ -15,7 +15,7 @@ specifiers:
   eslint-config-next: 13.1.6
   framer-motion: 9.0.1
   lodash.uniqby: ^4.7.0
-  mongodb: 5.0.0
+  mongodb: 5.0.1
   next: 13.1.6
   react: 18.2.0
   react-dom: 18.2.0
@@ -42,7 +42,7 @@ devDependencies:
   cors: 2.8.5
   eslint: 8.33.0
   eslint-config-next: 13.1.6_4vsywjlpuriuw3tl5oq6zy5a64
-  mongodb: 5.0.0
+  mongodb: 5.0.1
   next: 13.1.6_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -2319,8 +2319,8 @@ packages:
       whatwg-url: 11.0.0
     dev: true
 
-  /mongodb/5.0.0:
-    resolution: {integrity: sha512-WHmlbefKp/iAX2LlSZ56iKt4pRftib/dD3mDaji8R7IJcRoKPc5+/kSn3mIBxKPLVxcl73KdDKBLkQTxj1OjaA==}
+  /mongodb/5.0.1:
+    resolution: {integrity: sha512-KpjtY+NWFmcic6UDYEdfn768ZTuKyv7CRaui7ZSd6q/0/o1AURMC7KygTUwB1Cl8V10Pe5NiP+Y2eBMCDs/ygQ==}
     engines: {node: '>=14.20.1'}
     peerDependencies:
       '@aws-sdk/credential-providers': ^3.201.0
