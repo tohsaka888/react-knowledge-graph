@@ -9,7 +9,7 @@ specifiers:
   '@types/node': 18.13.0
   '@types/react': 18.0.28
   '@types/react-dom': 18.0.11
-  antd: 5.2.0
+  antd: 5.2.1
   cors: ^2.8.5
   eslint: 8.34.0
   eslint-config-next: 13.1.6
@@ -38,7 +38,7 @@ devDependencies:
   '@types/node': 18.13.0
   '@types/react': 18.0.28
   '@types/react-dom': 18.0.11
-  antd: 5.2.0_biqbaboplfbrettd7655fr4n2y
+  antd: 5.2.1_biqbaboplfbrettd7655fr4n2y
   cors: 2.8.5
   eslint: 8.34.0
   eslint-config-next: 13.1.6_7kw3g6rralp5ps6mg3uyzz6azm
@@ -832,8 +832,8 @@ packages:
       color-convert: 2.0.1
     dev: true
 
-  /antd/5.2.0_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-FZDgV60I2sZ0ZpxcP1vq+lwNM+OwMESjT1A2Zs9mgyK1P3X4JILugD+m05IZoUqkjWO80IKNUo9qkE1S1rEB6A==}
+  /antd/5.2.1_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-yuTeYEhfvsEjHdPwhb47GXBk9EHZ/pHDaUgJMXHhOUbaWPWnTliHtQwgHYMJT9rEZobi3O0YRP2wnYWVtbDGsw==}
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
@@ -875,7 +875,7 @@ packages:
       rc-steps: 6.0.0_biqbaboplfbrettd7655fr4n2y
       rc-switch: 4.0.0_biqbaboplfbrettd7655fr4n2y
       rc-table: 7.30.3_biqbaboplfbrettd7655fr4n2y
-      rc-tabs: 12.5.1_biqbaboplfbrettd7655fr4n2y
+      rc-tabs: 12.5.6_biqbaboplfbrettd7655fr4n2y
       rc-textarea: 1.0.1_biqbaboplfbrettd7655fr4n2y
       rc-tooltip: 5.3.1_biqbaboplfbrettd7655fr4n2y
       rc-tree: 5.7.0_biqbaboplfbrettd7655fr4n2y
@@ -3062,8 +3062,8 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: true
 
-  /rc-tabs/12.5.1_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-SCDqMZGh5ohujfYYjLCuYeDYx5aHVgiUx84yQmgY3yIqc2glcdMMMX9isIAEieQFWgQIQz/lmmEk1Kd/VyBuSA==}
+  /rc-tabs/12.5.6_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-aArXHzxK7YICxe+622CZ8FlO5coMi8P7E6tXpseCPKm1gdTjUt0LrQK1/AxcrRXZXG3K4QqhlKmET0+cX5DQaQ==}
     engines: {node: '>=8.x'}
     peerDependencies:
       react: '>=16.9.0'
