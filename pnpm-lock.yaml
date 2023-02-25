@@ -15,7 +15,7 @@ specifiers:
   eslint-config-next: 13.1.6
   framer-motion: 10.0.0
   lodash.uniqby: ^4.7.0
-  mongodb: 5.0.1
+  mongodb: 5.1.0
   next: 13.1.6
   react: 18.2.0
   react-dom: 18.2.0
@@ -42,7 +42,7 @@ devDependencies:
   cors: 2.8.5
   eslint: 8.34.0
   eslint-config-next: 13.1.6_7kw3g6rralp5ps6mg3uyzz6azm
-  mongodb: 5.0.1
+  mongodb: 5.1.0
   next: 13.1.6_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -961,8 +961,8 @@ packages:
       fill-range: 7.0.1
     dev: true
 
-  /bson/5.0.0:
-    resolution: {integrity: sha512-EL2KpZdyhshyyptj6pnQfnFKPoncD9KwZYvgmj/FXQiOUU1HWTHWmBOP4TZXU3YzStcI5qgpIl68YnMo16s26A==}
+  /bson/5.0.1:
+    resolution: {integrity: sha512-y09gBGusgHtinMon/GVbv1J6FrXhnr/+6hqLlSmEFzkz6PodqF6TxjyvfvY3AfO+oG1mgUtbC86xSbOlwvM62Q==}
     engines: {node: '>=14.20.1'}
     dev: true
 
@@ -2266,8 +2266,8 @@ packages:
       whatwg-url: 11.0.0
     dev: true
 
-  /mongodb/5.0.1:
-    resolution: {integrity: sha512-KpjtY+NWFmcic6UDYEdfn768ZTuKyv7CRaui7ZSd6q/0/o1AURMC7KygTUwB1Cl8V10Pe5NiP+Y2eBMCDs/ygQ==}
+  /mongodb/5.1.0:
+    resolution: {integrity: sha512-qgKb7y+EI90y4weY3z5+lIgm8wmexbonz0GalHkSElQXVKtRuwqXuhXKccyvIjXCJVy9qPV82zsinY0W1FBnJw==}
     engines: {node: '>=14.20.1'}
     peerDependencies:
       '@aws-sdk/credential-providers': ^3.201.0
@@ -2281,7 +2281,7 @@ packages:
       snappy:
         optional: true
     dependencies:
-      bson: 5.0.0
+      bson: 5.0.1
       mongodb-connection-string-url: 2.6.0
       socks: 2.7.1
     optionalDependencies:
