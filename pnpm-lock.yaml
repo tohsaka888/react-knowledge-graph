@@ -9,7 +9,7 @@ specifiers:
   '@types/node': 18.14.2
   '@types/react': 18.0.28
   '@types/react-dom': 18.0.11
-  antd: 5.2.2
+  antd: 5.2.3
   cors: ^2.8.5
   eslint: 8.35.0
   eslint-config-next: 13.2.1
@@ -38,7 +38,7 @@ devDependencies:
   '@types/node': 18.14.2
   '@types/react': 18.0.28
   '@types/react-dom': 18.0.11
-  antd: 5.2.2_biqbaboplfbrettd7655fr4n2y
+  antd: 5.2.3_biqbaboplfbrettd7655fr4n2y
   cors: 2.8.5
   eslint: 8.35.0
   eslint-config-next: 13.2.1_ycpbpc6yetojsgtrx3mwntkhsu
@@ -790,8 +790,8 @@ packages:
       color-convert: 2.0.1
     dev: true
 
-  /antd/5.2.2_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-IHuMyGvgI+pPmoZNJFfhVykb0eW6+iO/39/9qPE0ub9gKAnI4vaK+hA5li6aX+mjM/EqgckdWgLpaIP98kGrvw==}
+  /antd/5.2.3_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-mUSVH4ZhzC8h3eLNyL7PWquKUmvDcWAVRZYi060MOw6uiKl0pqsB/FC8OpfwntpBlVYgGMk+y3GB0loqTMSmJA==}
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
