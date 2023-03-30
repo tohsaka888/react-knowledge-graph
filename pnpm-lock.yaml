@@ -5,8 +5,8 @@ dependencies:
     specifier: ^1.8.6
     version: 1.8.6(react-redux@8.0.4)(react@18.2.0)
   framer-motion:
-    specifier: 10.9.2
-    version: 10.9.2(react-dom@18.2.0)(react@18.2.0)
+    specifier: 10.10.0
+    version: 10.10.0(react-dom@18.2.0)(react@18.2.0)
   lodash.uniqby:
     specifier: ^4.7.0
     version: 4.7.0
@@ -1731,8 +1731,8 @@ packages:
     resolution: {integrity: sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==}
     dev: true
 
-  /framer-motion@10.9.2(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-qNhnSAO0rd4A2GI93Y5SlljdBQEP6u/y98tX6esz48WxGPhHfePRfEmp9acUHOvxE+e9p3M/RbSDsoGkXTeqRA==}
+  /framer-motion@10.10.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-eCsyOcJimIRbx9KOzBTO3j9u1rF/H8/o/ybizYqdrzHkEeHx9L2NcEfGWfV0OHTc1JV17ECVzuZpomupEJ4+dw==}
     peerDependencies:
       react: ^18.0.0
       react-dom: ^18.0.0
