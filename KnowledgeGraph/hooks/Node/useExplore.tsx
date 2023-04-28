@@ -124,7 +124,6 @@ function useExplore() {
       dispatch,
       explore,
       extendOffset,
-      nodes,
       onExploreEnd,
     ]
   );

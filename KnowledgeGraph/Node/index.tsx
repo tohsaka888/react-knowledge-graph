@@ -63,52 +63,56 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
     }
   }, [position.x, position.y, radius, x1, x2, y1, y2]);
 
-  const modifyEdges = useCallback((info: PanInfo) => {
-    edgesElementRef.current.forEach(({ element, direction, edge }) => {
-      const fromNode = edge.fromNode!;
-      const toNode = edge.toNode!;
-      const d = calcD(
-        direction === "from"
-          ? {
-              ...edge,
-              fromNode: {
-                ...fromNode,
-                position: {
-                  x: fromNode.position.x + info.offset.x,
-                  y: fromNode.position.y + info.offset.y,
-                },
-              } as NodeFrontProps,
+  const modifyEdges = useCallback(
+    (info: PanInfo) => {
+      if (edgesElementRef.current) {
+        edgesElementRef.current.forEach(({ element, direction, edge }) => {
+          const fromNode = edge.fromNode!;
+          const toNode = edge.toNode!;
+          const d = calcD(
+            direction === "from"
+              ? {
+                  ...edge,
+                  fromNode: {
+                    ...fromNode,
+                    position: {
+                      x: fromNode.position.x + info.offset.x,
+                      y: fromNode.position.y + info.offset.y,
+                    },
+                  } as NodeFrontProps,
+                }
+              : {
+                  ...edge,
+                  toNode: {
+                    ...toNode,
+                    position: {
+                      x: toNode.position.x + info.offset.x,
+                      y: toNode.position.y + info.offset.y,
+                    },
+                  } as NodeFrontProps,
+                }
+          );
+          if (d) {
+            element.setAttribute("d", d);
+            const iconOpen = document.getElementById(edge.id + "icon-open");
+            const iconClose = document.getElementById(edge.id + "icon-close");
+            const arrow = document.getElementById(edge.id + "arrow");
+            if (iconOpen) {
+              iconOpen.style.offsetPath = `path("${d}")`;
             }
-          : {
-              ...edge,
-              toNode: {
-                ...toNode,
-                position: {
-                  x: toNode.position.x + info.offset.x,
-                  y: toNode.position.y + info.offset.y,
-                },
-              } as NodeFrontProps,
+            if (iconClose) {
+              iconClose.style.offsetPath = `path("${d}")`;
             }
-      );
-      if (d) {
-        element.setAttribute("d", d);
-        const iconOpen = document.getElementById(edge.id + "icon-open");
-        const iconClose = document.getElementById(edge.id + "icon-close");
-        const arrow = document.getElementById(edge.id + "arrow");
-        if (iconOpen) {
-          iconOpen.style.offsetPath = `path("${d}")`;
-        }
-        if (iconClose) {
-          iconClose.style.offsetPath = `path("${d}")`;
-        }
-        if (arrow) {
-          arrow.style.offsetPath = `path("${d}")`;
-        }
+            if (arrow) {
+              arrow.style.offsetPath = `path("${d}")`;
+            }
+          }
+        });
       }
-    });
-
+    },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    []
+  );
 
   const needCalcEdges = useMemo(
     () =>
@@ -169,7 +173,7 @@ function UnmemoNode({ node }: { node: NodeFrontProps }) {
               });
             }}
             onDrag={(e, info) => {
-              startTransition(() => {
+              requestAnimationFrame(() => {
                 modifyEdges(info);
               });
             }}
