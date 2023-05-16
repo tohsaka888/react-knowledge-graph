@@ -85,22 +85,20 @@ function Edge(props: EdgeFrontProps) {
             fill={"none"}
             width={20}
             initial={{ opacity: 0, pathLength: 0 }}
+            d={d}
             animate={{
               stroke: isActive
                 ? edgeConfig?.hoveredColor || "#1890ff"
                 : edgeConfig?.stroke || stroke,
               strokeWidth: edgeConfig?.strokeWidth || strokeWidth!,
               opacity,
-              d,
+              // d,
               cursor: "pointer",
               pathLength: [0, 1],
             }}
             transition={{
-              d: {
-                duration: isMoving ? 0.3 : 0,
-              },
               pathLength: {
-                duration: 0.5,
+                duration: 1,
               },
             }}
           />

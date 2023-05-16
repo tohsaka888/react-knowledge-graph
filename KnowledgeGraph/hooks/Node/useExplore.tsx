@@ -3,7 +3,7 @@ import useNodePosition from "./useNodePosition";
 import { EdgeProps } from "../../typings/Edge";
 import { NodeFrontProps, NodeProps } from "../../typings/Node";
 import React, { useCallback, useContext, useState } from "react";
-import { useAppDispatch, useAppSelector } from "..";
+import { useAppDispatch } from "..";
 import {
   graphExplore,
   changeExploreState,
@@ -35,7 +35,6 @@ function useExplore() {
   const [loading, setLoading] = useState<boolean>(false);
   const { config } = useContext(ConfigContext)!;
   const { explore, onExploreEnd } = config;
-  const nodes = useAppSelector(({ graph }) => graph.nodes);
   const [childNodeLength, setChildNodeLength] = useState<{
     insideLength: number;
     outsideLength: number;
