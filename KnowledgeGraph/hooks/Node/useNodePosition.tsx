@@ -36,7 +36,11 @@ function useNodePosition() {
         : 0;
 
       if (insideLength && outsideLength) {
-        rotation = parentAngle;
+        console.log(parentAngle);
+        rotation =
+          Math.abs(parentAngle) > Math.PI / 2
+            ? parentAngle - Math.PI
+            : parentAngle;
       } else if (insideLength && !outsideLength) {
         rotation = parentAngle + Math.PI;
       } else if (!insideLength && outsideLength) {
