@@ -27,7 +27,7 @@
     "@reduxjs/toolkit": "^1.8.6",
     "framer-motion": "10.12.16",
     "lodash.uniqby": "^4.7.0",
-    "react-icons": "4.8.0",
+    "react-icons": "4.9.0",
     "react-redux": "^8.0.4"
   },
   "devDependencies": {
