@@ -1,6 +1,6 @@
 # React-Knowledge-Graph
 
-English | [简体中文](/README_zh.md)
+English | [简体中文](/README_zh.md) 
 
 [![CodeFactor](https://www.codefactor.io/repository/github/tohsaka888/react-knowledge-graph/badge?style=flat-square)](https://www.codefactor.io/repository/github/tohsaka888/react-knowledge-graph)
 [![GitHub Release Date](https://img.shields.io/github/release-date/tohsaka888/react-knowledge-graph.svg?style=flat-square)](https://github.com/tohsaka888/react-knowledge-graph/releases)
