@@ -44,8 +44,8 @@ devDependencies:
     specifier: 18.2.7
     version: 18.2.7
   antd:
-    specifier: 5.8.3
-    version: 5.8.3(react-dom@18.2.0)(react@18.2.0)
+    specifier: 5.8.4
+    version: 5.8.4(react-dom@18.2.0)(react@18.2.0)
   cors:
     specifier: ^2.8.5
     version: 2.8.5
@@ -836,8 +836,8 @@ packages:
       color-convert: 2.0.1
     dev: true
 
-  /antd@5.8.3(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-/DIGg/1UXyPdNLs9FYalfJO1LnnwMv2pnx9DS6ANSJwlo6fDxtb693IJWdaBuRlxgXJfARzxMNsPyFygy9N/Qw==}
+  /antd@5.8.4(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-DbQUmRWf9GAllZsc9NxL9gnrup75F7iZ0OlFY+mXh31JdSYQLLP07CAOK7z/sdQLQdYnAHWyuWvkb2mrRKxnYA==}
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
@@ -870,7 +870,7 @@ packages:
       rc-menu: 9.10.0(react-dom@18.2.0)(react@18.2.0)
       rc-motion: 2.7.3(react-dom@18.2.0)(react@18.2.0)
       rc-notification: 5.0.4(react-dom@18.2.0)(react@18.2.0)
-      rc-pagination: 3.5.0(react-dom@18.2.0)(react@18.2.0)
+      rc-pagination: 3.6.1(react-dom@18.2.0)(react@18.2.0)
       rc-picker: 3.13.0(dayjs@1.11.5)(react-dom@18.2.0)(react@18.2.0)
       rc-progress: 3.4.1(react-dom@18.2.0)(react@18.2.0)
       rc-rate: 2.12.0(react-dom@18.2.0)(react@18.2.0)
@@ -2897,8 +2897,8 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: true
 
-  /rc-pagination@3.5.0(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-lUBVtVVUn7gGsq4mTyVpcZQr+AMcljbMiL/HcCmSdFrcsK0iZVKwwbXDxhz2IV0JXUs9Hzepr5sQFaF+9ad/pQ==}
+  /rc-pagination@3.6.1(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-R/sUnKKXx1Nm4kZfUKS3YKa7yEPF1ZkVB/AynQaHt+nMER7h9wPTfliDJFdYo+RM/nk2JD4Yc5QpUq8fIQHeug==}
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
