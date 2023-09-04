@@ -44,8 +44,8 @@ devDependencies:
     specifier: 18.2.7
     version: 18.2.7
   antd:
-    specifier: 5.8.5
-    version: 5.8.5(react-dom@18.2.0)(react@18.2.0)
+    specifier: 5.8.6
+    version: 5.8.6(react-dom@18.2.0)(react@18.2.0)
   cors:
     specifier: ^2.8.5
     version: 2.8.5
@@ -849,8 +849,8 @@ packages:
       color-convert: 2.0.1
     dev: true
 
-  /antd@5.8.5(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-CaCl0BquElbSmilzKunyf22hVhgErKjzh2twQ+ZuFUSZfTOibi6/bwXp93lnT/VGgnc3Z3f2OizybzXWR7/tQg==}
+  /antd@5.8.6(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-DQdHJSq7AH303NgAUZcMRrWqwRYLT9LjesrfhB9xwwi3ooWTMAnS0LrL2NIYHvXZQy1kV0C4mMSiSbBqEKatLA==}
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
@@ -882,7 +882,7 @@ packages:
       rc-mentions: 2.5.0(react-dom@18.2.0)(react@18.2.0)
       rc-menu: 9.10.0(react-dom@18.2.0)(react@18.2.0)
       rc-motion: 2.7.3(react-dom@18.2.0)(react@18.2.0)
-      rc-notification: 5.0.4(react-dom@18.2.0)(react@18.2.0)
+      rc-notification: 5.1.1(react-dom@18.2.0)(react@18.2.0)
       rc-pagination: 3.6.1(react-dom@18.2.0)(react@18.2.0)
       rc-picker: 3.13.0(dayjs@1.11.5)(react-dom@18.2.0)(react@18.2.0)
       rc-progress: 3.4.1(react-dom@18.2.0)(react@18.2.0)
@@ -890,7 +890,7 @@ packages:
       rc-resize-observer: 1.3.1(react-dom@18.2.0)(react@18.2.0)
       rc-segmented: 2.2.2(react-dom@18.2.0)(react@18.2.0)
       rc-select: 14.7.3(react-dom@18.2.0)(react@18.2.0)
-      rc-slider: 10.1.1(react-dom@18.2.0)(react@18.2.0)
+      rc-slider: 10.2.1(react-dom@18.2.0)(react@18.2.0)
       rc-steps: 6.0.1(react-dom@18.2.0)(react@18.2.0)
       rc-switch: 4.1.0(react-dom@18.2.0)(react@18.2.0)
       rc-table: 7.32.1(react-dom@18.2.0)(react@18.2.0)
@@ -2880,8 +2880,8 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: true
 
-  /rc-notification@5.0.4(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-3535oellIRlt1LspERfK8yvCqb8Gio3R02rULciaSc1xe3H7ArTU/khlUTv1ddGzua4HhmF4D4Rwz/+mBxETvg==}
+  /rc-notification@5.1.1(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-BPnded/WmWFE57ubqhVCgRSuedfQQNeSOYqdwppyr2B/Wt909gYFKyWAkFJVXuppAjsOGop05a93UaxjmUFdkg==}
     engines: {node: '>=8.x'}
     peerDependencies:
       react: '>=16.9.0'
@@ -3024,8 +3024,8 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: true
 
-  /rc-slider@10.1.1(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-gn8oXazZISEhnmRinI89Z/JD/joAaM35jp+gDtIVSTD/JJMCCBqThqLk1SVJmvtfeiEF/kKaFY0+qt4SDHFUDw==}
+  /rc-slider@10.2.1(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-l355C/65iV4UFp7mXq5xBTNX2/tF2g74VWiTVlTpNp+6vjE/xaHHNiQq5Af+Uu28uUiqCuH/QXs5HfADL9KJ/A==}
     engines: {node: '>=8.x'}
     peerDependencies:
       react: '>=16.9.0'
