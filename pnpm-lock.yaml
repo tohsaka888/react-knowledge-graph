@@ -56,8 +56,8 @@ devDependencies:
     specifier: 13.4.19
     version: 13.4.19(eslint@8.49.0)(typescript@5.1.6)
   mongodb:
-    specifier: 6.0.0
-    version: 6.0.0
+    specifier: 6.1.0
+    version: 6.1.0
   next:
     specifier: 13.4.19
     version: 13.4.19(react-dom@18.2.0)(react@18.2.0)
@@ -1040,8 +1040,8 @@ packages:
       fill-range: 7.0.1
     dev: true
 
-  /bson@6.0.0:
-    resolution: {integrity: sha512-FoWvdELfF2wQaUo8S/a1Rh2BDwJEUancDDnzdTpYymJTZjmvRpLWoqRPelKn+XSeh5D4YddWDG66cLtEhGGvcg==}
+  /bson@6.1.0:
+    resolution: {integrity: sha512-yiQ3KxvpVoRpx1oD1uPz4Jit9tAVTJgjdmjDKtUErkOoL9VNoF8Dd58qtAOL5E40exx2jvAT9sqdRSK/r+SHlA==}
     engines: {node: '>=16.20.1'}
     dev: true
 
@@ -2345,8 +2345,8 @@ packages:
       whatwg-url: 11.0.0
     dev: true
 
-  /mongodb@6.0.0:
-    resolution: {integrity: sha512-wUIYesF4DTyDccm0noE5TwGi9ISdXUAi9T2cQ4xPc+EUBZG44bfMVt2ecOG5Ypca7eCz3oRpJm6YI6c7jAnuNw==}
+  /mongodb@6.1.0:
+    resolution: {integrity: sha512-AvzNY0zMkpothZ5mJAaIo2bGDjlJQqqAbn9fvtVgwIIUPEfdrqGxqNjjbuKyrgQxg2EvCmfWdjq+4uj96c0YPw==}
     engines: {node: '>=16.20.1'}
     peerDependencies:
       '@aws-sdk/credential-providers': ^3.188.0
@@ -2373,7 +2373,7 @@ packages:
         optional: true
     dependencies:
       '@mongodb-js/saslprep': 1.1.0
-      bson: 6.0.0
+      bson: 6.1.0
       mongodb-connection-string-url: 2.6.0
     dev: true
 
