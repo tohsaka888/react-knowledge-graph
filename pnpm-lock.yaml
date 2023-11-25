@@ -44,8 +44,8 @@ devDependencies:
     specifier: 18.2.15
     version: 18.2.15
   antd:
-    specifier: 5.11.2
-    version: 5.11.2(react-dom@18.2.0)(react@18.2.0)
+    specifier: 5.11.4
+    version: 5.11.4(react-dom@18.2.0)(react@18.2.0)
   cors:
     specifier: ^2.8.5
     version: 2.8.5
@@ -84,8 +84,8 @@ packages:
       '@ctrl/tinycolor': 3.6.1
     dev: true
 
-  /@ant-design/cssinjs@1.17.2(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-vu7lnfEx4Mf8MPzZxn506Zen3Nt4fRr2uutwvdCuTCN5IiU0lDdQ0tiJ24/rmB8+pefwjluYsbyzbQSbgfJy+A==}
+  /@ant-design/cssinjs@1.17.5(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-Ed2rruHMxZTVYGPec6QBZkrh00Df5K1FAufmBpONai5iGYxoxIkg1sRD8YdCw0NvPRAa4r1nJP5LbwICGHzGiQ==}
     peerDependencies:
       react: '>=16.0.0'
       react-dom: '>=16.0.0'
@@ -840,14 +840,14 @@ packages:
       color-convert: 2.0.1
     dev: true
 
-  /antd@5.11.2(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-7/yqmfXpShHH0MJQOgv3vX9PUFwctyBm/G5L0i/S4AQy20ON6ZZ2UkjmWxgwg3vq2CEHKyVGTHozpH9WwDizgw==}
+  /antd@5.11.4(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-FuaV/viyZiMlCL1JzdQpSlzPcWcBlGYDAbtj3FM4BgwAso+ge3d4tXkZZG4yZkktUoLvWrcaJObs3Nk32Oiwuw==}
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
     dependencies:
       '@ant-design/colors': 7.0.0
-      '@ant-design/cssinjs': 1.17.2(react-dom@18.2.0)(react@18.2.0)
+      '@ant-design/cssinjs': 1.17.5(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/icons': 5.2.6(react-dom@18.2.0)(react@18.2.0)
       '@ant-design/react-slick': 1.0.2(react@18.2.0)
       '@babel/runtime': 7.23.2
@@ -867,7 +867,7 @@ packages:
       rc-drawer: 6.5.2(react-dom@18.2.0)(react@18.2.0)
       rc-dropdown: 4.1.0(react-dom@18.2.0)(react@18.2.0)
       rc-field-form: 1.40.0(react-dom@18.2.0)(react@18.2.0)
-      rc-image: 7.3.2(react-dom@18.2.0)(react@18.2.0)
+      rc-image: 7.5.1(react-dom@18.2.0)(react@18.2.0)
       rc-input: 1.3.6(react-dom@18.2.0)(react@18.2.0)
       rc-input-number: 8.4.0(react-dom@18.2.0)(react@18.2.0)
       rc-mentions: 2.9.1(react-dom@18.2.0)(react@18.2.0)
@@ -2955,8 +2955,8 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: true
 
-  /rc-image@7.3.2(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-ICEF6SWv9YKhDXxy1vrXcmf0TVvEcQWIww5Yg+f+mn7e4oGX7FNP4+FExwMjNO5UHBEuWrigbGhlCgI6yZZ1jg==}
+  /rc-image@7.5.1(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-Z9loECh92SQp0nSipc0MBuf5+yVC05H/pzC+Nf8xw1BKDFUJzUeehYBjaWlxly8VGBZJcTHYri61Fz9ng1G3Ag==}
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
