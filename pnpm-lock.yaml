@@ -44,8 +44,8 @@ devDependencies:
     specifier: 18.2.17
     version: 18.2.17
   antd:
-    specifier: 5.11.4
-    version: 5.11.4(react-dom@18.2.0)(react@18.2.0)
+    specifier: 5.11.5
+    version: 5.11.5(react-dom@18.2.0)(react@18.2.0)
   cors:
     specifier: ^2.8.5
     version: 2.8.5
@@ -839,8 +839,8 @@ packages:
       color-convert: 2.0.1
     dev: true
 
-  /antd@5.11.4(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-FuaV/viyZiMlCL1JzdQpSlzPcWcBlGYDAbtj3FM4BgwAso+ge3d4tXkZZG4yZkktUoLvWrcaJObs3Nk32Oiwuw==}
+  /antd@5.11.5(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-qB1YmvO4Zm4r48M0Ptxn7orpaXeMPSeTrrw6dAgtTYN+ysnWD/D/zlxFc5g73GywIzZ10XGqvNC+74A+HD0yeQ==}
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
