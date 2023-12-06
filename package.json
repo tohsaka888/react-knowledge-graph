@@ -38,7 +38,7 @@
     "@types/node": "20.10.3",
     "@types/react": "18.2.42",
     "@types/react-dom": "18.2.17",
-    "antd": "5.11.5",
+    "antd": "5.12.1",
     "cors": "^2.8.5",
     "eslint": "8.54.0",
     "eslint-config-next": "14.0.2",
