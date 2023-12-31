@@ -27,4 +27,4 @@ jobs:
       - name: build production
         run: bun run build
       - name: build packages
-        run: bun run build:packages
+        run: bun run build:package
