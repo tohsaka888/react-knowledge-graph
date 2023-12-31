@@ -1,6 +1,6 @@
 {
   "name": "react-knowledge-graph",
-  "version": "0.3.12",
+  "version": "0.3.13",
   "description": "a react component that can help you create a dynamic knowledge-graph built with Next.js.",
   "private": false,
   "type": "module",
