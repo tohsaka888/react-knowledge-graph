@@ -23,8 +23,8 @@ jobs:
       - name: use bun
         uses: oven-sh/setup-bun@v1
       - name: Install dependencies
-        run: bun install
+        run: bun run install
       - name: build production
-        run: bun build
+        run: bun run build
       - name: build packages
-        run: bun build:packages
+        run: bun run build:packages
