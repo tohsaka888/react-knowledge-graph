@@ -12,7 +12,7 @@
     "build:module": "npx swc KnowledgeGraph -C module.type=es6 -d lib/module --config-file .swcrc",
     "build:typescript": "npx tsc --project ./tsconfig.typescript.json",
     "build:package": "bun build:commonjs && bun build:module && bun build:typescript",
-    "publish:package": "bun build:package && bun publish"
+    "publish:package": "bun build:package && npm publish"
   },
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
