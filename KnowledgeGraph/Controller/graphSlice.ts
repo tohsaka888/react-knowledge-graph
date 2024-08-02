@@ -4,7 +4,6 @@ import { NodeFrontProps } from "../typings/Node";
 import { ConfigProps } from "../typings/Config";
 import { EdgeFrontProps, EdgeProps } from "../typings/Edge";
 import uniqBy from "lodash.uniqby";
-import nodeTest from "node:test";
 
 type GraphProps = { nodes: NodeFrontProps[]; edges: EdgeFrontProps[] };
 
