@@ -696,10 +696,10 @@ ansi-styles@^6.1.0:
   resolved "https://registry.yarnpkg.com/ansi-styles/-/ansi-styles-6.2.1.tgz#0e62320cf99c21afff3b3012192546aacbfb05c5"
   integrity sha512-bN798gFfQX+viw3R7yrGWRqnrN2oRkEkUjjl4JNn4E8GxxbjtG3FbrEIIY3l8/hrwUwIeCZvi4QuOTP4MErVug==
 
-antd@5.20.2:
-  version "5.20.2"
-  resolved "https://registry.yarnpkg.com/antd/-/antd-5.20.2.tgz#265cc561652ddb0eb69098929f316c4b4f9d1a08"
-  integrity sha512-9d6Bs5ZKIV+JhB0eD7KxYnIfnhUh86kNtTGIuNiIxHFUhbuyT1DXN2SuMksDmtSfuRYZ82/C4hq+OJjWNNbmHg==
+antd@5.20.3:
+  version "5.20.3"
+  resolved "https://registry.yarnpkg.com/antd/-/antd-5.20.3.tgz#919a4df00f6e000341f8f50f54b51a75fa5d0774"
+  integrity sha512-v2s5LJlhuccIKLT17ESXQDkiQJdPK4jXg4x2pmSSRlrKXAxfftn8Zhd/7pdF3qR3OkwheQpSRjynrNZKp9Tgkg==
   dependencies:
     "@ant-design/colors" "^7.1.0"
     "@ant-design/cssinjs" "^1.21.0"
