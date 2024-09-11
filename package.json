@@ -39,7 +39,7 @@
     "@types/node": "20.16.5",
     "@types/react": "18.3.5",
     "@types/react-dom": "18.3.0",
-    "antd": "5.20.5",
+    "antd": "5.20.6",
     "cors": "^2.8.5",
     "eslint": "9.10.0",
     "eslint-config-next": "14.2.8",
