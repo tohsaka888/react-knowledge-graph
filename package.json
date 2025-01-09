@@ -37,7 +37,7 @@
     "@types/cors": "^2.8.13",
     "@types/lodash.uniqby": "^4.7.7",
     "@types/node": "22.10.5",
-    "@types/react": "19.0.3",
+    "@types/react": "19.0.4",
     "@types/react-dom": "19.0.2",
     "antd": "5.23.0",
     "cors": "^2.8.5",
