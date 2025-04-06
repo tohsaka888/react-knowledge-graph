@@ -41,7 +41,7 @@
     "@types/react-dom": "19.1.1",
     "antd": "5.24.6",
     "cors": "^2.8.5",
-    "eslint": "9.23.0",
+    "eslint": "9.24.0",
     "eslint-config-next": "15.2.4",
     "mongodb": "6.15.0",
     "next": "15.2.4",
