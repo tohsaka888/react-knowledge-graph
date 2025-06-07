@@ -38,7 +38,7 @@
     "@types/lodash.uniqby": "^4.7.7",
     "@types/node": "22.15.29",
     "@types/react": "19.1.6",
-    "@types/react-dom": "19.1.5",
+    "@types/react-dom": "19.1.6",
     "antd": "5.25.3",
     "cors": "^2.8.5",
     "eslint": "9.28.0",
