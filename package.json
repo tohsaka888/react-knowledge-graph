@@ -36,7 +36,7 @@
     "@swc/core": "1.11.31",
     "@types/cors": "^2.8.13",
     "@types/lodash.uniqby": "^4.7.7",
-    "@types/node": "22.15.30",
+    "@types/node": "22.15.31",
     "@types/react": "19.1.7",
     "@types/react-dom": "19.1.6",
     "antd": "5.25.4",
