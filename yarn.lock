@@ -1071,10 +1071,10 @@ ansi-styles@^4.1.0:
   dependencies:
     color-convert "^2.0.1"
 
-antd@5.26.4:
-  version "5.26.4"
-  resolved "https://registry.yarnpkg.com/antd/-/antd-5.26.4.tgz#bfa5da007c30a60e2f8a1e4bfb83b8d6e3363e8c"
-  integrity sha512-e1EnOvEkvvqcQ18dxfzChBJyJACyih13WpNf2OtnP9z2POh/SF0fXL+ynUemT1zfr+p+P1po/tmHXaMc5PMghg==
+antd@5.26.5:
+  version "5.26.5"
+  resolved "https://registry.yarnpkg.com/antd/-/antd-5.26.5.tgz#e324b028753df763b494034634a6dc991a959e95"
+  integrity sha512-HB7Cr0tPZMMeAyDDH8KZU0aP8/uO51oasmflJhDBzaRRZmLT8Pyjtt8qS22Sc839glm8gpKQcaG0mln66Gt9Fg==
   dependencies:
     "@ant-design/colors" "^7.2.1"
     "@ant-design/cssinjs" "^1.23.0"
