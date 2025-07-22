@@ -33,7 +33,7 @@
   "devDependencies": {
     "@ant-design/cssinjs": "^1.18.2",
     "@swc/cli": "0.7.8",
-    "@swc/core": "1.12.14",
+    "@swc/core": "1.13.1",
     "@types/cors": "^2.8.13",
     "@types/lodash.uniqby": "^4.7.7",
     "@types/node": "22.16.4",
