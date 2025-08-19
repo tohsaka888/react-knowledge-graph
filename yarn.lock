@@ -1076,10 +1076,10 @@ ansi-styles@^4.1.0:
   dependencies:
     color-convert "^2.0.1"
 
-antd@5.26.7:
-  version "5.26.7"
-  resolved "https://registry.yarnpkg.com/antd/-/antd-5.26.7.tgz#e2f7e37330b27eec0de7a7789767975373f61602"
-  integrity sha512-iCyXN6+i2CUVEOSzzJKfbKeg115qoJhGvSkCh5uzAf9hANwHUOJQhsMn+KtN+Lx/2NQ6wfM7nGZ+7NPNO5Pn1w==
+antd@5.27.1:
+  version "5.27.1"
+  resolved "https://registry.yarnpkg.com/antd/-/antd-5.27.1.tgz#5378fc017cb4057ffefe2a670f20e54b924d897d"
+  integrity sha512-jGMSdBN7hAMvPV27B4RhzZfL6n6yu8yDbo7oXrlJasaOqB7bSDPcjdEy1kXy3JPsny/Qazb1ykzRI4EfcByAPQ==
   dependencies:
     "@ant-design/colors" "^7.2.1"
     "@ant-design/cssinjs" "^1.23.0"
@@ -1121,8 +1121,8 @@ antd@5.26.7:
     rc-steps "~6.0.1"
     rc-switch "~4.1.0"
     rc-table "~7.51.1"
-    rc-tabs "~15.6.1"
-    rc-textarea "~1.10.1"
+    rc-tabs "~15.7.0"
+    rc-textarea "~1.10.2"
     rc-tooltip "~6.4.0"
     rc-tree "~5.13.1"
     rc-tree-select "~5.27.0"
@@ -3352,10 +3352,10 @@ rc-table@~7.51.1:
     rc-util "^5.44.3"
     rc-virtual-list "^3.14.2"
 
-rc-tabs@~15.6.1:
-  version "15.6.1"
-  resolved "https://registry.yarnpkg.com/rc-tabs/-/rc-tabs-15.6.1.tgz#f0b6c65384dfa09a64eb539e86a0667c7a650708"
-  integrity sha512-/HzDV1VqOsUWyuC0c6AkxVYFjvx9+rFPKZ32ejxX0Uc7QCzcEjTA9/xMgv4HemPKwzBNX8KhGVbbumDjnj92aA==
+rc-tabs@~15.7.0:
+  version "15.7.0"
+  resolved "https://registry.yarnpkg.com/rc-tabs/-/rc-tabs-15.7.0.tgz#14ca2ee6213d00491a8b67ae26e2d35c256bf19a"
+  integrity sha512-ZepiE+6fmozYdWf/9gVp7k56PKHB1YYoDsKeQA1CBlJ/POIhjkcYiv0AGP0w2Jhzftd3AVvZP/K+V+Lpi2ankA==
   dependencies:
     "@babel/runtime" "^7.11.2"
     classnames "2.x"
@@ -3376,7 +3376,7 @@ rc-textarea@~1.10.0:
     rc-resize-observer "^1.0.0"
     rc-util "^5.27.0"
 
-rc-textarea@~1.10.1:
+rc-textarea@~1.10.2:
   version "1.10.2"
   resolved "https://registry.yarnpkg.com/rc-textarea/-/rc-textarea-1.10.2.tgz#459e3574a95c32939c6793045a1e4db04cb514cc"
   integrity sha512-HfaeXiaSlpiSp0I/pvWpecFEHpVysZ9tpDLNkxQbMvMz6gsr7aVZ7FpWP9kt4t7DB+jJXesYS0us1uPZnlRnwQ==
