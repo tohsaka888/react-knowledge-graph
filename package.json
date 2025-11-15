@@ -42,9 +42,9 @@
     "antd": "5.28.1",
     "cors": "^2.8.5",
     "eslint": "9.39.1",
-    "eslint-config-next": "16.0.1",
+    "eslint-config-next": "16.0.3",
     "mongodb": "7.0.0",
-    "next": "16.0.1",
+    "next": "16.0.3",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "typescript": "5.9.3"
