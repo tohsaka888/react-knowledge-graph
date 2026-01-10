@@ -19,9 +19,9 @@
     "@rc-component/util" "^1.4.0"
 
 "@ant-design/cssinjs@^2.0.0", "@ant-design/cssinjs@^2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@ant-design/cssinjs/-/cssinjs-2.0.1.tgz#a7742deba17d613769db6d1aa4cfa46222ccec45"
-  integrity sha512-Lw1Z4cUQxdMmTNir67gU0HCpTl5TtkKCJPZ6UBvCqzcOTl/QmMFB6qAEoj8qFl0CuZDX9qQYa3m9+rEKfaBSbA==
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@ant-design/cssinjs/-/cssinjs-2.0.2.tgz#ee69f3a41365ac60ea7849c108c0f450941a4447"
+  integrity sha512-7KDVIigtqlamOLtJ0hbjECX/sDGDaJXsM/KHala8I/1E4lpl9RAO585kbVvh/k1rIrFAV6JeGkXmdWyYj9XvuA==
   dependencies:
     "@babel/runtime" "^7.11.1"
     "@emotion/hash" "^0.8.0"
@@ -1109,10 +1109,18 @@
     "@rc-component/util" "^1.3.0"
     clsx "^2.1.1"
 
-"@rc-component/util@^1.0.1", "@rc-component/util@^1.1.0", "@rc-component/util@^1.2.0", "@rc-component/util@^1.2.1", "@rc-component/util@^1.3.0", "@rc-component/util@^1.4.0":
+"@rc-component/util@^1.0.1", "@rc-component/util@^1.1.0", "@rc-component/util@^1.2.0", "@rc-component/util@^1.2.1", "@rc-component/util@^1.3.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@rc-component/util/-/util-1.4.0.tgz#7509c47b2f17e370be65c05e0e8c1aa743d674db"
   integrity sha512-LQlShcJKu0p3JUTAenKrWtqVW0+c4PJKedOqEaef9gTVL70O3cG4xZJ7VXfm0blGzORKFEkd3oQGalaUBNZ3Lg==
+  dependencies:
+    is-mobile "^5.0.0"
+    react-is "^18.2.0"
+
+"@rc-component/util@^1.4.0", "@rc-component/util@^1.7.0":
+  version "1.7.0"
+  resolved "https://registry.yarnpkg.com/@rc-component/util/-/util-1.7.0.tgz#c6eb178e0b1c48c5ae6325b21c60aeaf4f3d8d04"
+  integrity sha512-tIvIGj4Vl6fsZFvWSkYw9sAfiCKUXMyhVz6kpKyZbwyZyRPqv2vxYZROdaO1VB4gqTNvUZFXh6i3APUiterw5g==
   dependencies:
     is-mobile "^5.0.0"
     react-is "^18.2.0"
@@ -1121,14 +1129,6 @@
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/@rc-component/util/-/util-1.6.0.tgz#4f700da5417eb5fd5f9491f08edcba6d075d9454"
   integrity sha512-YbjuIVAm8InCnXVoA4n6G+uh31yESTxQ6fSY2frZ2/oMSvktoB+bumFUfNN7RKh7YeOkZgOvN2suGtEDhJSX0A==
-  dependencies:
-    is-mobile "^5.0.0"
-    react-is "^18.2.0"
-
-"@rc-component/util@^1.7.0":
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/@rc-component/util/-/util-1.7.0.tgz#c6eb178e0b1c48c5ae6325b21c60aeaf4f3d8d04"
-  integrity sha512-tIvIGj4Vl6fsZFvWSkYw9sAfiCKUXMyhVz6kpKyZbwyZyRPqv2vxYZROdaO1VB4gqTNvUZFXh6i3APUiterw5g==
   dependencies:
     is-mobile "^5.0.0"
     react-is "^18.2.0"
@@ -2102,12 +2102,7 @@ cross-spawn@^7.0.6:
     shebang-command "^2.0.0"
     which "^2.0.1"
 
-csstype@^3.1.3:
-  version "3.1.3"
-  resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.1.3.tgz#d80ff294d114fb0e6ac500fbf85b60137d7eff81"
-  integrity sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==
-
-csstype@^3.2.2:
+csstype@^3.1.3, csstype@^3.2.2:
   version "3.2.3"
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.2.3.tgz#ec48c0f3e993e50648c86da559e2610995cf989a"
   integrity sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==
