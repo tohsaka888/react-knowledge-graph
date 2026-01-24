@@ -2931,13 +2931,13 @@ form-data-encoder@^2.1.2:
   resolved "https://registry.yarnpkg.com/form-data-encoder/-/form-data-encoder-2.1.4.tgz#261ea35d2a70d48d30ec7a9603130fa5515e9cd5"
   integrity sha512-yDYSgNMraqvnxiEXO4hi88+YZxaHC6QKzb5N84iRCTDeRO7ZALpir/lVmf/uXUhnwUr2O4HU8s/n6x+yNjQkHw==
 
-framer-motion@12.26.2:
-  version "12.26.2"
-  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-12.26.2.tgz#6dcae8c06aa559c978745ec5f2e7d3fbbfad8eb6"
-  integrity sha512-lflOQEdjquUi9sCg5Y1LrsZDlsjrHw7m0T9Yedvnk7Bnhqfkc89/Uha10J3CFhkL+TCZVCRw9eUGyM/lyYhXQA==
+framer-motion@12.29.0:
+  version "12.29.0"
+  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-12.29.0.tgz#f031407c6025f96e9425de3da039b73c368b4153"
+  integrity sha512-1gEFGXHYV2BD42ZPTFmSU9buehppU+bCuOnHU0AD18DKh9j4DuTx47MvqY5ax+NNWRtK32qIcJf1UxKo1WwjWg==
   dependencies:
-    motion-dom "^12.26.2"
-    motion-utils "^12.24.10"
+    motion-dom "^12.29.0"
+    motion-utils "^12.27.2"
     tslib "^2.4.0"
 
 function-bind@^1.1.2:
@@ -3799,17 +3799,17 @@ mongodb@7.0.0:
     bson "^7.0.0"
     mongodb-connection-string-url "^7.0.0"
 
-motion-dom@^12.26.2:
-  version "12.26.2"
-  resolved "https://registry.yarnpkg.com/motion-dom/-/motion-dom-12.26.2.tgz#0d9f65b45e429bb71fb17bb630d7310495b7b6b5"
-  integrity sha512-KLMT1BroY8oKNeliA3JMNJ+nbCIsTKg6hJpDb4jtRAJ7nCKnnpg/LTq/NGqG90Limitz3kdAnAVXecdFVGlWTw==
+motion-dom@^12.29.0:
+  version "12.29.0"
+  resolved "https://registry.yarnpkg.com/motion-dom/-/motion-dom-12.29.0.tgz#93ba293d15df5edc9f3fd43225a5b59c26997a5c"
+  integrity sha512-3eiz9bb32yvY8Q6XNM4AwkSOBPgU//EIKTZwsSWgA9uzbPBhZJeScCVcBuwwYVqhfamewpv7ZNmVKTGp5qnzkA==
   dependencies:
-    motion-utils "^12.24.10"
+    motion-utils "^12.27.2"
 
-motion-utils@^12.24.10:
-  version "12.24.10"
-  resolved "https://registry.yarnpkg.com/motion-utils/-/motion-utils-12.24.10.tgz#73d0bead3c08c4ba2965a5f7ee39dd53f661ae7e"
-  integrity sha512-x5TFgkCIP4pPsRLpKoI86jv/q8t8FQOiM/0E8QKBzfMozWHfkKap2gA1hOki+B5g3IsBNpxbUnfOum1+dgvYww==
+motion-utils@^12.27.2:
+  version "12.27.2"
+  resolved "https://registry.yarnpkg.com/motion-utils/-/motion-utils-12.27.2.tgz#cd3038236ae2dc3d643bdb272ed831fd6d8ab616"
+  integrity sha512-B55gcoL85Mcdt2IEStY5EEAsrMSVE2sI14xQ/uAdPL+mfQxhKKFaEag9JmfxedJOR4vZpBGoPeC/Gm13I/4g5Q==
 
 ms@2.1.2:
   version "2.1.2"
