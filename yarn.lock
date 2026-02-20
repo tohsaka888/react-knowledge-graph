@@ -2893,12 +2893,12 @@ form-data-encoder@^2.1.2:
   resolved "https://registry.yarnpkg.com/form-data-encoder/-/form-data-encoder-2.1.4.tgz#261ea35d2a70d48d30ec7a9603130fa5515e9cd5"
   integrity sha512-yDYSgNMraqvnxiEXO4hi88+YZxaHC6QKzb5N84iRCTDeRO7ZALpir/lVmf/uXUhnwUr2O4HU8s/n6x+yNjQkHw==
 
-framer-motion@12.34.0:
-  version "12.34.0"
-  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-12.34.0.tgz#0cecdf015cc4cbee55bd53130d043137642a5ced"
-  integrity sha512-+/H49owhzkzQyxtn7nZeF4kdH++I2FWrESQ184Zbcw5cEqNHYkE5yxWxcTLSj5lNx3NWdbIRy5FHqUvetD8FWg==
+framer-motion@12.34.2:
+  version "12.34.2"
+  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-12.34.2.tgz#1861a498652e9f610a911dcb3bb439101e232c30"
+  integrity sha512-CcnYTzbRybm1/OE8QLXfXI8gR1cx5T4dF3D2kn5IyqsGNeLAKl2iFHb2BzFyXBGqESntDt6rPYl4Jhrb7tdB8g==
   dependencies:
-    motion-dom "^12.34.0"
+    motion-dom "^12.34.2"
     motion-utils "^12.29.2"
     tslib "^2.4.0"
 
@@ -3738,10 +3738,10 @@ mongodb@7.1.0:
     bson "^7.1.1"
     mongodb-connection-string-url "^7.0.0"
 
-motion-dom@^12.34.0:
-  version "12.34.0"
-  resolved "https://registry.yarnpkg.com/motion-dom/-/motion-dom-12.34.0.tgz#d1776aaff750e09db66237c66daec31232a4cba8"
-  integrity sha512-Lql3NuEcScRDxTAO6GgUsRHBZOWI/3fnMlkMcH5NftzcN37zJta+bpbMAV9px4Nj057TuvRooMK7QrzMCgtz6Q==
+motion-dom@^12.34.2:
+  version "12.34.2"
+  resolved "https://registry.yarnpkg.com/motion-dom/-/motion-dom-12.34.2.tgz#534ea9e641d9bddcf1c3e1035333bb41e853cafc"
+  integrity sha512-n7gknp7gHcW7DUcmet0JVPLVHmE3j9uWwDp5VbE3IkCNnW5qdu0mOhjNYzXMkrQjrgr+h6Db3EDM2QBhW2qNxQ==
   dependencies:
     motion-utils "^12.29.2"
 
