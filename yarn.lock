@@ -2021,7 +2021,7 @@ browserslist@^4.24.0:
     node-releases "^2.0.26"
     update-browserslist-db "^1.1.4"
 
-bson@^7.1.1:
+bson@^7.2.0:
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/bson/-/bson-7.2.0.tgz#1a496a42d9ff130b9f3ab8efd465459c758c747f"
   integrity sha512-YCEo7KjMlbNlyHhz7zAZNDpIpQbd+wOEHJYezv0nMYTn4x31eIUM2yomNNubclAt63dObUzKHWsBLJ9QcZNSnQ==
@@ -3863,13 +3863,13 @@ mongodb-connection-string-url@^7.0.0:
     "@types/whatwg-url" "^13.0.0"
     whatwg-url "^14.1.0"
 
-mongodb@7.1.1:
-  version "7.1.1"
-  resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-7.1.1.tgz#d08479221b81ba66f1f4a858af621edaaa598d95"
-  integrity sha512-067DXiMjcpYQl6bGjWQoTUEE9UoRViTtKFcoqX7z08I+iDZv/emH1g8XEFiO3qiDfXAheT5ozl1VffDTKhIW/w==
+mongodb@7.2.0:
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-7.2.0.tgz#e4d2c2f196efda07c22a514f893698f7df728764"
+  integrity sha512-F/2+BMZtLVhY30ioZp0dAmZ+IRZMBqI+nrv6t5+9/1AIwCa8sMRC3jBf81lpxMhnZgqq8CoUD503Z1oZWq1/sw==
   dependencies:
     "@mongodb-js/saslprep" "^1.3.0"
-    bson "^7.1.1"
+    bson "^7.2.0"
     mongodb-connection-string-url "^7.0.0"
 
 motion-dom@^12.38.0:
