@@ -884,13 +884,13 @@
   dependencies:
     "@rc-component/util" "^1.2.0"
 
-"@rc-component/notification@~2.0.6":
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/@rc-component/notification/-/notification-2.0.6.tgz#c6ec179b08de314f98ca2362ff46d817ea5e0079"
-  integrity sha512-BsrVo4CBRWwG6G9HrNZtx/0PkMAZup3QAfIc7h4UdjFQfzrOKBhHuJ5c7fzUCbCSGYgAPHW9gn3sfoh+cZLSmw==
+"@rc-component/notification@~2.0.7":
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/@rc-component/notification/-/notification-2.0.7.tgz#f2450a482f87e4698285833c4a8efcac169acabb"
+  integrity sha512-nqZzpf6BPdaj+3ILx7si79LLmqPKyUmQoXa+/9gg0SkH0v1DbD66oJgRMSBEVnd/zUT3D4gwxWIHUKebYf2ZXQ==
   dependencies:
     "@rc-component/motion" "^1.1.4"
-    "@rc-component/util" "^1.2.1"
+    "@rc-component/util" "^1.11.0"
     clsx "^2.1.1"
 
 "@rc-component/overflow@^1.0.0":
@@ -1161,6 +1161,14 @@
   version "1.10.1"
   resolved "https://registry.yarnpkg.com/@rc-component/util/-/util-1.10.1.tgz#213c84c77e8b2001095530d3b0dc47c49c34ffe3"
   integrity sha512-q++9S6rUa5Idb/xIBNz6jtvumw5+O5YV5V0g4iK9mn9jWs4oGJheE3ZN1kAnE723AXyaD8v95yeOASmdk8Jnng==
+  dependencies:
+    is-mobile "^5.0.0"
+    react-is "^18.2.0"
+
+"@rc-component/util@^1.11.0":
+  version "1.11.1"
+  resolved "https://registry.yarnpkg.com/@rc-component/util/-/util-1.11.1.tgz#07d698908339c55648e4f974afa739345e65b483"
+  integrity sha512-awVlI3ub2vqfqkYxOBc/uQ0efm3jw0wcrhtO/YWLyZfxiKXczKwNbVuhlnyxytDt7H9pbbVQiqr+O6MLATtRYg==
   dependencies:
     is-mobile "^5.0.0"
     react-is "^18.2.0"
@@ -1676,10 +1684,10 @@ ajv@^6.14.0:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
-antd@6.4.2:
-  version "6.4.2"
-  resolved "https://registry.yarnpkg.com/antd/-/antd-6.4.2.tgz#9fc0fee455a5c56e7ec27855495eefadc8df636a"
-  integrity sha512-PNJz8Vxc/mC3EsOg/h3e2YuaZduJ1RDp4RmySDuDmKPCxVgyp4Da4kB36o87p9hbLbOWdAWCKQlnyopsN8utKQ==
+antd@6.4.3:
+  version "6.4.3"
+  resolved "https://registry.yarnpkg.com/antd/-/antd-6.4.3.tgz#80a7aab9c13c35daa0e0e7eea80585ba57cb7203"
+  integrity sha512-6H2avkxCGfxcF67r3J2mwm9Ck50el1pks/73vfM1wDsPL/tPtj5vHuauMgJFnrqmq7CH3g8aoZ0VBQbt+jpAsw==
   dependencies:
     "@ant-design/colors" "^8.0.1"
     "@ant-design/cssinjs" "^2.1.2"
@@ -1703,7 +1711,7 @@ antd@6.4.2:
     "@rc-component/menu" "~1.3.0"
     "@rc-component/motion" "^1.3.2"
     "@rc-component/mutate-observer" "^2.0.1"
-    "@rc-component/notification" "~2.0.6"
+    "@rc-component/notification" "~2.0.7"
     "@rc-component/pagination" "~1.2.0"
     "@rc-component/picker" "~1.10.0"
     "@rc-component/progress" "~1.0.2"
@@ -1723,7 +1731,7 @@ antd@6.4.2:
     "@rc-component/tree-select" "~1.9.0"
     "@rc-component/trigger" "^3.9.0"
     "@rc-component/upload" "~1.1.0"
-    "@rc-component/util" "^1.10.1"
+    "@rc-component/util" "^1.11.0"
     clsx "^2.1.1"
     dayjs "^1.11.11"
     scroll-into-view-if-needed "^3.1.0"
