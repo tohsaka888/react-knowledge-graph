@@ -3848,10 +3848,10 @@ mongodb-connection-string-url@^7.0.0:
     "@types/whatwg-url" "^13.0.0"
     whatwg-url "^14.1.0"
 
-mongodb@7.2.0:
-  version "7.2.0"
-  resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-7.2.0.tgz#e4d2c2f196efda07c22a514f893698f7df728764"
-  integrity sha512-F/2+BMZtLVhY30ioZp0dAmZ+IRZMBqI+nrv6t5+9/1AIwCa8sMRC3jBf81lpxMhnZgqq8CoUD503Z1oZWq1/sw==
+mongodb@7.3.0:
+  version "7.3.0"
+  resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-7.3.0.tgz#bd7d47c34590861fd37741914f259cea199d6c07"
+  integrity sha512-WpCqSx7JAU9vcyjm/SU7ydnHls2YrfU3Y3sx4Ml9D7sPe4mXPlaapndiurDXrQ7/VvJkB4/i7b7WovHb8bd8sg==
   dependencies:
     "@mongodb-js/saslprep" "^1.3.0"
     bson "^7.2.0"
