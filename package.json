@@ -45,8 +45,8 @@
     "eslint-config-next": "16.2.12",
     "mongodb": "7.5.0",
     "next": "16.2.12",
-    "react": "19.2.7",
-    "react-dom": "19.2.7",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
     "typescript": "5.9.3"
   },
   "peerDependencies": {
