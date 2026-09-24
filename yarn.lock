@@ -1755,10 +1755,10 @@ ajv@^6.14.0:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
-antd@6.6.4:
-  version "6.6.4"
-  resolved "https://registry.yarnpkg.com/antd/-/antd-6.6.4.tgz#7663c6e1fa16256eaf64e247f44603019bbaeb3e"
-  integrity sha512-nKFi2oY+KrsfAkU8/KwgS0MPKpryIPTVIgoLQRGiT/BcCMakBf5+G8MPy90RdHjEwb0/bulNJV1dxLhHm9cg7w==
+antd@6.6.5:
+  version "6.6.5"
+  resolved "https://registry.yarnpkg.com/antd/-/antd-6.6.5.tgz#d171f920c4c75725b62d58712e2c9c47d194371d"
+  integrity sha512-biJB/aORNU2lvZZCX783S/g8atfE8akrEKRjRrsXVttoMtJbSHLf/Z29niv0blzt6H3BgKvhkQgHoUn5MgCx7w==
   dependencies:
     "@ant-design/colors" "^8.0.1"
     "@ant-design/cssinjs" "^2.1.2"
