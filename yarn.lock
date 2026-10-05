@@ -3073,13 +3073,13 @@ form-data-encoder@^4.0.2:
   resolved "https://registry.yarnpkg.com/form-data-encoder/-/form-data-encoder-4.1.0.tgz#497cedc94810bd5d53b99b5d4f6c152d5cbc9db2"
   integrity sha512-G6NsmEW15s0Uw9XnCg+33H3ViYRyiM0hMrMhhqQOR8NFc5GhYrI+6I3u7OTw7b91J2g8rtvMBZJDbcGb2YUniw==
 
-framer-motion@^13.5.0:
-  version "13.5.0"
-  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-13.5.0.tgz#4f9ecbe94880fbed16cb6b9f507f7f36f51fe7cd"
-  integrity sha512-5KDKvhGTKKEQPWl8xg2mZRC+pGsenooz9v+ar6BpoXcD1mae4wdhvjxLaK+3jvFbge0jk4C8JeIjIC8m98z7hg==
+framer-motion@13.5.1:
+  version "13.5.1"
+  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-13.5.1.tgz#afa53c127eb72e9ae32aefc2e8f7bc06531efd6b"
+  integrity sha512-HeWOaeHD3kyTSIEMT6+nw7fBn4saIfxxabZyAITbycAl4xr1kzGJKIvGt/OWghSlvIA9qTnZ1zTGelHAe6S8DA==
   dependencies:
-    motion-dom "^13.5.0"
-    motion-utils "^13.5.0"
+    motion-dom "13.5.1"
+    motion-utils "13.5.0"
     tslib "^2.4.0"
 
 function-bind@^1.1.2:
@@ -3960,24 +3960,24 @@ mongodb@7.6.0:
     bson "^7.2.0"
     mongodb-connection-string-url "^7.0.1"
 
-motion-dom@^13.5.0:
-  version "13.5.0"
-  resolved "https://registry.yarnpkg.com/motion-dom/-/motion-dom-13.5.0.tgz#946c0eef5424cdc63b60f2ad381e6ace8288e75d"
-  integrity sha512-mSdelbdqc1LDi3m7RkYgnMgdys0qSDsNFpdf0Hjyf8U5Ln0AcjSeApKD4Q4Er3sBPFDzdLehDj4SLgwBf39poQ==
+motion-dom@13.5.1:
+  version "13.5.1"
+  resolved "https://registry.yarnpkg.com/motion-dom/-/motion-dom-13.5.1.tgz#4d3cddcbda97a7f34235cc6c8477897bce8aa3c8"
+  integrity sha512-/7CVCD20Mz1KobktorpdgvowV0V41J7UxqE+qWS3GkSJqrRr5ft+2RloOYtEKv+wvBp3JaSFBclhxt4ja8ovHg==
   dependencies:
-    motion-utils "^13.5.0"
+    motion-utils "13.5.0"
 
-motion-utils@^13.5.0:
+motion-utils@13.5.0:
   version "13.5.0"
   resolved "https://registry.yarnpkg.com/motion-utils/-/motion-utils-13.5.0.tgz#13b41a3f5d67c9d6b5fafe23c7439611bf97fb9f"
   integrity sha512-Hqe/sqjIKliPZg8sVjWAkdySDPJNIeKH+euVkDOG8ri3DUUU7ZjndmHsGqEPz2iHpiyVaV5I22iguCMHU2he+Q==
 
-motion@13.5.0:
-  version "13.5.0"
-  resolved "https://registry.yarnpkg.com/motion/-/motion-13.5.0.tgz#866826ca3aae9c1744e1b20a9fffe0c9a6f49c8b"
-  integrity sha512-W/Vj6RDg9f9yJoaS+ohRYtl1j3Rb86fOCCjzn3M3M10Dg7ap3M7sMUeQs9wTsLQwHHmhioYsJLRRRTXxvhtHDA==
+motion@13.5.1:
+  version "13.5.1"
+  resolved "https://registry.yarnpkg.com/motion/-/motion-13.5.1.tgz#5290e0b102a6d8b3dd6cbd3509cb3f3ebb3d4cb2"
+  integrity sha512-eV9SUem6KnzEa9+eT+dVBeDlhy5TTdn09YWR1WhUsKoZCJPw/n4TcYhjbxq2Gy5PTwDr//4H3r5vxkcZnNnO1w==
   dependencies:
-    framer-motion "^13.5.0"
+    framer-motion "13.5.1"
     tslib "^2.4.0"
 
 ms@2.1.2:
